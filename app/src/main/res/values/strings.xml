@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ZhuThomasFinalProject</string>
+    <string name="menu_title">Stat Tracker</string>
+    <string name="menu_btn_track_game">Track a New Game</string>
+    <string name="menu_btn_view_stats">View Statistics</string>
+    <string name="menu_btn_manage_teams">Manage Teams</string>
+    <string name="menu_btn_exit">Exit</string>
+    <string name="menu_btn_credits">Credits</string>
+    <string name="btn_help">"?"</string>
+
+</resources>
