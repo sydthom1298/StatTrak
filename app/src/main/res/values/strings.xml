@@ -8,5 +8,6 @@
     <string name="btn_help">"?"</string>
 
     <string name="credits_title">Credits</string>
+    <string name="credits">Lead Programmer: Sydney Thomas\n\nGraphical Artist: Jessica Zhu\n\nProject Manager: Sydney Thomas\n\nSystems Analyst: Sydney Thomas\n\nTechnical Writer: Jessica Zhu</string>
 
 </resources>
