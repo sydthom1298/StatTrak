@@ -1,8 +1,6 @@
-import java.util.Scanner;
 import java.util.ArrayList;
-
 public class Season {
-    ArrayList<Game> games;
+    private ArrayList<Game> games;
     public Season(){
 
     }

@@ -1,7 +1,7 @@
 public class Player {
-    int jerseyNum;
-    String name;
-    PlayerStats stats;
+    private int jerseyNum;
+    private String name;
+    private PlayerStats stats;
 
     public Player(){
         jerseyNum = 0;
