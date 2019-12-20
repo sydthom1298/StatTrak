@@ -63,32 +63,17 @@
         app:layout_constraintTop_toBottomOf="@+id/view_stats" />
 
     <Button
-        android:id="@+id/exit"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="360dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/menu_btn_exit"
-        android:textColor="@color/titles"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/manage_teams"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
         android:id="@+id/credits"
-        android:layout_width="250dp"
+        android:layout_width="253dp"
         android:layout_height="100dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="15dp"
         android:text="@string/menu_btn_credits"
         android:textColor="@color/titles"
         android:textSize="30sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/exit"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.008"
-        app:layout_constraintStart_toEndOf="@+id/exit" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/manage_teams"
+        app:layout_constraintVertical_bias="0.009" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
