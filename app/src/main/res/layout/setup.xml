@@ -101,15 +101,13 @@
     <ImageView
         android:id="@+id/player1_img"
         android:layout_width="167dp"
-        android:layout_height="200dp"
+        android:layout_height="185dp"
         android:contentDescription="@string/player_img_desc"
         android:src="@drawable/levels"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/player2_img"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/starters_prompt"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/starters_prompt" />
 
     <ImageView
         android:id="@+id/player2_img"
@@ -159,15 +157,18 @@
         android:id="@+id/cont_btn"
         android:layout_width="190dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginStart="1048dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_light"
         android:text="@string/cont_btn"
         android:textColor="@color/titles"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/jersey_num1"
@@ -229,5 +230,78 @@
         app:layout_constraintEnd_toEndOf="@+id/player5_img"
         app:layout_constraintStart_toStartOf="@+id/player5_img"
         app:layout_constraintTop_toTopOf="@+id/player5_img" />
+
+    <Spinner
+        android:id="@+id/num1_input"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="108dp"
+        android:background="@android:color/white"
+        android:entries="@array/jerseyNums"
+        android:foregroundTint="@color/titles"
+        android:theme="@style/AppTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/num2_input"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player1_img"
+        app:layout_constraintVertical_bias="0.011" />
+
+    <Spinner
+        android:id="@+id/num2_input"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="140dp"
+        android:background="@android:color/white"
+        android:entries="@array/jerseyNums"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/num3_input"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/num1_input"
+        app:layout_constraintTop_toBottomOf="@+id/player2_img"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/num3_input"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="140dp"
+        android:background="@android:color/white"
+        android:entries="@array/jerseyNums"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/num4_input"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/num2_input"
+        app:layout_constraintTop_toBottomOf="@+id/player3_img"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/num4_input"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="140dp"
+        android:background="@android:color/white"
+        android:entries="@array/jerseyNums"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/num5_input"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/num3_input"
+        app:layout_constraintTop_toBottomOf="@+id/player4_img"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/num5_input"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginEnd="108dp"
+        android:background="@android:color/white"
+        android:entries="@array/jerseyNums"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/num4_input"
+        app:layout_constraintTop_toBottomOf="@+id/player5_img"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
