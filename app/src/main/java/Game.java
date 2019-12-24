@@ -1,36 +1,24 @@
-public class Game {
-    private int time;
-    private String team; //team name stats are being tracked for
-    private String opponent;
-    private String date;
-    public Game(){
-        team = "";
-        time = 0;
-        opponent = "";
+import java.util.Date;
+import java.sql.Time;
 
+public class Game {
+    private Team team; //team stats are being tracked for
+    private String opponent;
+    private long dateTime;
+    public Game(){
+        opponent = "";
+        dateTime = System.currentTimeMillis();
     }
-    public Game(String t){
+    public Game(Team t, String opp){
         team = t;
-    }
-    public Game(String d, Team t, String opp){
-        date = d;
-        //team = t;
         opponent = opp;
     }
 
-    public int getTime() {
-        return time;
-    }
-
-    public void setTime(int t) {
-        time = t;
-    }
-
-    public String getTeam() {
+    public Team getTeam() {
         return team;
     }
 
-    public void setTeam(String t) {
+    public void setTeam(Team t) {
         team = t;
     }
 
@@ -41,6 +29,13 @@ public class Game {
     public void setOpponent(String o) {
         opponent = o;
     }
+    public long getGameDateTime() {
+        return dateTime;
+    }
+
+    public void setGameDateTime(long dT) {
+        dateTime = dT;
+    }
 
     /**
      * Method that creates String representation of class
@@ -48,7 +43,10 @@ public class Game {
      */
     public String toString(){
         String str = "";
-        str += "Team Name: " + team + "\nOpponent: " + opponent + "\nDate: ";
+        Date d = new  Date(this.dateTime);
+        Time t = new Time(this.dateTime);
+        str += "Team Name: " + team + "\nOpponent: " + opponent + "\nDate/Time " + d.toString() + " " + t.toString();
+        //TODO add missing fields
         return str;
     }
 }

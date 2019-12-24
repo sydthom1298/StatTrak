@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 public class Team {
     private String name;
-    private int numPlayers;
     private ArrayList<Player> players;
 
     /**
@@ -9,29 +8,26 @@ public class Team {
      */
     public Team(){
         name = "";
-        numPlayers = 0;
+        ArrayList<Player> players = new ArrayList<Player>();
     }
 
 
     /**
      * constructor that constructs a team class with parameters and initializes attributes
      * @param n - name of team
-     * @param num - number of players on team
      */
-    public Team(String n, int num){
+    public Team(String n){
+        this();
         name = n;
-        numPlayers = num;
     }
 
     /**
      * constructor that constructs a team class with parameters and initializes attributes
      * @param n - name of team
-     * @param num - number of players on team
      * @param p - array list that stores all the players on the team
      */
-    public Team(String n, int num, ArrayList<Player> p){
+    public Team(String n, ArrayList<Player> p){
         name = n;
-        numPlayers = num;
         players = p;
     }
 
@@ -51,21 +47,11 @@ public class Team {
         name = n;
     }
 
-    /**
-     * accessor that gets the number of players on the current team
-     * @return - number of players on current team
-     */
+
     public int getNumPlayers() {
-        return numPlayers;
+        return players.size();
     }
 
-    /**
-     * mutator that sets the number of players on the current team
-     * @param nP - number of players to set number of players to
-     */
-    public void setNumPlayers(int nP) {
-        numPlayers = nP;
-    }
 
     /**
      * accessor to return players
@@ -78,14 +64,20 @@ public class Team {
     public void setPlayers(ArrayList<Player> p) {
         players = p;
     }
+    /*
+    TODO LATER
+    public Team clone(){
+
+    }*/
 
     /**
-     * creates string representaiton of class
-     * @return - string representation
+     * creates String representaiton of class
+     * @return - String representation
      */
     public String toString(){
         String str = "";
-        str += "Name: " + name + "\nNumber of Players: " + numPlayers + "\nPlayers: " + players;
+        str += "Name: " + name+ "\nPlayers: " + players;
+        //TODO add missing fields
         return str;
     }
 }

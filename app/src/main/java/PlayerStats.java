@@ -1,5 +1,7 @@
-public class PlayerStats {
+import java.sql.Time;
+import java.util.Date;
 
+public class PlayerStats {
     private int minPlayed; //minutes played by current player
     private int twoPtMakes; //two point shot made by player
     private int twoPtAttempts; //two point shot attempted by player
@@ -9,14 +11,15 @@ public class PlayerStats {
     private int ftMakes; //free throws made by player
     private int ftAttempts; //free throws attempted by player
     private int defRebs; //defensive rebounds
-    private int offRebs; //offsenvie rebounds
+    private int offRebs; //offensive rebounds
     private int ttlRebs; //total rebounds
     private int turnovers; //total turnovers
     private int steals; //total steals
     private int blocks; //total blocks
+    private long gameDateTime;
 
     /**
-     * default constructor that constructs a player class and initializes attributes
+     * default constructor that constructs a PlayerStats class and initializes attributes
      */
     public PlayerStats(){
         minPlayed = 0;
@@ -33,30 +36,25 @@ public class PlayerStats {
         turnovers = 0;
         steals = 0;
         blocks = 0;
+        gameDateTime = System.currentTimeMillis();
     }
 
     /**
-     * constructor that constructs a player stats class with parameters and initializes attributes
-     * @param min - players minutes
-     * @param twoPointM - two points made
-     * @param threePointM - three points made
-     * @param a - assist count
-     * @param freeThrowM - free throws made
-     * @param r - total rebounds
-     * @param t - turnover count
-     * @param s - steal count
-     * @param b - block count
+     * constructor that constructs a PlayerStats class with parameter and calls default constructor
+     * @param gDT - date and time of game
      */
-    public PlayerStats(int min, int twoPointM, int threePointM, int a, int freeThrowM, int r, int t, int s, int b){
-        minPlayed = min;
-        twoPtMakes = twoPointM;
-        threePtMakes = threePointM;
-        assist = a;
-        ftMakes = freeThrowM;
-        ttlRebs = r;
-        turnovers = t;
-        steals = s;
-        blocks = b;
+    public PlayerStats(long gDT){
+        this();
+        gameDateTime = gDT;
+    }
+
+
+    public long getGameDateTime() {
+        return gameDateTime;
+    }
+
+    public void setGameDateTime(long gDT) {
+        gameDateTime = gDT;
     }
 
     /**
@@ -83,6 +81,13 @@ public class PlayerStats {
         return twoPtMakes;
     }
 
+    public void addTwoPtMakes(){
+        twoPtMakes++;
+    }
+    public void subtractTwoPtMakes(){
+        twoPtMakes--;
+    }
+
     /**
      * mutator that sets two pointers made by current player
      * @param twoPM - two pointers to set two pointers made to
@@ -97,6 +102,13 @@ public class PlayerStats {
      */
     public int getTwoPtAttempts() {
         return twoPtAttempts;
+    }
+
+    public void addTwoPtAttempts(){
+        twoPtAttempts++;
+    }
+    public void subtractTwoPtAttempts(){
+        twoPtAttempts--;
     }
 
     /**
@@ -115,6 +127,12 @@ public class PlayerStats {
         return threePtMakes;
     }
 
+    public void addThreePtMakes(){
+        threePtMakes++;
+    }
+    public void subtractThreePtMakes(){
+        threePtMakes--;
+    }
     /**
      * mutator that sets the number of three pointers made by current player
      * @param threePM - three pointers made by current player to set three pointers made to
@@ -130,7 +148,12 @@ public class PlayerStats {
     public int getThreePtAttempts() {
         return threePtAttempts;
     }
-
+    public void addThreePtAttempts(){
+        threePtAttempts++;
+    }
+    public void subtractThreePtAttempts(){
+        threePtAttempts--;
+    }
     /**
      * mutator that sets the number of three pointers attempted by the current player
      * @param threePA - three pointers attempted by current player to set three pointers attempted to
@@ -145,6 +168,12 @@ public class PlayerStats {
      */
     public int getAssist() {
         return assist;
+    }
+    public void addAssists(){
+        assist++;
+    }
+    public void subtractAssists(){
+        assist--;
     }
 
     /**
@@ -162,6 +191,12 @@ public class PlayerStats {
     public int getFtMakes() {
         return ftMakes;
     }
+    public void addFtMakes(){
+        ftMakes++;
+    }
+    public void subtractFtMakes(){
+        ftMakes--;
+    }
 
     /**
      * mutator that sets the number of free throws made by current player
@@ -177,6 +212,12 @@ public class PlayerStats {
      */
     public int getFtAttempts() {
         return ftAttempts;
+    }
+    public void addFtAttempts(){
+        ftAttempts++;
+    }
+    public void subtractFtAttempts(){
+        ftAttempts--;
     }
 
     /**
@@ -194,6 +235,12 @@ public class PlayerStats {
     public int getDefRebs() {
         return defRebs;
     }
+    public void addDefRebs(){
+        defRebs++;
+    }
+    public void subtractDefRebs(){
+        defRebs--;
+    }
 
     /**
      * mutator that sets the number of defensive rebounds by current player
@@ -209,6 +256,12 @@ public class PlayerStats {
      */
     public int getOffRebs() {
         return offRebs;
+    }
+    public void addOffRebs(){
+        offRebs++;
+    }
+    public void subtractOffRebs(){
+        offRebs--;
     }
 
     /**
@@ -226,6 +279,12 @@ public class PlayerStats {
     public int getTtlRebs() {
         return ttlRebs;
     }
+    public void addTtlRebs(){
+        ttlRebs++;
+    }
+    public void subtractTtlRebs(){
+        ttlRebs--;
+    }
 
     /**
      * mutator that sets the total number of rebounds by current player
@@ -242,7 +301,12 @@ public class PlayerStats {
     public int getTurnovers() {
         return turnovers;
     }
-
+    public void addTurnovers(){
+        turnovers++;
+    }
+    public void subtractTurnovers(){
+        turnovers--;
+    }
     /**
      * mutator that sets the number of turnovers by current player
      * @param t - turnovers by current player to set turnovers to
@@ -257,6 +321,12 @@ public class PlayerStats {
      */
     public int getSteals() {
         return steals;
+    }
+    public void addSteals(){
+        steals++;
+    }
+    public void subtractSteals(){
+        steals--;
     }
 
     /**
@@ -274,6 +344,12 @@ public class PlayerStats {
     public int getBlocks() {
         return blocks;
     }
+    public void addBlocks(){
+        blocks++;
+    }
+    public void subtractBlocks(){
+        blocks--;
+    }
 
     /**
      * mutator that sets the number of blocks by current player
@@ -289,10 +365,13 @@ public class PlayerStats {
      */
     public String toString(){
         String str = "";
+        Date d = new  Date(this.gameDateTime);
+        Time t = new Time(this.gameDateTime);
         str += "Minutes Played: " + minPlayed + "\nTwo Pointers Made: " + twoPtMakes + "Three Pointers Made: " +
                 threePtMakes + "\nAssist: " + assist + "\nFree Throws Made: " + ftMakes + "\nDefensive Rebounds: " +
                 defRebs + "\nOffensive Rebounds: " + offRebs + "\nTotal Rebounds: " + ttlRebs + "\nTurnovers: " +
-                turnovers + "\nSteals: " + steals + "\nBlocks: " + blocks;
+                turnovers + "\nSteals: " + steals + "\nBlocks: " + blocks + "\nDate/Time " +  d.toString() + " " + t.toString();
+        //TODO add missing fields
         return str;
     }
 }
