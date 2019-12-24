@@ -1,15 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout7"
+    android:id="@+id/setup_back"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/setup_title"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/raleway_semibold"
+        android:text="@string/setup_title"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/team_prompt"
+        android:layout_width="0dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/raleway_light"
+        android:text="@string/your_team_prompt"
+        android:textColor="@android:color/white"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setup_title" />
+
+    <TextView
+        android:id="@+id/opp_prompt"
+        android:layout_width="0dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/raleway_light"
+        android:text="@string/opp_prompt"
+        android:textColor="@android:color/white"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/team_prompt" />
+
+    <TextView
+        android:id="@+id/starters_prompt"
+        android:layout_width="0dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/raleway_light"
+        android:text="@string/starters_prompt"
+        android:textColor="@android:color/white"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/opp_prompt" />
+
+    <AutoCompleteTextView
+        android:id="@+id/team_input"
+        android:layout_width="0dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:dropDownWidth="wrap_content"
+        android:fontFamily="@font/raleway_light"
+        android:hint="@string/team_hint"
+        android:textColor="@android:color/white"
+        android:textColorLink="@android:color/white"
+        android:textSize="30sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/team_prompt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/team_prompt" />
+
+    <EditText
+        android:id="@+id/opp_input"
+        android:layout_width="0dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="54dp"
+        android:layout_marginEnd="40dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:fontFamily="@font/raleway_light"
+        android:hint="@string/opp_hint"
+        android:inputType="textPersonName"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/opp_prompt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/opp_prompt" />
+
+    <ImageView
+        android:id="@+id/player1_img"
+        android:layout_width="167dp"
+        android:layout_height="200dp"
+        android:contentDescription="@string/player_img_desc"
+        android:src="@drawable/levels"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/player2_img"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/starters_prompt"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/player2_img"
+        android:layout_width="167dp"
+        android:layout_height="185dp"
+        android:contentDescription="@string/player_img_desc"
+        android:src="@drawable/levels"
+        app:layout_constraintEnd_toStartOf="@+id/player3_img"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/player1_img"
+        app:layout_constraintTop_toBottomOf="@+id/starters_prompt" />
+
+    <ImageView
+        android:id="@+id/player3_img"
+        android:layout_width="167dp"
+        android:layout_height="185dp"
+        android:contentDescription="@string/player_img_desc"
+        android:src="@drawable/levels"
+        app:layout_constraintEnd_toStartOf="@+id/player4_img"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/player2_img"
+        app:layout_constraintTop_toBottomOf="@+id/starters_prompt" />
+
+    <ImageView
+        android:id="@+id/player4_img"
+        android:layout_width="167dp"
+        android:layout_height="185dp"
+        android:contentDescription="@string/player_img_desc"
+        android:src="@drawable/levels"
+        app:layout_constraintEnd_toStartOf="@+id/player5_img"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/player3_img"
+        app:layout_constraintTop_toBottomOf="@+id/starters_prompt" />
+
+    <ImageView
+        android:id="@+id/player5_img"
+        android:layout_width="167dp"
+        android:layout_height="185dp"
+        android:contentDescription="@string/player_img_desc"
+        android:src="@drawable/levels"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/player4_img"
+        app:layout_constraintTop_toBottomOf="@+id/starters_prompt" />
+
+    <Button
+        android:id="@+id/cont_btn"
+        android:layout_width="190dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="80dp"
+        android:background="@android:color/white"
+        android:fontFamily="@font/raleway_light"
+        android:text="@string/cont_btn"
+        android:textColor="@color/titles"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/jersey_num1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="176dp"
-        tools:layout_editor_absoluteY="254dp" />
+        android:fontFamily="@font/graduate"
+        android:text="@string/default_num"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="@+id/player1_img"
+        app:layout_constraintEnd_toEndOf="@+id/player1_img"
+        app:layout_constraintStart_toStartOf="@+id/player1_img"
+        app:layout_constraintTop_toBottomOf="@+id/starters_prompt" />
+
+    <TextView
+        android:id="@+id/jersey_num2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/graduate"
+        android:text="@string/default_num"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="@+id/player2_img"
+        app:layout_constraintEnd_toEndOf="@+id/player2_img"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="@+id/player2_img"
+        app:layout_constraintTop_toTopOf="@+id/player2_img" />
+
+    <TextView
+        android:id="@+id/jersey_num3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/graduate"
+        android:text="@string/default_num"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="@+id/player3_img"
+        app:layout_constraintEnd_toEndOf="@+id/player3_img"
+        app:layout_constraintStart_toStartOf="@+id/player3_img"
+        app:layout_constraintTop_toTopOf="@+id/player3_img" />
+
+    <TextView
+        android:id="@+id/jersey_num4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/graduate"
+        android:text="@string/default_num"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="@+id/player4_img"
+        app:layout_constraintEnd_toEndOf="@+id/player4_img"
+        app:layout_constraintStart_toStartOf="@+id/player4_img"
+        app:layout_constraintTop_toTopOf="@+id/player4_img" />
+
+    <TextView
+        android:id="@+id/jersey_num5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/graduate"
+        android:text="@string/default_num"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="@+id/player5_img"
+        app:layout_constraintEnd_toEndOf="@+id/player5_img"
+        app:layout_constraintStart_toStartOf="@+id/player5_img"
+        app:layout_constraintTop_toTopOf="@+id/player5_img" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

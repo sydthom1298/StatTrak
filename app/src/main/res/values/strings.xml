@@ -10,4 +10,14 @@
     <string name="credits_title">Credits</string>
     <string name="credits">Lead Programmer: Sydney Thomas\n\nGraphical Artist: Jessica Zhu\n\nProject Manager: Sydney Thomas\n\nSystems Analyst: Sydney Thomas\n\nTechnical Writer: Jessica Zhu</string>
 
+
+    <string name="setup_title">Game Setup</string>
+    <string name="your_team_prompt">Your Team:</string>
+    <string name="team_hint">Start typing your team name…</string>
+    <string name="opp_prompt">Opponent: </string>
+    <string name="opp_hint">Type in the name of your opponent…</string>
+    <string name="starters_prompt">Your Starters:</string>
+    <string name="player_img_desc">An image of a jersey to represent one player</string>
+    <string name="cont_btn">Continue</string>
+    <string name="default_num">00</string>
 </resources>
