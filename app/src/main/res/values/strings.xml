@@ -20,4 +20,9 @@
     <string name="player_img_desc">An image of a jersey to represent one player</string>
     <string name="cont_btn">Continue</string>
     <string name="default_num">00</string>
+
+    <string name="stat_select_title">Stat Mode Selection</string>
+    <string name="game_mode_btn">View Game Stats</string>
+    <string name="team_mode_btn">View Team Stats</string>
+    <string name="stat_select_prompt">Choose which viewing mode you would like to access:</string>
 </resources>

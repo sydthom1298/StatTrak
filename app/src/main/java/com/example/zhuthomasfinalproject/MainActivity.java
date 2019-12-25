@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         btn_view_stats.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // executes on main thread after user selects "view statistics" button
@@ -53,12 +54,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btn_setup_cont.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // executes on main thread after user selects "view statistics" button
-                // redirects to statistic mode selection layout
-                setContentView(R.layout.game_time_tracker);
-            }
-        });
+
     }
 }

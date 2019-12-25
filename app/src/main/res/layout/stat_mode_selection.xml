@@ -1,7 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/constraintLayout5"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/stat_select_back"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
+    <TextView
+        android:id="@+id/stat_select_title"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/raleway_semibold"
+        android:text="@string/stat_select_title"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/game_mode_btn"
+        android:layout_width="474dp"
+        android:layout_height="163dp"
+        android:layout_marginTop="80dp"
+        android:background="@android:color/white"
+        android:fontFamily="@font/raleway_semibold"
+        android:text="@string/game_mode_btn"
+        android:textColor="@color/titles"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toStartOf="@+id/team_mode_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stat_select_prompt" />
+
+    <Button
+        android:id="@+id/team_mode_btn"
+        android:layout_width="475dp"
+        android:layout_height="163dp"
+        android:layout_marginTop="80dp"
+        android:background="@android:color/white"
+        android:fontFamily="@font/raleway_semibold"
+        android:text="@string/team_mode_btn"
+        android:textColor="@color/titles"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/game_mode_btn"
+        app:layout_constraintTop_toBottomOf="@+id/stat_select_prompt" />
+
+    <TextView
+        android:id="@+id/stat_select_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/raleway_light"
+        android:text="@string/stat_select_prompt"
+        android:textColor="@android:color/white"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stat_select_title" />
 </androidx.constraintlayout.widget.ConstraintLayout>
