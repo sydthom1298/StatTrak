@@ -154,7 +154,7 @@
         app:layout_constraintTop_toBottomOf="@+id/starters_prompt" />
 
     <Button
-        android:id="@+id/cont_btn"
+        android:id="@+id/setup_cont_btn"
         android:layout_width="190dp"
         android:layout_height="60dp"
         android:layout_marginStart="1048dp"

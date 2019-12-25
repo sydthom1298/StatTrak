@@ -18,8 +18,7 @@ public class MainActivity extends AppCompatActivity {
         final Button btn_view_stats = findViewById(R.id.view_stats);
         final Button btn_manage_teams = findViewById(R.id.manage_teams);
         final Button btn_credits = findViewById(R.id.credits);
-        // do we want an exit button? lots of the websites i've seen say not to, but I'll leave it for now
-        // i think we should just figure out how to access the "back" button in the os and use that to navigate
+        final Button btn_setup_cont = findViewById(R.id.setup_cont_btn);
 
         //event listeners to check when buttons are selected by the user
         btn_new_game.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        btn_setup_cont.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // executes on main thread after user selects "view statistics" button
+                // redirects to statistic mode selection layout
+                setContentView(R.layout.game_time_tracker);
+            }
+        });
     }
 }
