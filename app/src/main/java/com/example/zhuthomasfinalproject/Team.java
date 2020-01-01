@@ -1,3 +1,5 @@
+package com.example.zhuthomasfinalproject;
+
 import java.util.ArrayList;
 public class Team {
     private String name;
@@ -66,9 +68,21 @@ public class Team {
     }
     /*
     TODO LATER
-    public Team clone(){
+    public com.example.zhuthomasfinalproject.Team clone(){
 
     }*/
+
+    public void addPlayer( Player p) {
+        this.players.add(p);
+    }
+    public Player findPlayer( String name, int num) {
+        for( Player p : this.players) {
+            if( p.getName().equals(name) && (num == p.getJerseyNum())) {
+                return p;
+            }
+        }
+        return null;
+    }
 
     /**
      * creates String representaiton of class

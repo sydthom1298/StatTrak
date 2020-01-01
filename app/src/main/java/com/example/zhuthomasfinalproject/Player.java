@@ -1,3 +1,5 @@
+package com.example.zhuthomasfinalproject;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 public class Player {
@@ -70,7 +72,7 @@ public class Player {
 
     public String toString(){
         String str = "";
-        str += "Name: " + name + "\nPlayer Number: " + jerseyNum;
+        str += "Name: " + name + "\ncom.example.zhuthomasfinalproject.Player Number: " + jerseyNum;
         //TODO add missing fields
         return str;
     }

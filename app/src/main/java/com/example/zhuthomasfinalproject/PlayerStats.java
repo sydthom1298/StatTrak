@@ -1,3 +1,5 @@
+package com.example.zhuthomasfinalproject;
+
 import java.sql.Time;
 import java.util.Date;
 
@@ -19,7 +21,7 @@ public class PlayerStats {
     private long gameDateTime;
 
     /**
-     * default constructor that constructs a PlayerStats class and initializes attributes
+     * default constructor that constructs a com.example.zhuthomasfinalproject.PlayerStats class and initializes attributes
      */
     public PlayerStats(){
         minPlayed = 0;
@@ -40,7 +42,7 @@ public class PlayerStats {
     }
 
     /**
-     * constructor that constructs a PlayerStats class with parameter and calls default constructor
+     * constructor that constructs a com.example.zhuthomasfinalproject.PlayerStats class with parameter and calls default constructor
      * @param gDT - date and time of game
      */
     public PlayerStats(long gDT){

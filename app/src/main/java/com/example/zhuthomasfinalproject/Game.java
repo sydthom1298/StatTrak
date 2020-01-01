@@ -1,3 +1,5 @@
+package com.example.zhuthomasfinalproject;
+
 import java.util.Date;
 import java.sql.Time;
 
@@ -45,7 +47,7 @@ public class Game {
         String str = "";
         Date d = new  Date(this.dateTime);
         Time t = new Time(this.dateTime);
-        str += "Team Name: " + team + "\nOpponent: " + opponent + "\nDate/Time " + d.toString() + " " + t.toString();
+        str += "com.example.zhuthomasfinalproject.Team Name: " + team + "\nOpponent: " + opponent + "\nDate/Time " + d.toString() + " " + t.toString();
         //TODO add missing fields
         return str;
     }
