@@ -6,6 +6,7 @@
     <string name="menu_btn_manage_teams">Manage Teams</string>
     <string name="menu_btn_credits">Credits</string>
     <string name="btn_help">"?"</string>
+    <string name="btn_help_desc">question mark to indicate help</string>
 
     <string name="credits_title">Credits</string>
     <string name="credits">Lead Programmer: Sydney Thomas\n\nGraphical Artist: Jessica Zhu\n\nProject Manager: Sydney Thomas\n\nSystems Analyst: Sydney Thomas\n\nTechnical Writer: Jessica Zhu</string>
@@ -25,4 +26,38 @@
     <string name="game_mode_btn">View Game Stats</string>
     <string name="team_mode_btn">View Team Stats</string>
     <string name="stat_select_prompt">Choose which viewing mode you would like to access:</string>
+
+    <string name="instructions_title">Instructions</string>
+    <string name="menu_instructions">Upon first opening the app…</string>
+    <string name="ss_desc">A screenshot that visually demonstrates the written instructions</string>
+
+
+    <string name="manager_title">Manage Teams</string>
+
+    <string name="timer">8:00</string>
+    <string name="quarter">q1</string>
+    <string name="recent_play_desc">#11 scored 2 points!</string>
+    <string name="btn_ft_makes">FT Make</string>
+    <string name="btn_ft_misses">FT Miss</string>
+    <string name="btn_three_pt_makes">3PT Make</string>
+    <string name="btn_three_pt_misses">3PT Miss</string>
+    <string name="btn_two_pt_makes">2PT Make</string>
+    <string name="btn_two_pt_misses">2PT Miss</string>
+    <string name="btn_assists">Assist</string>
+    <string name="btn_off_rebs">Off. Reb</string>
+    <string name="btn_def_rebs">Def. Reb</string>
+    <string name="btn_steals">Steal</string>
+    <string name="btn_blocks">Block</string>
+    <string name="btn_turnovers">Turnover</string>
+    <string name="btn_fouls">Personal Foul</string>
+
+    <string name="btn_undo">UNDO</string>
+    <string name="btn_sub">SUBSTITUTION</string>
+
+    <string name="player_1">00</string>
+    <string name="player_2">1</string>
+    <string name="player_3">2</string>
+    <string name="player_4">3</string>
+    <string name="player_5">4</string>
+
 </resources>

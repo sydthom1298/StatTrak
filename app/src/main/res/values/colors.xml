@@ -7,4 +7,5 @@
     <color name="backgroundColor">#FF40686F</color>
     <color name="background">#40686F</color>
     <color name="titles">#245354</color>
+    <color name="grayText">#5A5A5A</color>
 </resources>
