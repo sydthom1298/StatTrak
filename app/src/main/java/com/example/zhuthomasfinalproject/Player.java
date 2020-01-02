@@ -1,12 +1,24 @@
 package com.example.zhuthomasfinalproject;
 
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
 public class Player {
     private int jerseyNum;
     private String name;
     private ArrayList<PlayerStats> stats;
     private boolean inGame;
+
+    public PlayerStats getCurrentStats() {
+        return currentStats;
+    }
+
+    public void setCurrentStats(PlayerStats currentStats) {
+        this.currentStats = currentStats;
+    }
+
+    private PlayerStats currentStats;
 
     public Player(){
         jerseyNum = 0;
@@ -48,6 +60,7 @@ public class Player {
     }
 
     public void setStats(ArrayList<PlayerStats> s) {
+
         stats = s;
     }
     public PlayerStats getStat(long t) {
@@ -58,7 +71,9 @@ public class Player {
         }
         return null;
     }
-    public void addPlayerStat(){
+    public void addPlayerStat(long t){
+        PlayerStats s = new PlayerStats(t);
+        currentStats = s;
 
     }
     public void Play(LocalDateTime start){
@@ -70,9 +85,8 @@ public class Player {
         inGame = false;
     }
 
-    public String toString(){
-        String str = "";
-        str += "Name: " + name + "\ncom.example.zhuthomasfinalproject.Player Number: " + jerseyNum;
+    public java.lang.String toString(){
+        String str = "Name: " + name + "\ncom.example.zhuthomasfinalproject.Player Number: " + jerseyNum;
         //TODO add missing fields
         return str;
     }

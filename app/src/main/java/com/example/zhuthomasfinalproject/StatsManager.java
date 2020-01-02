@@ -4,35 +4,52 @@ public class StatsManager {
     private Player currentPlayer;
     private Season currentSeason;
     private Game currentGame;
+    private boolean test = true;
 
     private Player Playing[];
 
-    public StatsManager() {
+    public  StatsManager() {
         Playing = new Player[5];
+        if( test ) {
+            long t = System.currentTimeMillis();
+            Playing[0] = new Player( "Jessica", 7);
+            Playing[0].addPlayerStat(t);
+            Playing[1] = new Player( "Sydney", 11);
+            Playing[1].addPlayerStat(t);
+            Playing[2] = new Player( "Tammy", 17);
+            Playing[2].addPlayerStat(t);
+            Playing[3] = new Player( "Sarah", 8);
+            Playing[3].addPlayerStat(t);
+            Playing[4] = new Player( "Emma", 12);
+            Playing[4].addPlayerStat(t);
+            currentPlayer = Playing[0];
+        }
+
+
     }
 
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
 
-    public void setCurrentPlayer(Player currentPlayer) {
-        this.currentPlayer = currentPlayer;
+    public void setCurrentPlayer(Player cp) {
+        currentPlayer = cp;
     }
 
     public Game getCurrentGame() {
         return currentGame;
     }
 
-    public void setCurrentGame(Game currentGame) {
-        this.currentGame = currentGame;
+    public void setCurrentGame(Game game) {
+        currentGame = game;
     }
 
     public Season getCurrentSeason() {
         return currentSeason;
     }
 
-    public void setCurrentSeason(Season currentSeason) {
-        this.currentSeason = currentSeason;
+    public void setCurrentSeason(Season season) {
+        currentSeason = season;
     }
 
     public Season newSeason() {
@@ -43,9 +60,7 @@ public class StatsManager {
     public void addToRoster( String name, int num ) {
         Player p = new Player(name, num);
 
-        this.currentSeason.getRoster().addPlayer(p);
-
-
+        currentSeason.getRoster().addPlayer(p);
     }
 
     public Game newGame() {

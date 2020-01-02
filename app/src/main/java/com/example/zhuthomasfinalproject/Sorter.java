@@ -1,5 +1,7 @@
 package com.example.zhuthomasfinalproject;
 
+// TODO: take ArrayList of objects and sort by a field specified as a "String" by using
+// getField() to get the field value.  Probably need 2 sort methods - 1 for String and 1 for int.
 public class Sorter {
 
 

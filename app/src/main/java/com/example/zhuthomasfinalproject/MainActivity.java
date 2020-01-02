@@ -1,12 +1,14 @@
 package com.example.zhuthomasfinalproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MainActivity extends AppCompatActivity {
+
+    public StatsManager statsMgr = new StatsManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                         // executes on main thread after user selects "CONTINUE" button
                         // redirects to game setup layout
                         setContentView(R.layout.game_time_tracker);
+                        statsMgr.getCurrentPlayer().getCurrentStats().addTwoPtMakes();
                     }
                 });
 
