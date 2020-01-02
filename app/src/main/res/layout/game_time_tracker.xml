@@ -179,7 +179,7 @@
         android:layout_width="200dp"
         android:layout_height="100dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="100dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_medium"
@@ -208,9 +208,9 @@
         android:id="@+id/play_desc"
         android:layout_width="232dp"
         android:layout_height="111dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="84dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="32dp"
         android:background="@android:color/holo_green_dark"
         android:fontFamily="@font/raleway_semibold"
         android:text="@string/recent_play_desc"
@@ -218,45 +218,71 @@
         android:textColor="@android:color/white"
         android:textSize="40sp"
         app:layout_constraintEnd_toStartOf="@+id/timer"
-        app:layout_constraintHorizontal_bias="0.782"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/quarter"
-        android:layout_width="143dp"
-        android:layout_height="105dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="82dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="32dp"
         android:background="@color/titles"
         android:fontFamily="@font/raleway_semibold"
         android:text="@string/quarter"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="60sp"
+        android:textSize="40sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/timer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/timer"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.004"
+        app:layout_constraintStart_toEndOf="@+id/timer" />
 
     <TextView
         android:id="@+id/timer"
-        android:layout_width="354dp"
+        android:layout_width="280dp"
         android:layout_height="140dp"
-        android:layout_marginStart="464dp"
+        android:layout_marginStart="408dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
         android:background="@color/titles"
         android:fontFamily="@font/graduate"
         android:text="@string/timer"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="100sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.018"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/team_points"
+        android:layout_width="136dp"
+        android:layout_height="86dp"
+        android:layout_marginStart="56dp"
+        android:background="@color/titles"
+        android:fontFamily="@font/graduate"
+        android:text="@string/team_pts"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="60sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/quarter"
+        app:layout_constraintStart_toEndOf="@+id/quarter" />
+
+    <TextView
+        android:id="@+id/team_fouls"
+        android:layout_width="100dp"
+        android:layout_height="86dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@color/titles"
+        android:fontFamily="@font/graduate"
+        android:text="@string/team_fouls"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="60sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/team_points"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/team_points" />
 
     <Button
         android:id="@+id/btn_sub"
@@ -302,6 +328,7 @@
         android:background="@color/titles"
         android:fontFamily="@font/graduate"
         android:textColor="@android:color/white"
+        android:textColorHint="#E91E63"
         android:textOff="@string/player_2"
         android:textOn="@string/player_2"
         android:textSize="50sp"
@@ -368,5 +395,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_help" />
+
+    <TextView
+        android:id="@+id/lbl_team_points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="872dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/raleway_medium"
+        android:text="@string/team_pts_label"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/team_points"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/lbl_team_fouls"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="46dp"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="@font/raleway_medium"
+        android:text="@string/team_fouls_label"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/lbl_team_points"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toEndOf="@+id/lbl_team_points" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

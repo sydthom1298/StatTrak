@@ -33,9 +33,21 @@
 
 
     <string name="manager_title">Manage Teams</string>
+    <string name="choose_new_or_existing">Choose to access the roster of an existing team OR create a new team</string>
+    <string name="team_prompt">Team:</string>
+    <string name="new_team_name_prompt">New Team Name:</string>
+    <string name="new_team_hint">Type team name here</string>
+    <string name="btn_create_new">Create New Team</string>
+    <string name="or">OR</string>
 
-    <string name="timer">8:00</string>
+    <string name="btn_save">Save Changes</string>
+
+    <string name="timer">7:00</string>
     <string name="quarter">q1</string>
+    <string name="team_pts">12</string>
+    <string name="team_fouls">1</string>
+    <string name="team_pts_label">Points</string>
+    <string name="team_fouls_label">Team Fouls</string>
     <string name="recent_play_desc">#11 scored 2 points!</string>
     <string name="btn_ft_makes">FT Make</string>
     <string name="btn_ft_misses">FT Miss</string>
