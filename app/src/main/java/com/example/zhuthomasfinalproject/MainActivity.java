@@ -24,8 +24,7 @@ public class MainActivity extends AppCompatActivity {
         btn_new_game.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                /* TODO modify to go through Game Start screen instead of directly to
-                    Game Time Screen.
+
                 // executes on main thread after user selects "track new game" button
                 // redirects to game setup layout
                 setContentView(R.layout.setup);
@@ -36,14 +35,14 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         // executes on main thread after user selects "CONTINUE" button
                         // redirects to game setup layout
-                        setContentView(R.layout.game_time_tracker);
+                        setContentView(R.layout.setup);
 
                     }
                 });
-
-                 */
-
                 launchGameTracker(v);
+
+
+
 
             }
         });
@@ -95,8 +94,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     public void launchGameTracker(View v) {
         Intent i = new Intent(this, GameTimeTrackerActivity.class);
         startActivity(i);
     }
+
 }

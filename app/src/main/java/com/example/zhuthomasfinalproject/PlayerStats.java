@@ -6,12 +6,12 @@ import java.util.Date;
 public class PlayerStats {
     private int minPlayed; //minutes played by current player
     private int twoPtMakes; //two point shot made by player
-    private int twoPtAttempts; //two point shot attempted by player
+    private int twoPtMisses; //two point shot attempted by player
     private int threePtMakes; //three point shot made by player
-    private int threePtAttempts; //three point show attempted by player
-    private int assist; //assist count
+    private int threePtMisses; //three point show attempted by player
+    private int assists; //assist count
     private int ftMakes; //free throws made by player
-    private int ftAttempts; //free throws attempted by player
+    private int ftMisses; //free throws attempted by player
     private int defRebs; //defensive rebounds
     private int offRebs; //offensive rebounds
     private int ttlRebs; //total rebounds
@@ -19,6 +19,7 @@ public class PlayerStats {
     private int steals; //total steals
     private int blocks; //total blocks
     private long gameDateTime;
+    private int fouls;
 
     /**
      * default constructor that constructs a com.example.zhuthomasfinalproject.PlayerStats class and initializes attributes
@@ -26,12 +27,12 @@ public class PlayerStats {
     public PlayerStats(){
         minPlayed = 0;
         twoPtMakes = 0;
-        twoPtAttempts = 0;
+        twoPtMisses = 0;
         threePtMakes = 0;
-        threePtAttempts = 0;
-        assist = 0;
+        threePtMisses = 0;
+        assists = 0;
         ftMakes = 0;
-        ftAttempts = 0;
+        ftMisses = 0;
         defRebs = 0;
         offRebs = 0;
         ttlRebs = 0;
@@ -102,23 +103,23 @@ public class PlayerStats {
      * accessor that gets the number of two pointers attempted by current player
      * @return - number of two pointers attempted by current player
      */
-    public int getTwoPtAttempts() {
-        return twoPtAttempts;
+    public int getTwoPtMisses() {
+        return twoPtMisses;
     }
 
-    public void addTwoPtAttempts(){
-        twoPtAttempts++;
+    public void addTwoPtMisses(){
+        twoPtMisses++;
     }
-    public void subtractTwoPtAttempts(){
-        twoPtAttempts--;
+    public void subtractTwoPtMisses(){
+        twoPtMisses--;
     }
 
     /**
-     * mutator that sets the number of two pointers attempted by current player
-     * @param twoPA - two pointers attempted by current player to set two points atempted to
+     * mutator that sets the number of two pointers missed by current player
+     * @param twoPM - two pointers missed by current player to set two point misses to
      */
-    public void setTwoPtAttempts(int twoPA) {
-        twoPtAttempts = twoPA;
+    public void setTwoPtMisses(int twoPM) {
+        twoPtMisses = twoPM;
     }
 
     /**
@@ -147,43 +148,43 @@ public class PlayerStats {
      * accessor that gets the number of three pointers attempted by current player
      * @return - number of three pointers attempted
      */
-    public int getThreePtAttempts() {
-        return threePtAttempts;
+    public int getThreePtMisses() {
+        return threePtMisses;
     }
-    public void addThreePtAttempts(){
-        threePtAttempts++;
+    public void addThreePtMisses(){
+        threePtMisses++;
     }
-    public void subtractThreePtAttempts(){
-        threePtAttempts--;
+    public void subtractThreePtMisses(){
+        threePtMisses--;
     }
     /**
-     * mutator that sets the number of three pointers attempted by the current player
-     * @param threePA - three pointers attempted by current player to set three pointers attempted to
+     * mutator that sets the number of three pointers missed by the current player
+     * @param threePM - three pointers missed by current player to set three pointers missed to
      */
-    public void setThreePtAttempts(int threePA) {
-        threePtAttempts = threePA;
+    public void setThreePtMisses(int threePM) {
+        threePtMisses = threePM;
     }
 
     /**
      * accessor that gets the number of assists by the current player
      * @return - number of assists
      */
-    public int getAssist() {
-        return assist;
+    public int getAssists() {
+        return assists;
     }
     public void addAssists(){
-        assist++;
+        assists++;
     }
     public void subtractAssists(){
-        assist--;
+        assists--;
     }
 
     /**
      * mutator that sets the number of assists by the current player
      * @param a - number of assits by current player to set number of assists to
      */
-    public void setAssist(int a) {
-        assist = a;
+    public void setAssists(int a) {
+        assists = a;
     }
 
     /**
@@ -209,25 +210,25 @@ public class PlayerStats {
     }
 
     /**
-     * accessor that gets the number of free throws attempted by current player
-     * @return - number of free throws attempted
+     * accessor that gets the number of free throws missed by current player
+     * @return - number of free throws missed
      */
-    public int getFtAttempts() {
-        return ftAttempts;
+    public int getFtMisses() {
+        return ftMisses;
     }
-    public void addFtAttempts(){
-        ftAttempts++;
+    public void addFtMisses(){
+        ftMisses++;
     }
-    public void subtractFtAttempts(){
-        ftAttempts--;
+    public void subtractFtMisses(){
+        ftMisses--;
     }
 
     /**
-     * mutator that sets the number of free throws attempted by current player
-     * @param ftA - free throws attempted by current player to set free throws attempted to
+     * mutator that sets the number of free throws missed by current player
+     * @param ftM - free throws missed by current player to set free throws missed to
      */
-    public void setFtAttempts(int ftA) {
-        ftAttempts = ftA;
+    public void setFtMisses(int ftM) {
+        ftMisses = ftM;
     }
 
     /**
@@ -361,6 +362,19 @@ public class PlayerStats {
         blocks = b;
     }
 
+    public int getFouls() {
+        return fouls;
+    }
+    public void addFouls(){
+        fouls++;
+    }
+    public void subtractFouls(){
+        fouls--;
+    }
+    public void setFouls(int f) {
+        fouls = f;
+    }
+
     /**
      * String representation of class
      * @return - string representation
@@ -369,10 +383,12 @@ public class PlayerStats {
         String str = "";
         Date d = new  Date(this.gameDateTime);
         Time t = new Time(this.gameDateTime);
-        str += "Minutes Played: " + minPlayed + "\nTwo Pointers Made: " + twoPtMakes + "Three Pointers Made: " +
-                threePtMakes + "\nAssist: " + assist + "\nFree Throws Made: " + ftMakes + "\nDefensive Rebounds: " +
-                defRebs + "\nOffensive Rebounds: " + offRebs + "\nTotal Rebounds: " + ttlRebs + "\nTurnovers: " +
-                turnovers + "\nSteals: " + steals + "\nBlocks: " + blocks + "\nDate/Time " +  d.toString() + " " + t.toString();
+        str += "Minutes Played: " + minPlayed + "\nTwo Pointers Made: " + twoPtMakes + "\nTwo Pointers Missed: " +
+                twoPtMisses + "\nThree Pointers Made: " + threePtMakes + "\nThree Pointers Missed: " + threePtMisses +
+                "\nAssist: " + assists + "\nFree Throws Made: " + ftMakes + "\nFree Throws Missed: " + ftMisses +
+                "\nDefensive Rebounds: " + defRebs + "\nOffensive Rebounds: " + offRebs + "\nTotal Rebounds: " +
+                ttlRebs + "\nTurnovers: " + turnovers + "\nSteals: " + steals + "\nBlocks: " + blocks +
+                "\nFouls: " + fouls +  "\nDate/Time " +  d.toString() + " " + t.toString();
         //TODO add missing fields
         return str;
     }

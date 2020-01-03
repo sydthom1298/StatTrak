@@ -7,6 +7,7 @@ public class Game {
     private Team team; //team stats are being tracked for
     private String opponent;
     private long dateTime;
+    private int teamFouls;
     public Game(){
         opponent = "";
         dateTime = System.currentTimeMillis();
@@ -37,6 +38,19 @@ public class Game {
 
     public void setGameDateTime(long dT) {
         dateTime = dT;
+    }
+
+    public int getTeamFouls() {
+        return teamFouls;
+    }
+    public void addTeamFouls(){
+        teamFouls++;
+    }
+    public void subtractTeamFouls(){
+        teamFouls--;
+    }
+    public void setTeamFouls(int tF) {
+        teamFouls = tF;
     }
 
     /**
