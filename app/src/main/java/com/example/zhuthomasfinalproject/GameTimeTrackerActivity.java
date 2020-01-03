@@ -10,7 +10,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_time_tracker);
+        setContentView(R.layout.game_time_tracker);
         StatsManager.initStatsManager();
     }
     public void onTwoPtMake(View v){
