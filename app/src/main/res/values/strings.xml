@@ -72,4 +72,9 @@
     <string name="player_4">3</string>
     <string name="player_5">4</string>
 
+    <string name="game_summ_title">Game Complete!</string>
+    <string name="header">Name\t\t\t\t\t\tJersey #\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tMin\t\tPts\t\tAsts\t\tStls\t\tTOs\t\tBlk
+    \nKyle Lowry\t\t\t\t7\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t32\t\t\t17\t\t9\t\t\t\t2\t\t\t\t3\t\t\t\t0</string> // replace with an array later
+    <string name="game_info">TEAM NAME vs. TEAM NAME\nDD/MM/YYYY</string>
+    <string name="btn_export_stats">Export Stats</string>
 </resources>

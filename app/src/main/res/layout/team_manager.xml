@@ -130,7 +130,7 @@
         android:id="@+id/btn_add_new_team2"
         android:layout_width="360dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="128dp"
+        android:layout_marginBottom="112dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/btn_save"
@@ -138,7 +138,13 @@
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="538dp"
+        android:layout_height="34dp"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="387dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
