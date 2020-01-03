@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/team_prompt"
+        android:id="@+id/manage_team_prompt"
         android:layout_width="0dp"
         android:layout_height="66dp"
         android:layout_marginStart="40dp"
@@ -49,7 +49,7 @@
         android:textColor="@android:color/white"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/team_prompt" />
+        app:layout_constraintTop_toBottomOf="@+id/manage_team_prompt" />
 
     <TextView
         android:id="@+id/starters_prompt"
@@ -76,9 +76,9 @@
         android:textColor="@android:color/white"
         android:textColorLink="@android:color/white"
         android:textSize="30sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/team_prompt"
+        app:layout_constraintBaseline_toBaselineOf="@+id/manage_team_prompt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/team_prompt" />
+        app:layout_constraintStart_toEndOf="@+id/manage_team_prompt" />
 
     <EditText
         android:id="@+id/opp_input"

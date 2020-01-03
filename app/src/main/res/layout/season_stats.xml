@@ -1,15 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout3"
+    android:id="@+id/szn_stats_back"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor">
 
-    <TextView
-        android:id="@+id/textView2"
+    <ImageButton
+        android:id="@+id/btn_help_szn_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="218dp" />
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="@string/btn_help_desc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_help" />
+
+    <Button
+        android:id="@+id/btn_export_szn_stats"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="44dp"
+        android:background="@android:color/white"
+        android:fontFamily="@font/raleway_light"
+        android:text="@string/btn_export_stats"
+        android:textColor="@color/titles"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/szn_selector"
+        android:layout_width="284dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="32dp"
+        android:background="@android:color/white"
+        android:entries="@array/team_seasons"
+        app:layout_constraintBaseline_toBaselineOf="@+id/szn_prompt"
+        app:layout_constraintStart_toEndOf="@+id/szn_prompt" />
+
+    <TextView
+        android:id="@+id/szn_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="172dp"
+        android:fontFamily="@font/raleway_medium"
+        android:text="@string/season_prompt"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/szn_team_prompt"
+        app:layout_constraintStart_toEndOf="@+id/szn_team_selector" />
+
+    <TextView
+        android:id="@+id/overall_title"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/raleway_medium"
+        android:text="@string/season_avgs_title"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/szn_stats" />
+
+    <Spinner
+        android:id="@+id/szn_team_selector"
+        android:layout_width="284dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="32dp"
+        android:background="@android:color/white"
+        android:entries="@array/team_names"
+        app:layout_constraintBaseline_toBaselineOf="@+id/szn_team_prompt"
+        app:layout_constraintStart_toEndOf="@+id/szn_team_prompt" />
+
+    <TextView
+        android:id="@+id/szn_team_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/raleway_medium"
+        android:text="@string/team_prompt"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/szn_stats_title" />
+
+    <TextView
+        android:id="@+id/szn_stats"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/white"
+        android:scrollbars="vertical"
+        android:text="@string/header"
+        android:textColor="@color/titles"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/szn_team_prompt" />
+
+    <TextView
+        android:id="@+id/season_avgs"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:background="@android:color/white"
+        android:scrollbars="vertical"
+        android:text="@string/temp_avgs"
+        android:textColor="@color/titles"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.162"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/overall_title" />
+
+    <TextView
+        android:id="@+id/szn_stats_title"
+        android:layout_width="1200dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/raleway_semibold"
+        android:text="@string/season_stats_title"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
