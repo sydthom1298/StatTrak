@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
                  */
 
-                nextActivity(v);
+                launchGameTracker(v);
 
             }
         });
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void nextActivity(View v) {
+    public void launchGameTracker(View v) {
         Intent i = new Intent(this, GameTimeTrackerActivity.class);
         startActivity(i);
     }
