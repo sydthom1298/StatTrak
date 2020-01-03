@@ -39,7 +39,7 @@
         android:layout_height="46dp"
         android:layout_marginStart="32dp"
         android:background="@android:color/white"
-        android:entries="@array/team_games"
+        android:entries="@array/team_seasons"
         app:layout_constraintBaseline_toBaselineOf="@+id/szn_prompt"
         app:layout_constraintStart_toEndOf="@+id/szn_prompt" />
 

@@ -39,6 +39,10 @@
     <string name="new_team_hint">Type team name here</string>
     <string name="btn_create_new">Create New Team</string>
     <string name="or">OR</string>
+    <string name="table_title_name">Name</string>
+    <string name="table_title_number">Jersey #</string>
+    <string name="table_title_active">Active?</string>
+    <string name="table_title_position">Position</string>
 
     <string name="btn_save">Save Changes</string>
 
@@ -86,4 +90,6 @@
     <string name="temp_avgs">Min\t\tPts\t\tAsts\t\tStls\t\tTOs\t\tBlk
     \n32\t\t\t17\t\t9\t\t\t\t2\t\t\t\t3\t\t\t\t0</string> // replace with an array later
     <string name="season_avgs_title">Overall:</string>
+
+
 </resources>

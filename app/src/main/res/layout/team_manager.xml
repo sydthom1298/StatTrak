@@ -83,11 +83,10 @@
         android:id="@+id/management_instructions"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="32dp"
         android:fontFamily="@font/raleway_light"
         android:text="@string/choose_new_or_existing"
         android:textColor="@android:color/white"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -111,18 +110,18 @@
 
     <Button
         android:id="@+id/btn_add_new_team"
-        android:layout_width="360dp"
-        android:layout_height="56dp"
+        android:layout_width="542dp"
+        android:layout_height="42dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="176dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="100dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/btn_create_new"
         android:textColor="@color/titles"
-        android:textSize="28sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.991"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_team_name_prompt" />
 
@@ -130,7 +129,8 @@
         android:id="@+id/btn_save"
         android:layout_width="360dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="112dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/btn_save"
@@ -138,13 +138,73 @@
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roster_table"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="538dp"
-        android:layout_height="34dp"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="387dp" />
+    <TableLayout
+        android:id="@+id/roster_table"
+        android:layout_width="836dp"
+        android:layout_height="276dp"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/white"
+        android:stretchColumns="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_add_new_team">
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="333dp"
+                android:layout_height="match_parent"
+                android:padding="3dip"
+                android:text="@string/table_title_name"
+                android:textAlignment="viewStart"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="142dp"
+                android:layout_height="match_parent"
+                android:padding="3dip"
+                android:text="@string/table_title_number"
+                android:textAlignment="viewStart"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="214dp"
+                android:layout_height="match_parent"
+                android:padding="3dip"
+                android:text="@string/table_title_position"
+                android:textAlignment="viewStart"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="147dp"
+                android:padding="3dip"
+                android:text="@string/table_title_active"
+                android:textAlignment="viewStart"
+                android:textSize="22sp" />
+        </TableRow>
+
+        <TableRow>
+            <EditText
+                android:layout_width="147dp"
+                android:padding="3dip"
+                android:text="KYLE LOWRY"
+                android:textAlignment="viewStart"
+                android:textSize="22sp" />
+
+            <EditText
+                android:layout_width="142dp"
+                android:layout_height="match_parent"
+                android:padding="3dip"
+                android:text="7"
+                android:textAlignment="viewStart"
+                android:textSize="22sp" />
+
+            
+        </TableRow>
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
