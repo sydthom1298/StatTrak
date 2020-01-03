@@ -48,6 +48,26 @@ public class MainActivity extends AppCompatActivity {
                 // executes on main thread after user selects "view statistics" button
                 // redirects to statistic mode selection layout
                 setContentView(R.layout.stat_mode_selection);
+
+                final Button btn_game_stats = findViewById(R.id.btn_game_mode);
+                final Button btn_szn_stats = findViewById(R.id.btn_team_mode);
+
+                btn_game_stats.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        // executes on main thread after user selects "credits" button
+                        // redirects to team manager layout
+                        setContentView(R.layout.game_stats);
+                    }
+                });
+
+                btn_szn_stats.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        // executes on main thread after user selects "credits" button
+                        // redirects to team manager layout
+                        setContentView(R.layout.season_stats);
+                    }
+                });
+
             }
         });
 

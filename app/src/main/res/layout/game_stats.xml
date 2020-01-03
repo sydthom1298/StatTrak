@@ -22,7 +22,6 @@
         android:id="@+id/btn_export_game_stats"
         android:layout_width="240dp"
         android:layout_height="60dp"
-        android:layout_marginStart="40dp"
         android:layout_marginBottom="44dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_light"
@@ -30,6 +29,8 @@
         android:textColor="@color/titles"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner

@@ -18,4 +18,11 @@
         <item>22/12/2019 vs. Hornets</item>
         <item>25/12/2019 vs. Celtics</item>
     </string-array>
+
+    <string-array name="team_seasons">
+        <item>n/a</item>
+        <item>2017-18</item>
+        <item>2018-19</item>
+    </string-array>
+
 </resources>
