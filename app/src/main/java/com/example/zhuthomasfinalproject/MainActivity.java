@@ -35,11 +35,11 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         // executes on main thread after user selects "CONTINUE" button
                         // redirects to game setup layout
-                        setContentView(R.layout.setup);
+                        //setContentView(R.layout.setup);
+                        launchGameSetup(v);
 
                     }
                 });
-                launchGameTracker(v);
 
 
 
@@ -95,9 +95,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void launchGameTracker(View v) {
-        Intent i = new Intent(this, GameTimeTrackerActivity.class);
+    public void launchGameSetup(View v) {
+        Intent i = new Intent(this, GameSetup.class);
         startActivity(i);
     }
-
 }
