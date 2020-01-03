@@ -1,14 +1,20 @@
 package com.example.zhuthomasfinalproject;
 
-public class StatsManager {
-    private Player currentPlayer;
-    private Season currentSeason;
-    private Game currentGame;
-    private boolean test = true;
+public final class StatsManager {
+    private static Player currentPlayer;
+    private static Season currentSeason;
+    private static Game currentGame;
+    private static boolean test = true;
 
-    private Player Playing[];
+    private static Player Playing[];
 
-    public  StatsManager() {
+    public   StatsManager() {
+
+
+
+    }
+
+    public static void initStatsManager() {
         Playing = new Player[5];
         if( test ) {
             long t = System.currentTimeMillis();
@@ -24,65 +30,62 @@ public class StatsManager {
             Playing[4].addPlayerStat(t);
             currentPlayer = Playing[0];
         }
-
-
     }
-
-    public Player getCurrentPlayer() {
+    public static Player getCurrentPlayer() {
         return currentPlayer;
     }
 
-    public void setCurrentPlayer(Player cp) {
+    public static void setCurrentPlayer(Player cp) {
         currentPlayer = cp;
     }
 
-    public Game getCurrentGame() {
+    public static Game getCurrentGame() {
         return currentGame;
     }
 
-    public void setCurrentGame(Game game) {
+    public static void setCurrentGame(Game game) {
         currentGame = game;
     }
 
-    public Season getCurrentSeason() {
+    public static Season getCurrentSeason() {
         return currentSeason;
     }
 
-    public void setCurrentSeason(Season season) {
+    public static void setCurrentSeason(Season season) {
         currentSeason = season;
     }
 
-    public Season newSeason() {
+    public static Season newSeason() {
         Season s = new Season();
         return s;
     }
 
-    public void addToRoster( String name, int num ) {
+    public static void addToRoster( String name, int num ) {
         Player p = new Player(name, num);
 
         currentSeason.getRoster().addPlayer(p);
     }
 
-    public Game newGame() {
+    public static Game newGame() {
         Game newGame = new Game();
         return newGame;
     }
 
-    public void putPlayerInGame(int slot, Player p) {
+    public static void putPlayerInGame(int slot, Player p) {
         Playing[slot].Bench(null);  // TODO pass in time
         p.Play(null); // TODO pass in time
         Playing[slot] = p;
 
     }
 
-    public void removePlayerFromGame(int slot) {
+    public static void removePlayerFromGame(int slot) {
         Playing[slot].Bench(null);  // TODO pass in time
 
         Playing[slot] = null;
     }
 
-    public void selectPlayer(String name, int number) {
-        this.currentPlayer = this.currentGame.getTeam().findPlayer(name, number);
+    public static void selectPlayer(String name, int number) {
+        currentPlayer = currentGame.getTeam().findPlayer(name, number);
     }
 
 }

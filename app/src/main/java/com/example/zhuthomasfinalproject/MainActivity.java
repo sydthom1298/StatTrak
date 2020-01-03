@@ -1,5 +1,6 @@
 package com.example.zhuthomasfinalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -7,8 +8,6 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-
-    public StatsManager statsMgr = new StatsManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
         //event listeners to check when buttons are selected by the user
         btn_new_game.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                /* TODO modify to go through Game Start screen instead of directly to
+                    Game Time Screen.
                 // executes on main thread after user selects "track new game" button
                 // redirects to game setup layout
                 setContentView(R.layout.setup);
@@ -35,13 +37,16 @@ public class MainActivity extends AppCompatActivity {
                         // executes on main thread after user selects "CONTINUE" button
                         // redirects to game setup layout
                         setContentView(R.layout.game_time_tracker);
-                        statsMgr.getCurrentPlayer().getCurrentStats().addTwoPtMakes();
+
                     }
                 });
 
+                 */
+
+                nextActivity(v);
+
             }
         });
-
 
         btn_view_stats.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -69,5 +74,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+    public void nextActivity(View v) {
+        Intent i = new Intent(this, GameTimeTrackerActivity.class);
+        startActivity(i);
     }
 }
