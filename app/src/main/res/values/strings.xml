@@ -45,6 +45,11 @@
     <string name="table_title_position">Position</string>
 
     <string name="btn_save">Save Changes</string>
+    <string name="add_new_player">New Player</string>
+    <string name="lbl_num_players"># of Players:</string>
+    <string name="num_players">12</string>
+    <string name="lbl_act_players"># of Active Players:</string>
+    <string name="act_players">10</string>
 
     <string name="timer">7:00</string>
     <string name="quarter">q1</string>

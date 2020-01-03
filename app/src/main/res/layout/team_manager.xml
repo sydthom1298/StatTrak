@@ -39,7 +39,7 @@
         android:id="@+id/manage_team_prompt"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/team_prompt"
         android:textColor="@android:color/white"
@@ -69,7 +69,7 @@
         android:id="@+id/new_team_name_prompt"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/new_team_name_prompt"
         android:textColor="@android:color/white"
@@ -91,6 +91,58 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/manager_title" />
+
+    <TextView
+        android:id="@+id/lbl_num_players"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/raleway_light"
+        android:text="@string/lbl_num_players"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/table_scroller"
+        app:layout_constraintTop_toBottomOf="@+id/btn_new_player" />
+
+    <TextView
+        android:id="@+id/lbl_act_players"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:fontFamily="@font/raleway_light"
+        android:text="@string/lbl_act_players"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toEndOf="@+id/table_scroller"
+        app:layout_constraintTop_toBottomOf="@+id/num_players" />
+
+    <TextView
+        android:id="@+id/num_players"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway_medium"
+        android:text="@string/num_players"
+        android:textColor="@android:color/white"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toEndOf="@+id/table_scroller"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_num_players" />
+
+    <TextView
+        android:id="@+id/act_players"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway_medium"
+        android:text="@string/act_players"
+        android:textColor="@android:color/white"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toEndOf="@+id/table_scroller"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_act_players" />
 
     <EditText
         android:id="@+id/txt_new_team_name"
@@ -127,84 +179,425 @@
 
     <Button
         android:id="@+id/btn_save"
-        android:layout_width="360dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="250dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/btn_save"
         android:textColor="@color/titles"
         android:textSize="28sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roster_table"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.284"
+        app:layout_constraintStart_toEndOf="@+id/table_scroller"
+        app:layout_constraintTop_toBottomOf="@+id/act_players" />
 
-    <TableLayout
-        android:id="@+id/roster_table"
-        android:layout_width="836dp"
-        android:layout_height="276dp"
-        android:layout_marginTop="32dp"
+    <Button
+        android:id="@+id/btn_new_player"
+        android:layout_width="250dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="40dp"
         android:background="@android:color/white"
-        android:stretchColumns="1"
+        android:fontFamily="@font/raleway_medium"
+        android:text="@string/add_new_player"
+        android:textColor="@color/titles"
+        android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.284"
+        app:layout_constraintStart_toEndOf="@+id/table_scroller"
+        app:layout_constraintTop_toBottomOf="@+id/btn_add_new_team" />
+
+    <ScrollView
+        android:id="@+id/table_scroller"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="40dp"
+        android:layout_weight="1"
+        android:scrollbars="vertical|none"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_add_new_team">
 
-        <TableRow>
+        <TableLayout
+            android:id="@+id/roster_table"
+            android:layout_width="836dp"
+            android:layout_height="276dp"
+            android:layout_marginTop="32dp"
+            android:background="@android:color/white"
+            android:stretchColumns="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_new_team">
 
-            <TextView
-                android:layout_width="333dp"
-                android:layout_height="match_parent"
-                android:padding="3dip"
-                android:text="@string/table_title_name"
-                android:textAlignment="viewStart"
-                android:textSize="22sp" />
+            <TableRow>
 
-            <TextView
-                android:layout_width="142dp"
-                android:layout_height="match_parent"
-                android:padding="3dip"
-                android:text="@string/table_title_number"
-                android:textAlignment="viewStart"
-                android:textSize="22sp" />
+                <TextView
+                    android:layout_width="333dp"
+                    android:layout_height="match_parent"
+                    android:padding="3dip"
+                    android:text="@string/table_title_name"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
 
-            <TextView
-                android:layout_width="214dp"
-                android:layout_height="match_parent"
-                android:padding="3dip"
-                android:text="@string/table_title_position"
-                android:textAlignment="viewStart"
-                android:textSize="22sp" />
+                <TextView
+                    android:layout_width="142dp"
+                    android:layout_height="match_parent"
+                    android:padding="3dip"
+                    android:text="@string/table_title_number"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
 
-            <TextView
-                android:layout_width="147dp"
-                android:padding="3dip"
-                android:text="@string/table_title_active"
-                android:textAlignment="viewStart"
-                android:textSize="22sp" />
-        </TableRow>
+                <TextView
+                    android:layout_width="214dp"
+                    android:layout_height="match_parent"
+                    android:padding="3dip"
+                    android:text="@string/table_title_position"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
 
-        <TableRow>
-            <EditText
-                android:layout_width="147dp"
-                android:padding="3dip"
-                android:text="KYLE LOWRY"
-                android:textAlignment="viewStart"
-                android:textSize="22sp" />
+                <TextView
+                    android:layout_width="147dp"
+                    android:padding="3dip"
+                    android:text="@string/table_title_active"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+            </TableRow>
 
-            <EditText
-                android:layout_width="142dp"
-                android:layout_height="match_parent"
-                android:padding="3dip"
-                android:text="7"
-                android:textAlignment="viewStart"
-                android:textSize="22sp" />
+            <TableRow>
+                <EditText
+                    android:layout_width="147dp"
+                    android:inputType="textPersonName|text"
+                    android:padding="3dip"
+                    android:text="Kyle Lowry"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
 
-            
-        </TableRow>
-    </TableLayout>
+                <EditText
+                    android:layout_width="142dp"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:padding="3dip"
+                    android:text="7"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="214dp"
+                    android:layout_height="match_parent"
+                    android:inputType="textCapWords|textCapCharacters"
+                    android:padding="3dip"
+                    android:text="PG"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <CheckBox android:checked="true" />
+            </TableRow>
+
+            <TableRow>
+                <EditText
+                    android:layout_width="147dp"
+                    android:inputType="textPersonName|text"
+                    android:padding="3dip"
+                    android:text="Pascal Siakam"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="142dp"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:padding="3dip"
+                    android:text="43"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="214dp"
+                    android:layout_height="match_parent"
+                    android:inputType="textCapWords|textCapCharacters"
+                    android:padding="3dip"
+                    android:text="SF/PF"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <CheckBox android:checked="false" />
+            </TableRow>
+
+            <TableRow>
+                <EditText
+                    android:layout_width="147dp"
+                    android:inputType="textPersonName|text"
+                    android:padding="3dip"
+                    android:text="Marc Gasol"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="142dp"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:padding="3dip"
+                    android:text="33"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="214dp"
+                    android:layout_height="match_parent"
+                    android:inputType="textCapWords|textCapCharacters"
+                    android:padding="3dip"
+                    android:text="C"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <CheckBox android:checked="false" />
+            </TableRow>
+
+            <TableRow>
+                <EditText
+                    android:layout_width="147dp"
+                    android:inputType="textPersonName|text"
+                    android:padding="3dip"
+                    android:text="OG Anunoby"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="142dp"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:padding="3dip"
+                    android:text="3"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="214dp"
+                    android:layout_height="match_parent"
+                    android:inputType="textCapWords|textCapCharacters"
+                    android:padding="3dip"
+                    android:text="SF/PF"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <CheckBox android:checked="true" />
+            </TableRow>
+
+            <TableRow>
+                <EditText
+                    android:layout_width="147dp"
+                    android:inputType="textPersonName|text"
+                    android:padding="3dip"
+                    android:text="Fred VanVleet"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="142dp"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:padding="3dip"
+                    android:text="23"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="214dp"
+                    android:layout_height="match_parent"
+                    android:inputType="textCapWords|textCapCharacters"
+                    android:padding="3dip"
+                    android:text="G"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <CheckBox android:checked="true" />
+            </TableRow>
+
+            <TableRow>
+                <EditText
+                    android:layout_width="147dp"
+                    android:inputType="textPersonName|text"
+                    android:padding="3dip"
+                    android:text="Norman Powell"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="142dp"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:padding="3dip"
+                    android:text="24"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="214dp"
+                    android:layout_height="match_parent"
+                    android:inputType="textCapWords|textCapCharacters"
+                    android:padding="3dip"
+                    android:text="G"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <CheckBox android:checked="false" />
+            </TableRow>
+
+            <TableRow>
+
+                <EditText
+                    android:layout_width="147dp"
+                    android:inputType="textPersonName|text"
+                    android:padding="3dip"
+                    android:text="Patrick McCaw"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="142dp"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:padding="3dip"
+                    android:text="22"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="214dp"
+                    android:layout_height="match_parent"
+                    android:inputType="textCapWords|textCapCharacters"
+                    android:padding="3dip"
+                    android:text="G"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <CheckBox android:checked="true" />
+            </TableRow>
+
+            <TableRow>
+                <EditText
+                    android:layout_width="147dp"
+                    android:inputType="textPersonName|text"
+                    android:padding="3dip"
+                    android:text="Serge Ibaka"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="142dp"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:padding="3dip"
+                    android:text="9"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="214dp"
+                    android:layout_height="match_parent"
+                    android:inputType="textCapWords|textCapCharacters"
+                    android:padding="3dip"
+                    android:text="SF/PF"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <CheckBox android:checked="true" />
+            </TableRow>
+
+            <TableRow>
+                <EditText
+                    android:layout_width="147dp"
+                    android:inputType="textPersonName|text"
+                    android:padding="3dip"
+                    android:text="Malcolm Miller"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="142dp"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:padding="3dip"
+                    android:text="13"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="214dp"
+                    android:layout_height="match_parent"
+                    android:inputType="textCapWords|textCapCharacters"
+                    android:padding="3dip"
+                    android:text="G"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <CheckBox android:checked="true" />
+            </TableRow>
+
+            <TableRow>
+                <EditText
+                    android:layout_width="147dp"
+                    android:inputType="textPersonName|text"
+                    android:padding="3dip"
+                    android:text="Rondae Hollis-Johnson"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="142dp"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:padding="3dip"
+                    android:text="4"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="214dp"
+                    android:layout_height="match_parent"
+                    android:inputType="textCapWords|textCapCharacters"
+                    android:padding="3dip"
+                    android:text="SF/PF"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <CheckBox android:checked="true" />
+            </TableRow>
+
+            <TableRow>
+                <EditText
+                    android:layout_width="147dp"
+                    android:inputType="textPersonName|text"
+                    android:padding="3dip"
+                    android:text="Terence Davis"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="142dp"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:padding="3dip"
+                    android:text="0"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="214dp"
+                    android:layout_height="match_parent"
+                    android:inputType="textCapWords|textCapCharacters"
+                    android:padding="3dip"
+                    android:text="G"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp" />
+
+                <CheckBox android:checked="true" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
