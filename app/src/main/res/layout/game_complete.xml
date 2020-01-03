@@ -10,7 +10,7 @@
 
 
     <Button
-        android:id="@+id/btn_export_stats"
+        android:id="@+id/btn_export_comp_stats"
         android:layout_width="240dp"
         android:layout_height="60dp"
         android:layout_marginEnd="768dp"
@@ -19,13 +19,13 @@
         android:text="@string/btn_export_stats"
         android:textColor="@color/titles"
         android:textSize="30sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/game_summ_cont_btn2"
-        app:layout_constraintEnd_toStartOf="@+id/game_summ_cont_btn2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_game_comp_cont"
+        app:layout_constraintEnd_toStartOf="@+id/btn_game_comp_cont"
         app:layout_constraintHorizontal_bias="0.952"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/game_summ_cont_btn2"
+        android:id="@+id/btn_game_comp_cont"
         android:layout_width="190dp"
         android:layout_height="60dp"
         android:layout_marginEnd="40dp"
@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageButton
-        android:id="@+id/btn_help2"
+        android:id="@+id/btn_help_game_comp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -50,7 +50,7 @@
         app:srcCompat="@android:drawable/ic_menu_help" />
 
     <TextView
-        android:id="@+id/game_summ_title"
+        android:id="@+id/game_comp_title"
         android:layout_width="1200dp"
         android:layout_height="90dp"
         android:layout_marginStart="32dp"
@@ -77,10 +77,10 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/game_summ_title" />
+        app:layout_constraintTop_toBottomOf="@+id/game_comp_title" />
 
     <TextView
-        android:id="@+id/game_stats"
+        android:id="@+id/game_comp_stats"
         android:layout_width="wrap_content"
         android:layout_height="64dp"
         android:layout_marginTop="32dp"

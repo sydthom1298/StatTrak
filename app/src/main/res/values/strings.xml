@@ -77,4 +77,7 @@
     \nKyle Lowry\t\t\t\t7\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t32\t\t\t17\t\t9\t\t\t\t2\t\t\t\t3\t\t\t\t0</string> // replace with an array later
     <string name="game_info">TEAM NAME vs. TEAM NAME\nDD/MM/YYYY</string>
     <string name="btn_export_stats">Export Stats</string>
+
+    <string name="game_stats_title">Game Statistics</string> // should change once a team/game are selected
+    <string name="game_prompt">Game:</string>
 </resources>
