@@ -242,6 +242,7 @@
         android:layout_marginEnd="32dp"
         android:background="@color/titles"
         android:fontFamily="@font/raleway_semibold"
+        android:onClick="onQuarter"
         android:text="@string/quarter"
         android:textAlignment="center"
         android:textColor="@android:color/white"

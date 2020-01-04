@@ -10,6 +10,8 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
 
     TextView txt_points;
     TextView txt_quarter;
+    TextView txt_fouls;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +20,10 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         StatsManager.initStatsManager();
         txt_points = (TextView)findViewById(R.id.team_points);
         txt_quarter = (TextView)findViewById(R.id.quarter);
+        txt_fouls = (TextView)findViewById(R.id.team_fouls);
         txt_points.setText("0");
+        txt_quarter.setText("q1");
+        txt_fouls.setText("0");
     }
     public void onTwoPtMakes(View v){
         PlayerStats s = StatsManager.getCurrentPlayer().getCurrentStats();
@@ -51,7 +56,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         s.addFtMakes();
 
         s.addPoints(1);
-        StatsManager.getCurrentGame().addPoints(3);
+        StatsManager.getCurrentGame().addPoints(1);
 
         txt_points.setText(Integer.toString(StatsManager.getCurrentGame().getPoints()));
     }
@@ -78,7 +83,24 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     }
     public void onFouls(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addFouls();
+        StatsManager.getCurrentGame().addTeamFouls();
+
+        txt_fouls.setText(Integer.toString(StatsManager.getCurrentGame().getTeamFouls()));
+
+        // TEST
         System.out.println(StatsManager.getCurrentPlayer().getCurrentStats().toString());
+    }
+    public void onQuarter(View v) {
+        String current = txt_quarter.getText().toString();
+        if( current.equals("q1")) {
+            txt_quarter.setText("q2");
+        } else if( current.equals("q2")) {
+            txt_quarter.setText("q3");
+        } else if( current.equals("q3")) {
+            txt_quarter.setText("q4");
+        } else if( current.equals("q4")) {
+            txt_quarter.setText("q1");
+        }
     }
 
 
