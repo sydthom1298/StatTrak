@@ -1,5 +1,8 @@
 package com.example.zhuthomasfinalproject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public final class StatsManager {
     private static Player currentPlayer;
     private static Season currentSeason;
@@ -16,6 +19,7 @@ public final class StatsManager {
 
     public static void initStatsManager() {
         Playing = new Player[5];
+        Team team = new Team("MyTeam", new ArrayList(Arrays.asList(Playing)));
         if( test ) {
             long t = System.currentTimeMillis();
             Playing[0] = new Player( "Jessica", 7);
@@ -29,6 +33,8 @@ public final class StatsManager {
             Playing[4] = new Player( "Emma", 12);
             Playing[4].addPlayerStat(t);
             currentPlayer = Playing[0];
+
+            currentGame = new Game(team, "them");
         }
     }
     public static Player getCurrentPlayer() {

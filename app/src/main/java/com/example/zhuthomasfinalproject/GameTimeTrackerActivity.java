@@ -2,31 +2,58 @@ package com.example.zhuthomasfinalproject;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GameTimeTrackerActivity extends AppCompatActivity {
+
+    TextView txt_points;
+    TextView txt_quarter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_time_tracker);
         StatsManager.initStatsManager();
+        txt_points = (TextView)findViewById(R.id.team_points);
+        txt_quarter = (TextView)findViewById(R.id.quarter);
+        txt_points.setText("0");
     }
     public void onTwoPtMakes(View v){
-        StatsManager.getCurrentPlayer().getCurrentStats().addTwoPtMakes();
+        PlayerStats s = StatsManager.getCurrentPlayer().getCurrentStats();
+        s.addTwoPtMakes();
+        s.addPoints(2);
+
+        StatsManager.getCurrentGame().addPoints(2);
+
+        txt_points.setText(Integer.toString(StatsManager.getCurrentGame().getPoints()));
+
     }
     public void onTwoPtMisses(View v) {
-        StatsManager.getCurrentPlayer().getCurrentStats().addTwoPtMisses();
+        PlayerStats s = StatsManager.getCurrentPlayer().getCurrentStats();
+        s.addTwoPtMisses();
+
     }
     public void onThreePtMakes(View v){
-        StatsManager.getCurrentPlayer().getCurrentStats().addThreePtMakes();
+        PlayerStats s = StatsManager.getCurrentPlayer().getCurrentStats();
+        s.addThreePtMakes();
+        s.addPoints(3);
+        StatsManager.getCurrentGame().addPoints(3);
+
+        txt_points.setText(Integer.toString(StatsManager.getCurrentGame().getPoints()));
     }
     public void onThreePtMisses(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addThreePtMisses();
     }
     public void onFtMakes(View v){
-        StatsManager.getCurrentPlayer().getCurrentStats().addFtMakes();
+        PlayerStats s = StatsManager.getCurrentPlayer().getCurrentStats();
+        s.addFtMakes();
+
+        s.addPoints(1);
+        StatsManager.getCurrentGame().addPoints(3);
+
+        txt_points.setText(Integer.toString(StatsManager.getCurrentGame().getPoints()));
     }
     public void onFtMisses(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addFtMisses();

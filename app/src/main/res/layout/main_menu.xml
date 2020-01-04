@@ -36,6 +36,7 @@
         android:layout_marginBottom="15dp"
         android:backgroundTint="@android:color/white"
         android:fontFamily="@font/raleway_light"
+        android:onClick="launchGameSetup"
         android:text="@string/menu_btn_track_game"
         android:textColor="@color/titles"
         android:textSize="30sp"

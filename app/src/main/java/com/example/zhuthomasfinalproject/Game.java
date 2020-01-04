@@ -8,6 +8,8 @@ public class Game {
     private String opponent;
     private long dateTime;
     private int teamFouls;
+    private int points;
+
     public Game(){
         opponent = "";
         dateTime = System.currentTimeMillis();
@@ -51,6 +53,22 @@ public class Game {
     }
     public void setTeamFouls(int tF) {
         teamFouls = tF;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public void addPoints(int ptsToAdd) {
+        points += ptsToAdd;
+    }
+
+    public void subtractPoints(int ptsToSub) {
+        this.points -= ptsToSub;
     }
 
     /**

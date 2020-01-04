@@ -18,8 +18,9 @@ public class PlayerStats {
     private int turnovers; //total turnovers
     private int steals; //total steals
     private int blocks; //total blocks
-    private long gameDateTime;
-    private int fouls;
+    private long gameDateTime; //time and date associated with this set of stats
+    private int fouls; //number of fouls
+    private int points; //points
 
     /**
      * default constructor that constructs a com.example.zhuthomasfinalproject.PlayerStats class and initializes attributes
@@ -373,6 +374,20 @@ public class PlayerStats {
     }
     public void setFouls(int f) {
         fouls = f;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+    public void addPoints(int ptsToAdd) {
+        points += ptsToAdd;
+    }
+    public void subtractPoints(int ptsToSub) {
+        points -= ptsToSub;
     }
 
     /**
