@@ -19,7 +19,7 @@ public final class StatsManager {
 
     public static void initStatsManager() {
         Playing = new Player[5];
-        Team team = new Team("MyTeam", new ArrayList(Arrays.asList(Playing)));
+        Team team;
         if( test ) {
             long t = System.currentTimeMillis();
             Playing[0] = new Player( "Jessica", 7);
@@ -33,9 +33,10 @@ public final class StatsManager {
             Playing[4] = new Player( "Emma", 12);
             Playing[4].addPlayerStat(t);
             currentPlayer = Playing[0];
-
+            team = new Team("MyTeam", new ArrayList(Arrays.asList(Playing)));
             currentGame = new Game(team, "them");
             currentGame.setPlaying(Playing);
+            currentGame.setTeam(team);
         }
     }
     public static Player getCurrentPlayer() {

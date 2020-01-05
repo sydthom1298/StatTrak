@@ -86,7 +86,7 @@ public class Player {
     }
 
     public java.lang.String toString(){
-        String str = "Name: " + name + "\ncom.example.zhuthomasfinalproject.Player Number: " + jerseyNum;
+        String str = "Name: " + name + "\nPlayer Number: " + jerseyNum;
         //TODO add missing fields
         return str;
     }

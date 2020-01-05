@@ -2,8 +2,12 @@ package com.example.zhuthomasfinalproject;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
+import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +21,9 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     ToggleButton btn_p3;
     ToggleButton btn_p4;
     ToggleButton btn_p5;
+    ListView lst_players;
+    TextView lst_item_text;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +38,37 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         btn_p3 = (ToggleButton)findViewById(R.id.btn_player3);
         btn_p4 = (ToggleButton)findViewById(R.id.btn_player4);
         btn_p5 = (ToggleButton)findViewById(R.id.btn_player5);
+        lst_players = (ListView)findViewById(R.id.list_players);
+        lst_item_text = (TextView)findViewById(R.id.list_item_text);
+
         txt_points.setText("0");
         txt_quarter.setText("q1");
         txt_fouls.setText("0");
         btn_p1.setBackgroundColor(0xFF245300);
+        btn_p1.setText(Integer.toString(StatsManager.getCurrentGame().getPlaying()[0].getJerseyNum()));
+        btn_p2.setText(Integer.toString(StatsManager.getCurrentGame().getPlaying()[1].getJerseyNum()));
+        btn_p3.setText(Integer.toString(StatsManager.getCurrentGame().getPlaying()[2].getJerseyNum()));
+        btn_p4.setText(Integer.toString(StatsManager.getCurrentGame().getPlaying()[3].getJerseyNum()));
+        btn_p5.setText(Integer.toString(StatsManager.getCurrentGame().getPlaying()[4].getJerseyNum()));
+
+
+ /*
+        String [] array = new String[20];
+        for( int i=0; i<20; i++) {
+            array[i] = Integer.toString(i);
+        }
+
+  */
+        ArrayList<Player> list = StatsManager.getCurrentGame().getTeam().getPlayers();
+        Player[] array = list.toArray( new Player[list.size()] );
+
+        //String [] array = list.toArray(new String[list.size()]);
+        ArrayAdapter <Player> adapter = new ArrayAdapter<Player>(this,
+                R.layout.list_view_item, R.id.list_item_text, array);
+
+        lst_players.setAdapter(adapter);
+
+
     }
     public void onTwoPtMakes(View v){
         PlayerStats s = StatsManager.getCurrentPlayer().getCurrentStats();
@@ -116,6 +150,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
 
     public void onPlayer1(View v) {
         StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().getPlaying()[0]);
+        btn_p1.setText(Integer.toString(StatsManager.getCurrentPlayer().getJerseyNum()));
         btn_p1.setBackgroundColor(0xff245300);
         btn_p2.setBackgroundColor(0xFF245354);
         btn_p3.setBackgroundColor(0xFF245354);
@@ -124,6 +159,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     }
     public void onPlayer2(View v) {
         StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().getPlaying()[1]);
+        btn_p2.setText(Integer.toString(StatsManager.getCurrentPlayer().getJerseyNum()));
         btn_p1.setBackgroundColor(0xFF245354);
         btn_p2.setBackgroundColor(0xff245300);
         btn_p3.setBackgroundColor(0xFF245354);
@@ -132,6 +168,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     }
     public void onPlayer3(View v) {
         StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().getPlaying()[2]);
+        btn_p3.setText(Integer.toString(StatsManager.getCurrentPlayer().getJerseyNum()));
         btn_p1.setBackgroundColor(0xFF245354);
         btn_p2.setBackgroundColor(0xFF245354);
         btn_p3.setBackgroundColor(0xff245300);
@@ -140,6 +177,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     }
     public void onPlayer4(View v) {
         StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().getPlaying()[3]);
+        btn_p4.setText(Integer.toString(StatsManager.getCurrentPlayer().getJerseyNum()));
         btn_p1.setBackgroundColor(0xFF245354);
         btn_p2.setBackgroundColor(0xFF245354);
         btn_p3.setBackgroundColor(0xFF245354);
@@ -147,7 +185,21 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         btn_p5.setBackgroundColor(0xFF245354);
     }
     public void onPlayer5(View v) {
-        StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().getPlaying()[4]);
+        Game game = StatsManager.getCurrentGame();
+        if( game.getPlaying()[4].equals(StatsManager.getCurrentPlayer())) {
+
+
+            lst_players.setVisibility(View.VISIBLE);
+            lst_players.setZ(10);
+
+
+
+        } else {
+   //         StatsManager.setCurrentPlayer((game.getPlaying())[4]);
+            StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().getPlaying()[4]);
+
+        }
+        btn_p5.setText(Integer.toString(StatsManager.getCurrentPlayer().getJerseyNum()));
         btn_p1.setBackgroundColor(0xFF245354);
         btn_p2.setBackgroundColor(0xFF245354);
         btn_p3.setBackgroundColor(0xFF245354);

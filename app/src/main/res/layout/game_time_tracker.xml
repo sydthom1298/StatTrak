@@ -445,4 +445,19 @@
         app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toEndOf="@+id/lbl_team_points" />
 
+    <ListView
+        android:id="@+id/list_players"
+        android:layout_above="@+id/tracker_back"
+        android:layout_width="368dp"
+        android:layout_height="472dp"
+        android:layout_marginStart="30dp"
+        android:background="#4CAF50"
+        android:backgroundTint="#4CAF50"
+        android:backgroundTintMode="src_over"
+        android:clickable="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/btn_player3"
+        app:layout_constraintStart_toStartOf="@+id/timer"
+        tools:visibility="invisible"></ListView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
