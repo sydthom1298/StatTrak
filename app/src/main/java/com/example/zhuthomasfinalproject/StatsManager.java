@@ -35,6 +35,7 @@ public final class StatsManager {
             currentPlayer = Playing[0];
 
             currentGame = new Game(team, "them");
+            currentGame.setPlaying(Playing);
         }
     }
     public static Player getCurrentPlayer() {
@@ -42,7 +43,9 @@ public final class StatsManager {
     }
 
     public static void setCurrentPlayer(Player cp) {
+        System.out.println("OLD Current: " + currentPlayer.getCurrentStats().toString());
         currentPlayer = cp;
+        System.out.println("NEW Current: " + currentPlayer.getCurrentStats().toString());
     }
 
     public static Game getCurrentGame() {

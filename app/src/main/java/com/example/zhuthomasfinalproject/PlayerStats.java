@@ -398,12 +398,12 @@ public class PlayerStats {
         String str = "";
         Date d = new  Date(this.gameDateTime);
         Time t = new Time(this.gameDateTime);
-        str += "Minutes Played: " + minPlayed + "\nTwo Pointers Made: " + twoPtMakes + "\nTwo Pointers Missed: " +
-                twoPtMisses + "\nThree Pointers Made: " + threePtMakes + "\nThree Pointers Missed: " + threePtMisses +
-                "\nAssist: " + assists + "\nFree Throws Made: " + ftMakes + "\nFree Throws Missed: " + ftMisses +
-                "\nDefensive Rebounds: " + defRebs + "\nOffensive Rebounds: " + offRebs + "\nTotal Rebounds: " +
-                ttlRebs + "\nTurnovers: " + turnovers + "\nSteals: " + steals + "\nBlocks: " + blocks +
-                "\nFouls: " + fouls +  "\nDate/Time " +  d.toString() + " " + t.toString();
+        str += "Minutes Played: " + minPlayed + " Two Pointers Made: " + twoPtMakes + " Two Pointers Missed: " +
+                twoPtMisses + " Three Pointers Made: " + threePtMakes + " Three Pointers Missed: " + threePtMisses +
+                " Assist: " + assists + " Free Throws Made: " + ftMakes + " Free Throws Missed: " + ftMisses +
+                "\nDefensive Rebounds: " + defRebs + " Offensive Rebounds: " + offRebs + " Total Rebounds: " +
+                ttlRebs + " Turnovers: " + turnovers + " Steals: " + steals + " Blocks: " + blocks +
+                " Fouls: " + fouls +  " Date/Time " +  d.toString() + " " + t.toString();
         //TODO add missing fields
         return str;
     }

@@ -115,7 +115,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     }
 
     public void onPlayer1(View v) {
-        //TODO set currentplayer StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().Playing[0]);
+        StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().getPlaying()[0]);
         btn_p1.setBackgroundColor(0xff245300);
         btn_p2.setBackgroundColor(0xFF245354);
         btn_p3.setBackgroundColor(0xFF245354);
@@ -123,7 +123,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         btn_p5.setBackgroundColor(0xFF245354);
     }
     public void onPlayer2(View v) {
-        //StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().Playing[0]);
+        StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().getPlaying()[1]);
         btn_p1.setBackgroundColor(0xFF245354);
         btn_p2.setBackgroundColor(0xff245300);
         btn_p3.setBackgroundColor(0xFF245354);
@@ -131,7 +131,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         btn_p5.setBackgroundColor(0xFF245354);
     }
     public void onPlayer3(View v) {
-        //StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().Playing[0]);
+        StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().getPlaying()[2]);
         btn_p1.setBackgroundColor(0xFF245354);
         btn_p2.setBackgroundColor(0xFF245354);
         btn_p3.setBackgroundColor(0xff245300);
@@ -139,7 +139,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         btn_p5.setBackgroundColor(0xFF245354);
     }
     public void onPlayer4(View v) {
-        //StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().Playing[0]);
+        StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().getPlaying()[3]);
         btn_p1.setBackgroundColor(0xFF245354);
         btn_p2.setBackgroundColor(0xFF245354);
         btn_p3.setBackgroundColor(0xFF245354);
@@ -147,7 +147,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         btn_p5.setBackgroundColor(0xFF245354);
     }
     public void onPlayer5(View v) {
-        //StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().Playing[0]);
+        StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().getPlaying()[4]);
         btn_p1.setBackgroundColor(0xFF245354);
         btn_p2.setBackgroundColor(0xFF245354);
         btn_p3.setBackgroundColor(0xFF245354);

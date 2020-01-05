@@ -9,14 +9,25 @@ public class Game {
     private long dateTime;
     private int teamFouls;
     private int points;
+    private Player Playing[];
 
     public Game(){
         opponent = "";
         dateTime = System.currentTimeMillis();
+        Playing = new Player[5];
     }
     public Game(Team t, String opp){
+        this();
         team = t;
         opponent = opp;
+    }
+
+    public Player[] getPlaying() {
+        return Playing;
+    }
+
+    public void setPlaying(Player[] playing) {
+        Playing = playing;
     }
 
     public Team getTeam() {
