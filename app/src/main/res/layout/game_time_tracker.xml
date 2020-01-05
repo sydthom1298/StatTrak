@@ -299,19 +299,18 @@
         app:layout_constraintStart_toEndOf="@+id/team_points" />
 
     <Button
-        android:id="@+id/btn_sub"
+        android:id="@+id/btn_next"
         android:layout_width="155dp"
         android:layout_height="47dp"
         android:layout_marginEnd="54dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_light"
-        android:text="@string/btn_sub"
+        android:text="@string/btn_next"
         android:textColor="@color/titles"
-        android:visibility="invisible"
         android:textSize="20sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_player5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.605"
         app:layout_constraintStart_toEndOf="@+id/btn_player5" />
 
     <ToggleButton
@@ -401,7 +400,7 @@
         android:textOn="@string/player_5"
         android:textSize="50sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_player4"
-        app:layout_constraintEnd_toStartOf="@+id/btn_sub"
+        app:layout_constraintEnd_toStartOf="@+id/btn_next"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_player4" />
 

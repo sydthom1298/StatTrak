@@ -73,7 +73,7 @@
     <string name="btn_fouls">Personal Foul</string>
 
     <string name="btn_undo">UNDO</string>
-    <string name="btn_sub">SUBSTITUTION</string>
+    <string name="btn_next">Next\nquarter</string>
 
     <string name="player_1">00</string>
     <string name="player_2">1</string>
