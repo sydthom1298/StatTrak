@@ -307,6 +307,7 @@
         android:fontFamily="@font/raleway_light"
         android:text="@string/btn_sub"
         android:textColor="@color/titles"
+        android:visibility="invisible"
         android:textSize="20sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_player5"
         app:layout_constraintEnd_toEndOf="parent"
@@ -447,9 +448,9 @@
 
     <ListView
         android:id="@+id/list_players"
-        android:layout_above="@+id/tracker_back"
         android:layout_width="368dp"
         android:layout_height="472dp"
+        android:layout_above="@+id/tracker_back"
         android:layout_marginStart="30dp"
         android:background="#4CAF50"
         android:backgroundTint="#4CAF50"

@@ -2,6 +2,7 @@ package com.example.zhuthomasfinalproject;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -13,16 +14,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class GameTimeTrackerActivity extends AppCompatActivity {
 
-    TextView txt_points;
-    TextView txt_quarter;
-    TextView txt_fouls;
-    ToggleButton btn_p1;
-    ToggleButton btn_p2;
-    ToggleButton btn_p3;
-    ToggleButton btn_p4;
-    ToggleButton btn_p5;
-    ListView lst_players;
-    TextView lst_item_text;
+    private TextView txt_points;
+    private TextView txt_quarter;
+    private TextView txt_fouls;
+    private ToggleButton btn_p1;
+    private ToggleButton btn_p2;
+    private ToggleButton btn_p3;
+    private ToggleButton btn_p4;
+    private ToggleButton btn_p5;
+    private ListView lst_players;
+    private TextView lst_item_text;
+    private ToggleButton selectedButton = btn_p1;
+    private int selectedPlayerIndex = 0;
 
 
     @Override
@@ -52,16 +55,21 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         btn_p5.setText(Integer.toString(StatsManager.getCurrentGame().getPlaying()[4].getJerseyNum()));
 
 
- /*
-        String [] array = new String[20];
-        for( int i=0; i<20; i++) {
-            array[i] = Integer.toString(i);
-        }
 
-  */
-        ArrayList<Player> list = StatsManager.getCurrentGame().getTeam().getPlayers();
+        final ArrayList<Player> list = StatsManager.getCurrentGame().getTeam().getPlayers();
         Player[] array = list.toArray( new Player[list.size()] );
-
+        lst_players.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Player p=list.get(position);
+                String display="You have clicked "+p.toString();
+                System.out.println(display);
+                lst_players.setVisibility(View.INVISIBLE);
+                StatsManager.setCurrentPlayer(p);
+                selectedButton.setText(Integer.toString(StatsManager.getCurrentPlayer().getJerseyNum()));
+                StatsManager.getCurrentGame().getPlaying()[selectedPlayerIndex] = p;
+            }
+        });
         //String [] array = list.toArray(new String[list.size()]);
         ArrayAdapter <Player> adapter = new ArrayAdapter<Player>(this,
                 R.layout.list_view_item, R.id.list_item_text, array);
@@ -199,6 +207,8 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
             StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().getPlaying()[4]);
 
         }
+        selectedButton = btn_p5;
+        selectedPlayerIndex = 4;
         btn_p5.setText(Integer.toString(StatsManager.getCurrentPlayer().getJerseyNum()));
         btn_p1.setBackgroundColor(0xFF245354);
         btn_p2.setBackgroundColor(0xFF245354);
@@ -206,5 +216,6 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         btn_p4.setBackgroundColor(0xFF245354);
         btn_p5.setBackgroundColor(0xFF245300);
     }
+
 
 }
