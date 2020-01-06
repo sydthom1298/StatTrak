@@ -25,8 +25,8 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     private TextView lst_item_text;
     public TextView txt_timer;
     private ToggleButton selectedButton;
-    private int selectedPlayerIndex = 0;
-    private ToggleButton playerButtons[] = new ToggleButton[5];
+    private int selectedPlayerIndex = 0; //index of currently selected player
+    private ToggleButton playerButtons[] = new ToggleButton[5]; //array of player buttons
     private long startTime;
     private long currentTime = 0;
     private long timeDecrement;
@@ -68,6 +68,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         playerButtons[3].setText(Integer.toString(StatsManager.getCurrentGame().getPlaying()[3].getJerseyNum()));
         playerButtons[4].setText(Integer.toString(StatsManager.getCurrentGame().getPlaying()[4].getJerseyNum()));
 
+        //listView setup for all players, for substitution
         final ArrayList<Player> list = StatsManager.getCurrentGame().getTeam().getPlayers();
         Player[] array = list.toArray( new Player[list.size()] );
         lst_players.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -159,7 +160,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     }
     public void onQuarter(View v) {
         String current = txt_quarter.getText().toString();
-        if( current.equals("q1")) {
+        if(current.equals("q1")) {
             txt_quarter.setText("q2");
         } else if( current.equals("q2")) {
             txt_quarter.setText("q3");
@@ -170,6 +171,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         }
     }
 
+    //event handlers for if you click on a player
     public void onPlayer1(View v) {
         handlePlayerButtons(0);
     }
@@ -187,11 +189,13 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     }
     public void handlePlayerButtons(int index) {
         Game game = StatsManager.getCurrentGame();
-
-        if( game.getPlaying()[index].equals(StatsManager.getCurrentPlayer())) {
+        //check if your clicking on currently selected player
+        if(game.getPlaying()[index].equals(StatsManager.getCurrentPlayer())) {
+            //bring up list of players for substitution
             lst_players.setVisibility(View.VISIBLE);
             lst_players.setZ(10);
         } else {
+            //select the player
             StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().getPlaying()[index]);
         }
 
@@ -199,7 +203,8 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         selectedPlayerIndex = index;
         playerButtons[index].setText(Integer.toString(StatsManager.getCurrentPlayer().getJerseyNum()));
 
-        for( int i=0; i<playerButtons.length; i++) {
+        //set different colours for selected and not selected players
+        for(int i = 0; i < playerButtons.length; i++) {
             if(i == index) {
                 playerButtons[i].setBackgroundColor(0xFF245300);
             } else {
@@ -212,12 +217,22 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         onQuarter(v);
         txt_timer.setText("08:00");
         resetClock();
+        //reset team fouls
+        StatsManager.getCurrentGame().setTeamFouls(0);
+        txt_fouls.setText(Integer.toString(0));
+
     }
+
+    /**
+     * method that is called when you click on the clock
+     * @param v - current window
+     */
     public void onClock(View v) {
-        if (isClockRunning()) {
+        if(isClockRunning()) {
             pauseClock();
-        } else
+        } else {
             startClock();
+        }
     }
 
 
@@ -226,7 +241,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         task = new TimerTask() {
             public void run() {
 
-                if (clockRunning) {
+                if(clockRunning) {
                     minutes = getMinutesRemaining();
 
                     if(minutes < 10) {
@@ -297,16 +312,16 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         return startTime;
     }
 
-    public void setStartTime(long startTime) {
-        this.startTime = startTime;
+    public void setStartTime(long sT) {
+        startTime = sT;
     }
 
     public long getCurrentTime() {
         return currentTime;
     }
 
-    public void setCurrentTime(long currentTime) {
-        this.currentTime = currentTime;
+    public void setCurrentTime(long cT) {
+        currentTime = cT;
     }
     public long getMinutesRemaining() {
         long minutes;

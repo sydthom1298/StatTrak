@@ -54,7 +54,6 @@ public class PlayerStats {
         gameDateTime = gDT;
     }
 
-
     public long getGameDateTime() {
         return gameDateTime;
     }
@@ -382,8 +381,8 @@ public class PlayerStats {
         return points;
     }
 
-    public void setPoints(int points) {
-        this.points = points;
+    public void setPoints(int p) {
+        points = p;
     }
     public void addPoints(int ptsToAdd) {
         points += ptsToAdd;
@@ -396,12 +395,12 @@ public class PlayerStats {
         return playingTime;
     }
 
-    public void setPlayingTime(long time) {
-        this.playingTime = time;
+    public void setPlayingTime(long t) {
+        playingTime = t;
     }
 
-    public void addPlayingTime(long time) {
-        playingTime = playingTime + time;
+    public void addPlayingTime(long t) {
+        playingTime = playingTime + t;
     }
 
     /**

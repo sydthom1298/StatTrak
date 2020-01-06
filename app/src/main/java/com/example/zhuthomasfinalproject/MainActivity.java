@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
 
-        // variables that store the attributes of the Buttons on the menu
+        //variables that store the attributes of the Buttons on the menu
         final Button btn_new_game = findViewById(R.id.track_new);
         final Button btn_view_stats = findViewById(R.id.view_stats);
         final Button btn_manage_teams = findViewById(R.id.manage_teams);
@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
 */
         btn_view_stats.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // executes on main thread after user selects "view statistics" button
-                // redirects to statistic mode selection layout
+                //executes on main thread after user selects "view statistics" button
+                //redirects to statistic mode selection layout
                 setContentView(R.layout.stat_mode_selection);
 
                 final Button btn_game_stats = findViewById(R.id.btn_game_mode);
@@ -59,16 +59,16 @@ public class MainActivity extends AppCompatActivity {
 
                 btn_game_stats.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        // executes on main thread after user selects "credits" button
-                        // redirects to team manager layout
+                        //executes on main thread after user selects "credits" button
+                        //redirects to team manager layout
                         setContentView(R.layout.game_stats);
                     }
                 });
 
                 btn_szn_stats.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        // executes on main thread after user selects "credits" button
-                        // redirects to team manager layout
+                        //executes on main thread after user selects "credits" button
+                        //redirects to team manager layout
                         setContentView(R.layout.season_stats);
                     }
                 });
@@ -78,16 +78,16 @@ public class MainActivity extends AppCompatActivity {
 
         btn_manage_teams.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // executes on main thread after user selects "credits" button
-                // redirects to team manager layout
+                //executes on main thread after user selects "credits" button
+                //redirects to team manager layout
                 setContentView(R.layout.team_manager);
             }
         });
 
         btn_credits.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // executes on main thread after user selects "credits" button
-                // redirects to credits layout
+                //executes on main thread after user selects "credits" button
+                //redirects to credits layout
                 setContentView(R.layout.credits);
             }
         });

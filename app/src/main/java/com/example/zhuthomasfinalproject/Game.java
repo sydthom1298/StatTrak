@@ -26,8 +26,8 @@ public class Game {
         return Playing;
     }
 
-    public void setPlaying(Player[] playing) {
-        Playing = playing;
+    public void setPlaying(Player[] p) {
+        Playing = p;
     }
 
     public Team getTeam() {
@@ -70,8 +70,8 @@ public class Game {
         return points;
     }
 
-    public void setPoints(int points) {
-        this.points = points;
+    public void setPoints(int p) {
+        points = p;
     }
 
     public void addPoints(int ptsToAdd) {
@@ -79,11 +79,11 @@ public class Game {
     }
 
     public void subtractPoints(int ptsToSub) {
-        this.points -= ptsToSub;
+        points -= ptsToSub;
     }
 
     public void addPlayingTime(long time) {
-        for(int i=0; i<this.Playing.length; i++) {
+        for(int i = 0; i < this.Playing.length; i++) {
             Playing[i].getCurrentStats().addPlayingTime(time);
         }
     }

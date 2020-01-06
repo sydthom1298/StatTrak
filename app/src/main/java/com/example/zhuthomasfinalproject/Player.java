@@ -10,15 +10,16 @@ public class Player {
     private ArrayList<PlayerStats> stats; //list of players stats for player
     private boolean inGame; //indicator to tell if player is playing in the game
 
+    private PlayerStats currentStats;
+
     public PlayerStats getCurrentStats() {
         return currentStats;
     }
 
-    public void setCurrentStats(PlayerStats currentStats) {
-        this.currentStats = currentStats;
+    public void setCurrentStats(PlayerStats cS) {
+        currentStats = cS;
     }
 
-    private PlayerStats currentStats;
 
     public Player(){
         jerseyNum = 0;
@@ -60,9 +61,9 @@ public class Player {
     }
 
     public void setStats(ArrayList<PlayerStats> s) {
-
         stats = s;
     }
+
     public PlayerStats getStat(long t) {
         for(PlayerStats s: stats){
             if(s.getGameDateTime() == t){
