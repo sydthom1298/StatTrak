@@ -20,9 +20,11 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
 
     private ListView lst_players;
     private TextView lst_item_text;
+    private TextView txt_timer;
     private ToggleButton selectedButton;
     private int selectedPlayerIndex = 0;
     private ToggleButton playerButtons[] = new ToggleButton[5];
+    private GameClock clock = new GameClock(8000*60, 1000 );
 
 
     @Override
@@ -33,6 +35,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         txt_points = (TextView)findViewById(R.id.team_points);
         txt_quarter = (TextView)findViewById(R.id.quarter);
         txt_fouls = (TextView)findViewById(R.id.team_fouls);
+        txt_timer = (TextView)findViewById(R.id.timer);
         playerButtons[0] = (ToggleButton)findViewById(R.id.btn_player1);
         playerButtons[1] = (ToggleButton)findViewById(R.id.btn_player2);
         playerButtons[2] = (ToggleButton)findViewById(R.id.btn_player3);
@@ -52,8 +55,6 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         playerButtons[3].setText(Integer.toString(StatsManager.getCurrentGame().getPlaying()[3].getJerseyNum()));
         playerButtons[4].setText(Integer.toString(StatsManager.getCurrentGame().getPlaying()[4].getJerseyNum()));
 
-
-
         final ArrayList<Player> list = StatsManager.getCurrentGame().getTeam().getPlayers();
         Player[] array = list.toArray( new Player[list.size()] );
         lst_players.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -68,13 +69,11 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
                 StatsManager.getCurrentGame().getPlaying()[selectedPlayerIndex] = p;
             }
         });
-        //String [] array = list.toArray(new String[list.size()]);
+
         ArrayAdapter <Player> adapter = new ArrayAdapter<Player>(this,
                 R.layout.list_view_item, R.id.list_item_text, array);
 
         lst_players.setAdapter(adapter);
-
-
     }
     public void onTwoPtMakes(View v){
         PlayerStats s = StatsManager.getCurrentPlayer().getCurrentStats();
@@ -155,74 +154,18 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     }
 
     public void onPlayer1(View v) {
-
-        /*
-        StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().getPlaying()[0]);
-        btn_p1.setText(Integer.toString(StatsManager.getCurrentPlayer().getJerseyNum()));
-        btn_p1.setBackgroundColor(0xff245300);
-        btn_p2.setBackgroundColor(0xFF245354);
-        btn_p3.setBackgroundColor(0xFF245354);
-        btn_p4.setBackgroundColor(0xFF245354);
-        btn_p5.setBackgroundColor(0xFF245354);
-
-         */
         handlePlayerButtons(0);
     }
     public void onPlayer2(View v) {
-        /*
-        StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().getPlaying()[1]);
-        btn_p2.setText(Integer.toString(StatsManager.getCurrentPlayer().getJerseyNum()));
-        btn_p1.setBackgroundColor(0xFF245354);
-        btn_p2.setBackgroundColor(0xff245300);
-        btn_p3.setBackgroundColor(0xFF245354);
-        btn_p4.setBackgroundColor(0xFF245354);
-        btn_p5.setBackgroundColor(0xFF245354);
-         */
         handlePlayerButtons(1);
     }
     public void onPlayer3(View v) {
-        /*
-        StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().getPlaying()[2]);
-        btn_p3.setText(Integer.toString(StatsManager.getCurrentPlayer().getJerseyNum()));
-        btn_p1.setBackgroundColor(0xFF245354);
-        btn_p2.setBackgroundColor(0xFF245354);
-        btn_p3.setBackgroundColor(0xff245300);
-        btn_p4.setBackgroundColor(0xFF245354);
-        btn_p5.setBackgroundColor(0xFF245354);
-         */
         handlePlayerButtons(2);
     }
     public void onPlayer4(View v) {
-        /*
-        StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().getPlaying()[3]);
-        btn_p4.setText(Integer.toString(StatsManager.getCurrentPlayer().getJerseyNum()));
-        btn_p1.setBackgroundColor(0xFF245354);
-        btn_p2.setBackgroundColor(0xFF245354);
-        btn_p3.setBackgroundColor(0xFF245354);
-        btn_p4.setBackgroundColor(0xFF245300);
-        btn_p5.setBackgroundColor(0xFF245354);
-         */
         handlePlayerButtons(3);
     }
     public void onPlayer5(View v) {
- /*
-        Game game = StatsManager.getCurrentGame();
-        if( game.getPlaying()[4].equals(StatsManager.getCurrentPlayer())) {
-            lst_players.setVisibility(View.VISIBLE);
-            lst_players.setZ(10);
-        } else {
-            StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().getPlaying()[4]);
-        }
-        selectedButton = btn_p5;
-        selectedPlayerIndex = 4;
-        btn_p5.setText(Integer.toString(StatsManager.getCurrentPlayer().getJerseyNum()));
-        btn_p1.setBackgroundColor(0xFF245354);
-        btn_p2.setBackgroundColor(0xFF245354);
-        btn_p3.setBackgroundColor(0xFF245354);
-        btn_p4.setBackgroundColor(0xFF245354);
-        btn_p5.setBackgroundColor(0xFF245300);
-
-  */
         handlePlayerButtons(4);
     }
     public void handlePlayerButtons(int index) {
@@ -247,6 +190,16 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
             }
         }
 
+    }
+    public void onNextQuarter(View v) {
+        onQuarter(v);
+        txt_timer.setText("8:00");
+    }
+    public void onClock(View v) {
+        if (clock.isRunning()) {
+            clock.pause();
+        } else
+            clock.start();
     }
 
 }
