@@ -1,20 +1,6 @@
 package com.example.zhuthomasfinalproject;
-
 import java.util.Timer;
 import java.util.TimerTask;
-
-/*
-new CountDownTimer(30000, 1000){
-            public void onTick(long millisUntilFinished){
-                textView.setText(String.valueOf(counter));
-                counter++;
-            }
-            public  void onFinish(){
-                textView.setText("FINISH!!");
-            }
-        }.start();
- */
-
 public class GameClock {
 
     private long startTime;
@@ -28,61 +14,88 @@ public class GameClock {
 
     private TimerTask task;
 
-     private void createTask() {
-         task = new TimerTask() {
-             public void run() {
-                 if (running) {
-                     System.out.println("Timer went off " + t++);
-                     currentTime--; 
-                 }
-             }
-         };
-     }
 
-    public GameClock( long start, long interval) {
+    public GameClock(){
+
+    }
+    /**
+     * constructor that constructs a GameClock class with parameters and initializes attributes
+     * @param start - time remaining in quarter
+     * @param interval - how often timer is updated (1s)
+     */
+    public GameClock(long start, long interval) {
         startTime = start;
         currentTime = start;
         decrement = interval;
     }
+    /**
+     * method that sets up a task that is called every one second as the timer goes off
+     */
+    private void createTask() {
+        task = new TimerTask() {
+            public void run() {
+                if(running){
+                    System.out.println("Timer went off " + t++);
+                    currentTime--;
+                }
+            }
+        };
+    }
 
+    /**
+     * method that starts the clock running
+     */
     public void start() {
+        //create task that gets called every 1 second
         createTask();
+        //schedules a timer to go off every decrement milliseconds
         timer.schedule(task, 0, decrement);
+        //clock is running
         running = true;
     }
 
+    /**
+     * method that pauses the clock
+     */
     public void pause() {
+        //cancel the timer task
         task.cancel();
         running = false;
         System.out.println("Paused");
-
     }
 
+    /**
+     * method that resets the clock
+     */
     public void reset() {
         t = 1;
     }
 
+    /**
+     * accessor that gets the start time of game clock
+     * @return - start time
+     */
     public long getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(long startTime) {
-        this.startTime = startTime;
+    public void setStartTime(long sT) {
+        startTime = sT;
     }
 
     public long getCurrentTime() {
         return currentTime;
     }
 
-    public void setCurrentTime(long currentTime) {
-        this.currentTime = currentTime;
+    public void setCurrentTime(long cT) {
+        currentTime = cT;
     }
 
     public boolean isRunning() {
         return running;
     }
 
-    public void setRunning(boolean running) {
-        this.running = running;
+    public void setRunning(boolean r) {
+        running = r;
     }
 }

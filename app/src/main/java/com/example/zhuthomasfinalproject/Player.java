@@ -7,8 +7,8 @@ import java.util.ArrayList;
 public class Player {
     private int jerseyNum;
     private String name;
-    private ArrayList<PlayerStats> stats;
-    private boolean inGame;
+    private ArrayList<PlayerStats> stats; //list of players stats for player
+    private boolean inGame; //indicator to tell if player is playing in the game
 
     public PlayerStats getCurrentStats() {
         return currentStats;
@@ -77,17 +77,16 @@ public class Player {
 
     }
     public void Play(LocalDateTime start){
-        // set start time (game clock)
+        //set start time (game clock)
         inGame = true;
     }
     public void Bench(LocalDateTime end){
-        // set end time (game clock)
+        //set end time (game clock)
         inGame = false;
     }
-
+    //used to fill the players in the playerlist
     public java.lang.String toString(){
         String str = "Name: " + name + "\nPlayer Number: " + jerseyNum;
-        //TODO add missing fields
         return str;
     }
 }

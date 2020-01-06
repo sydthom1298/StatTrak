@@ -9,7 +9,7 @@ public class Game {
     private long dateTime;
     private int teamFouls;
     private int points;
-    private Player Playing[];
+    private Player Playing[]; //array that stores the 5 players currently on the floor
 
     public Game(){
         opponent = "";

@@ -10,11 +10,8 @@ public class GameSetup extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.setup);
-
     }
 
     public void onContinue(View v) {

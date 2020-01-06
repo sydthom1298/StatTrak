@@ -22,9 +22,9 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     private TextView lst_item_text;
     private TextView txt_timer;
     private ToggleButton selectedButton;
-    private int selectedPlayerIndex = 0;
-    private ToggleButton playerButtons[] = new ToggleButton[5];
-    private GameClock clock = new GameClock(8000*60, 1000 );
+    private int selectedPlayerIndex = 0; //index of currently selected player
+    private ToggleButton playerButtons[] = new ToggleButton[5]; //array of player buttons
+    private GameClock clock = new GameClock(8000*60, 1000 ); //game clock with starting value of 8 minutes
 
 
     @Override
@@ -55,6 +55,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         playerButtons[3].setText(Integer.toString(StatsManager.getCurrentGame().getPlaying()[3].getJerseyNum()));
         playerButtons[4].setText(Integer.toString(StatsManager.getCurrentGame().getPlaying()[4].getJerseyNum()));
 
+        //listView setup for all players, for player substitution
         final ArrayList<Player> list = StatsManager.getCurrentGame().getTeam().getPlayers();
         Player[] array = list.toArray( new Player[list.size()] );
         lst_players.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -69,12 +70,11 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
                 StatsManager.getCurrentGame().getPlaying()[selectedPlayerIndex] = p;
             }
         });
-
         ArrayAdapter <Player> adapter = new ArrayAdapter<Player>(this,
                 R.layout.list_view_item, R.id.list_item_text, array);
-
         lst_players.setAdapter(adapter);
     }
+
     public void onTwoPtMakes(View v){
         PlayerStats s = StatsManager.getCurrentPlayer().getCurrentStats();
         s.addTwoPtMakes();
@@ -142,17 +142,18 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     }
     public void onQuarter(View v) {
         String current = txt_quarter.getText().toString();
-        if( current.equals("q1")) {
+        if(current.equals("q1")) {
             txt_quarter.setText("q2");
-        } else if( current.equals("q2")) {
+        }else if(current.equals("q2")) {
             txt_quarter.setText("q3");
-        } else if( current.equals("q3")) {
+        }else if(current.equals("q3")) {
             txt_quarter.setText("q4");
-        } else if( current.equals("q4")) {
+        }else if(current.equals("q4")) {
             txt_quarter.setText("q1");
         }
     }
 
+    //event handlers for if you click on a player
     public void onPlayer1(View v) {
         handlePlayerButtons(0);
     }
@@ -170,11 +171,13 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     }
     public void handlePlayerButtons(int index) {
         Game game = StatsManager.getCurrentGame();
-
-        if( game.getPlaying()[index].equals(StatsManager.getCurrentPlayer())) {
+        //checks if your clicking on the currently selected player
+        if(game.getPlaying()[index].equals(StatsManager.getCurrentPlayer())) {
+            //brings up the list of players for substitution
             lst_players.setVisibility(View.VISIBLE);
             lst_players.setZ(10);
-        } else {
+        }else{
+            //selects the player
             StatsManager.setCurrentPlayer(StatsManager.getCurrentGame().getPlaying()[index]);
         }
 
@@ -182,10 +185,11 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         selectedPlayerIndex = index;
         playerButtons[index].setText(Integer.toString(StatsManager.getCurrentPlayer().getJerseyNum()));
 
-        for( int i=0; i<playerButtons.length; i++) {
+        //sets different colour for selected and not selected players
+        for(int i = 0; i < playerButtons.length; i++){
             if(i == index) {
                 playerButtons[i].setBackgroundColor(0xFF245300);
-            } else {
+            }else{
                 playerButtons[i].setBackgroundColor(0xFF245354);
             }
         }
@@ -194,12 +198,21 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     public void onNextQuarter(View v) {
         onQuarter(v);
         txt_timer.setText("8:00");
+        //reset team fouls
+        StatsManager.getCurrentGame().setTeamFouls(0);
+        txt_fouls.setText(Integer.toString(0));
     }
+
+    /**
+     * method that is called when you click on the clock
+     * @param v - current window
+     */
     public void onClock(View v) {
-        if (clock.isRunning()) {
+        if(clock.isRunning()) {
             clock.pause();
-        } else
+        }else {
             clock.start();
+        }
     }
 
 }
