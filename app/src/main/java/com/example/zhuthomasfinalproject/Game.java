@@ -82,6 +82,11 @@ public class Game {
         this.points -= ptsToSub;
     }
 
+    public void addPlayingTime(long time) {
+        for(int i=0; i<this.Playing.length; i++) {
+            Playing[i].getCurrentStats().addPlayingTime(time);
+        }
+    }
     /**
      * Method that creates String representation of class
      * @return - string representation

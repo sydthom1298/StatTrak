@@ -21,6 +21,7 @@ public class PlayerStats {
     private long gameDateTime; //time and date associated with this set of stats
     private int fouls; //number of fouls
     private int points; //points
+    private long playingTime; // playing time in milliseconds
 
     /**
      * default constructor that constructs a com.example.zhuthomasfinalproject.PlayerStats class and initializes attributes
@@ -41,6 +42,7 @@ public class PlayerStats {
         steals = 0;
         blocks = 0;
         gameDateTime = System.currentTimeMillis();
+        playingTime = 0;
     }
 
     /**
@@ -388,6 +390,18 @@ public class PlayerStats {
     }
     public void subtractPoints(int ptsToSub) {
         points -= ptsToSub;
+    }
+
+    public long getPlayingTime() {
+        return playingTime;
+    }
+
+    public void setPlayingTime(long time) {
+        this.playingTime = time;
+    }
+
+    public void addPlayingTime(long time) {
+        playingTime = playingTime + time;
     }
 
     /**

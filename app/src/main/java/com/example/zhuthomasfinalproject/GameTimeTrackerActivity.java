@@ -9,23 +9,36 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GameTimeTrackerActivity extends AppCompatActivity {
 
+    final int START_TIME = 8000*60;
     private TextView txt_points;
     private TextView txt_quarter;
     private TextView txt_fouls;
 
     private ListView lst_players;
     private TextView lst_item_text;
-    private TextView txt_timer;
+    public TextView txt_timer;
     private ToggleButton selectedButton;
     private int selectedPlayerIndex = 0;
     private ToggleButton playerButtons[] = new ToggleButton[5];
-    private GameClock clock = new GameClock(8000*60, 1000 );
+    private long startTime;
+    private long currentTime = 0;
+    private long timeDecrement;
+    private boolean clockRunning = false;
+    private Timer timer = new Timer( );
 
+    private int t = 1;
+
+
+    private TimerTask task;
+    long minutes, seconds;
+    String clockDisplayText="", minutesText="", secondsText="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +87,10 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
                 R.layout.list_view_item, R.id.list_item_text, array);
 
         lst_players.setAdapter(adapter);
+
+        timeDecrement = 1000;
+        startTime = START_TIME;
+        currentTime = startTime;
     }
     public void onTwoPtMakes(View v){
         PlayerStats s = StatsManager.getCurrentPlayer().getCurrentStats();
@@ -193,14 +210,120 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     }
     public void onNextQuarter(View v) {
         onQuarter(v);
-        txt_timer.setText("8:00");
+        txt_timer.setText("08:00");
+        resetClock();
     }
     public void onClock(View v) {
-        if (clock.isRunning()) {
-            clock.pause();
+        if (isClockRunning()) {
+            pauseClock();
         } else
-            clock.start();
+            startClock();
     }
+
+
+
+    private void createClockTask() {
+        task = new TimerTask() {
+            public void run() {
+
+                if (clockRunning) {
+                    minutes = getMinutesRemaining();
+
+                    if(minutes < 10) {
+                        minutesText = "0" + minutes;
+                    } else{
+                        minutesText = Long.toString(minutes);
+                    }
+                    seconds = getSecondsRemaining();
+
+                    if(seconds < 10) {
+                        secondsText = "0" + seconds;
+                    } else {
+                        secondsText = Long.toString(seconds);
+                    }
+
+                    clockDisplayText = minutesText + ":" + secondsText;
+                    runOnUiThread(new Runnable()  {
+                        public void run() {
+
+                            // Stuff that updates the UI
+                            txt_timer.setText(clockDisplayText);
+                        }
+
+                    });
+                    if((seconds == 0L) && (minutes == 0L)) {
+                        pauseClock();
+                        resetClock();
+                        return;
+                    }
+
+                    currentTime = currentTime - timeDecrement;
+                }
+            }
+        };
+    }
+
+
+
+    public void startClock() {
+        createClockTask();
+        timer.schedule(task, 0, timeDecrement);
+        clockRunning = true;
+    }
+
+    public void pauseClock() {
+        long elapsed;
+
+        task.cancel();
+        clockRunning = false;
+        System.out.println("Paused");
+
+        elapsed = startTime - currentTime - timeDecrement; // -1000 required because currentTime is 1 sec lower than display
+        System.out.println("TIME Elapsed: " + elapsed);
+
+        StatsManager.getCurrentGame().addPlayingTime(elapsed);
+
+        startTime = currentTime+timeDecrement;
+
+
+    }
+
+    public void resetClock() {
+        t = 1;
+        currentTime = startTime;
+    }
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
+    }
+
+    public long getCurrentTime() {
+        return currentTime;
+    }
+
+    public void setCurrentTime(long currentTime) {
+        this.currentTime = currentTime;
+    }
+    public long getMinutesRemaining() {
+        long minutes;
+
+        minutes = currentTime / (1000*60);
+        return minutes;
+    }
+    public long getSecondsRemaining() {
+        long minutes, seconds;
+        minutes = currentTime / (1000*60);
+        seconds = (currentTime - (minutes * 1000*60))/1000;
+        return seconds;
+    }
+    public boolean isClockRunning() {
+        return clockRunning;
+    }
+
 
 }
 

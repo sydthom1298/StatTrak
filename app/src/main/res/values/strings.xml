@@ -51,7 +51,7 @@
     <string name="lbl_act_players"># of Active Players:</string>
     <string name="act_players">10</string>
 
-    <string name="timer">8:00</string>
+    <string name="timer">08:00</string>
     <string name="quarter">q1</string>
     <string name="team_pts">12</string>
     <string name="team_fouls">1</string>
