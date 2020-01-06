@@ -32,6 +32,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     private long timeDecrement;
     private boolean clockRunning = false;
     private Timer timer = new Timer( );
+    private TextView txt_playDesc;
 
     private int t = 1;
 
@@ -57,6 +58,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         selectedButton = playerButtons[0];
         lst_players = (ListView)findViewById(R.id.list_players);
         lst_item_text = (TextView)findViewById(R.id.list_item_text);
+        txt_playDesc = (TextView)findViewById(R.id.play_desc);
 
         txt_points.setText("0");
         txt_quarter.setText("q1");
@@ -102,6 +104,9 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
 
         txt_points.setText(Integer.toString(StatsManager.getCurrentGame().getPoints()));
 
+
+        txt_playDesc.setText("# " + StatsManager.getCurrentPlayer().getJerseyNum() + " scored 2 points");
+
     }
     public void onTwoPtMisses(View v) {
         PlayerStats s = StatsManager.getCurrentPlayer().getCurrentStats();
@@ -115,6 +120,8 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         StatsManager.getCurrentGame().addPoints(3);
 
         txt_points.setText(Integer.toString(StatsManager.getCurrentGame().getPoints()));
+
+        txt_playDesc.setText("# " + StatsManager.getCurrentPlayer().getJerseyNum() + " scored 3 points");
     }
     public void onThreePtMisses(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addThreePtMisses();
@@ -127,6 +134,8 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         StatsManager.getCurrentGame().addPoints(1);
 
         txt_points.setText(Integer.toString(StatsManager.getCurrentGame().getPoints()));
+        txt_playDesc.setText("# " + StatsManager.getCurrentPlayer().getJerseyNum() + " scored 1 point");
+
     }
     public void onFtMisses(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addFtMisses();
@@ -216,7 +225,9 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     public void onNextQuarter(View v) {
         onQuarter(v);
         txt_timer.setText("08:00");
+        //reset clock so it resets to 8 minutes on every new quarter
         resetClock();
+        currentTime = 8000*60;
         //reset team fouls
         StatsManager.getCurrentGame().setTeamFouls(0);
         txt_fouls.setText(Integer.toString(0));
