@@ -11,16 +11,16 @@ public final class StatsManager {
 
     private static Player Playing[];
 
-    public   StatsManager() {
+    public StatsManager() {
 
 
 
     }
-
+    //TODO: remove test data when real data is available
     public static void initStatsManager() {
         Playing = new Player[5];
         Team team;
-        if( test ) {
+        if(test){
             long t = System.currentTimeMillis();
             Playing[0] = new Player( "Jessica", 7);
             Playing[0].addPlayerStat(t);
@@ -82,8 +82,8 @@ public final class StatsManager {
     }
 
     public static void putPlayerInGame(int slot, Player p) {
-        Playing[slot].Bench(null);  // TODO pass in time
-        p.Play(null); // TODO pass in time
+        Playing[slot].Bench(null);  //TODO pass in time
+        p.Play(null); //TODO pass in time
         Playing[slot] = p;
 
     }
