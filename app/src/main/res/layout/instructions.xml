@@ -26,14 +26,14 @@
 
     <TextView
         android:id="@+id/instruct_text"
-        android:layout_width="706dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="1200dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="10dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_light"
         android:text="@string/menu_instructions"
         android:textColor="@color/titles"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,16 +41,23 @@
 
     <ImageView
         android:id="@+id/instruct_img"
-        android:layout_width="717dp"
-        android:layout_height="478dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="800dp"
+        android:layout_height="500dp"
         android:layout_marginBottom="32dp"
         android:contentDescription="@string/ss_desc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instruct_text"
+        app:layout_constraintVertical_bias="0.66"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="188dp"
+        android:layout_height="92dp"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="364dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

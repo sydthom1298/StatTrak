@@ -22,31 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
         //event listeners to check when buttons are selected by the user
 /*
-        btn_new_game.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-
-                // executes on main thread after user selects "track new game" button
-                // redirects to game setup layout
-                //setContentView(R.layout.setup);
-
-                final Button btn_setup_cont = findViewById(R.id.setup_cont_btn);
-                //event listeners to check when buttons are selected by the user
-                btn_setup_cont.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        // executes on main thread after user selects "CONTINUE" button
-                        // redirects to game setup layout
-                        //setContentView(R.layout.setup);
-                        launchGameSetup(v);
-
-                    }
-                });
-
-
-
-
-            }
-        });
 */
         btn_view_stats.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -93,6 +68,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+    }
+
+    public void onTrackNew(View v) {
 
     }
 
