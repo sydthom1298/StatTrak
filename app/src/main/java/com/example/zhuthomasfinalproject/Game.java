@@ -5,22 +5,32 @@ import java.sql.Time;
 
 public class Game {
     private Team team; //team stats are being tracked for
-    private String opponent;
+    private String opponent; //opponent team is playing
     private long dateTime;
-    private int teamFouls;
-    private int points;
+    private int teamFouls; //number of team fouls
+    private int points; //points team scores
     private Player Playing[]; //array that stores the 5 players currently on the floor
 
+    /**
+     * Default constructor that constructs a Game class and initializes attributes
+     */
     public Game(){
         opponent = "";
         dateTime = System.currentTimeMillis();
         Playing = new Player[5];
     }
+
+    /**
+     * Constructor that constructs a Game class with parameters and initializes attributes
+     * @param t - team stats are being tracked for
+     * @param opp - opponent team is playing
+     */
     public Game(Team t, String opp){
         this();
         team = t;
         opponent = opp;
     }
+
 
     public Player[] getPlaying() {
         return Playing;

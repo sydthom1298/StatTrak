@@ -73,7 +73,7 @@ public class Team {
     }*/
 
     public void addPlayer( Player p) {
-        this.players.add(p);
+        players.add(p);
     }
     public Player findPlayer( String name, int num) {
         for( Player p : this.players) {

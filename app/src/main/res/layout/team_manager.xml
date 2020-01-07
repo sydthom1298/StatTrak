@@ -236,6 +236,7 @@
             <TableRow>
 
                 <TextView
+                    android:id="@+id/playerName"
                     android:layout_width="333dp"
                     android:layout_height="match_parent"
                     android:padding="3dip"
@@ -244,6 +245,7 @@
                     android:textSize="22sp" />
 
                 <TextView
+                    android:id="@+id/jerseyNum"
                     android:layout_width="142dp"
                     android:layout_height="match_parent"
                     android:padding="3dip"
@@ -252,6 +254,7 @@
                     android:textSize="22sp" />
 
                 <TextView
+                    android:id="@+id/pos"
                     android:layout_width="214dp"
                     android:layout_height="match_parent"
                     android:padding="3dip"
@@ -260,6 +263,7 @@
                     android:textSize="22sp" />
 
                 <TextView
+                    android:id="@+id/active"
                     android:layout_width="147dp"
                     android:padding="3dip"
                     android:text="@string/table_title_active"
@@ -268,7 +272,9 @@
             </TableRow>
 
             <TableRow>
+
                 <EditText
+                    android:id="@+id/player1"
                     android:layout_width="147dp"
                     android:inputType="textPersonName|text"
                     android:padding="3dip"
@@ -277,6 +283,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/jersey1"
                     android:layout_width="142dp"
                     android:layout_height="match_parent"
                     android:inputType="number"
@@ -286,6 +293,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/pos1"
                     android:layout_width="214dp"
                     android:layout_height="match_parent"
                     android:inputType="textCapWords|textCapCharacters"
@@ -294,11 +302,15 @@
                     android:textAlignment="viewStart"
                     android:textSize="22sp" />
 
-                <CheckBox android:checked="true" />
+                <CheckBox
+                    android:id="@+id/cb_1"
+                    android:checked="true" />
             </TableRow>
 
             <TableRow>
+
                 <EditText
+                    android:id="@+id/player2"
                     android:layout_width="147dp"
                     android:inputType="textPersonName|text"
                     android:padding="3dip"
@@ -307,6 +319,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/jersey2"
                     android:layout_width="142dp"
                     android:layout_height="match_parent"
                     android:inputType="number"
@@ -316,6 +329,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/pos2"
                     android:layout_width="214dp"
                     android:layout_height="match_parent"
                     android:inputType="textCapWords|textCapCharacters"
@@ -324,11 +338,15 @@
                     android:textAlignment="viewStart"
                     android:textSize="22sp" />
 
-                <CheckBox android:checked="false" />
+                <CheckBox
+                    android:id="@+id/cb_2"
+                    android:checked="false" />
             </TableRow>
 
             <TableRow>
+
                 <EditText
+                    android:id="@+id/player3"
                     android:layout_width="147dp"
                     android:inputType="textPersonName|text"
                     android:padding="3dip"
@@ -337,6 +355,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/jersey3"
                     android:layout_width="142dp"
                     android:layout_height="match_parent"
                     android:inputType="number"
@@ -346,6 +365,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/pos3"
                     android:layout_width="214dp"
                     android:layout_height="match_parent"
                     android:inputType="textCapWords|textCapCharacters"
@@ -354,11 +374,15 @@
                     android:textAlignment="viewStart"
                     android:textSize="22sp" />
 
-                <CheckBox android:checked="false" />
+                <CheckBox
+                    android:id="@+id/cb_3"
+                    android:checked="false" />
             </TableRow>
 
             <TableRow>
+
                 <EditText
+                    android:id="@+id/player4"
                     android:layout_width="147dp"
                     android:inputType="textPersonName|text"
                     android:padding="3dip"
@@ -367,6 +391,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/jersey4"
                     android:layout_width="142dp"
                     android:layout_height="match_parent"
                     android:inputType="number"
@@ -376,6 +401,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/pos4"
                     android:layout_width="214dp"
                     android:layout_height="match_parent"
                     android:inputType="textCapWords|textCapCharacters"
@@ -384,12 +410,17 @@
                     android:textAlignment="viewStart"
                     android:textSize="22sp" />
 
-                <CheckBox android:checked="true" />
+                <CheckBox
+                    android:id="@+id/cb_4"
+                    android:checked="true" />
             </TableRow>
 
             <TableRow>
+
                 <EditText
+                    android:id="@+id/player5"
                     android:layout_width="147dp"
+                    android:layout_height="match_parent"
                     android:inputType="textPersonName|text"
                     android:padding="3dip"
                     android:text="Fred VanVleet"
@@ -397,6 +428,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/jersey5"
                     android:layout_width="142dp"
                     android:layout_height="match_parent"
                     android:inputType="number"
@@ -406,6 +438,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/pos5"
                     android:layout_width="214dp"
                     android:layout_height="match_parent"
                     android:inputType="textCapWords|textCapCharacters"
@@ -414,11 +447,15 @@
                     android:textAlignment="viewStart"
                     android:textSize="22sp" />
 
-                <CheckBox android:checked="true" />
+                <CheckBox
+                    android:id="@+id/cb_5"
+                    android:checked="true" />
             </TableRow>
 
             <TableRow>
+
                 <EditText
+                    android:id="@+id/player6"
                     android:layout_width="147dp"
                     android:inputType="textPersonName|text"
                     android:padding="3dip"
@@ -427,6 +464,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/jersey6"
                     android:layout_width="142dp"
                     android:layout_height="match_parent"
                     android:inputType="number"
@@ -436,6 +474,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/pos6"
                     android:layout_width="214dp"
                     android:layout_height="match_parent"
                     android:inputType="textCapWords|textCapCharacters"
@@ -444,12 +483,15 @@
                     android:textAlignment="viewStart"
                     android:textSize="22sp" />
 
-                <CheckBox android:checked="false" />
+                <CheckBox
+                    android:id="@+id/cb_6"
+                    android:checked="false" />
             </TableRow>
 
             <TableRow>
 
                 <EditText
+                    android:id="@+id/player7"
                     android:layout_width="147dp"
                     android:inputType="textPersonName|text"
                     android:padding="3dip"
@@ -458,6 +500,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/jersey7"
                     android:layout_width="142dp"
                     android:layout_height="match_parent"
                     android:inputType="number"
@@ -467,6 +510,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/pos7"
                     android:layout_width="214dp"
                     android:layout_height="match_parent"
                     android:inputType="textCapWords|textCapCharacters"
@@ -475,11 +519,14 @@
                     android:textAlignment="viewStart"
                     android:textSize="22sp" />
 
-                <CheckBox android:checked="true" />
+                <CheckBox
+                    android:id="@+id/cb_7"
+                    android:checked="true" />
             </TableRow>
 
             <TableRow>
                 <EditText
+                    android:id="@+id/player8"
                     android:layout_width="147dp"
                     android:inputType="textPersonName|text"
                     android:padding="3dip"
@@ -488,6 +535,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/jersey8"
                     android:layout_width="142dp"
                     android:layout_height="match_parent"
                     android:inputType="number"
@@ -497,6 +545,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/pos8"
                     android:layout_width="214dp"
                     android:layout_height="match_parent"
                     android:inputType="textCapWords|textCapCharacters"
@@ -505,11 +554,14 @@
                     android:textAlignment="viewStart"
                     android:textSize="22sp" />
 
-                <CheckBox android:checked="true" />
+                <CheckBox
+                    android:id="@+id/cb_8"
+                    android:checked="true" />
             </TableRow>
 
             <TableRow>
                 <EditText
+                    android:id="@+id/player9"
                     android:layout_width="147dp"
                     android:inputType="textPersonName|text"
                     android:padding="3dip"
@@ -518,6 +570,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/jersey9"
                     android:layout_width="142dp"
                     android:layout_height="match_parent"
                     android:inputType="number"
@@ -527,6 +580,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/pos9"
                     android:layout_width="214dp"
                     android:layout_height="match_parent"
                     android:inputType="textCapWords|textCapCharacters"
@@ -535,11 +589,14 @@
                     android:textAlignment="viewStart"
                     android:textSize="22sp" />
 
-                <CheckBox android:checked="true" />
+                <CheckBox
+                    android:id="@+id/cb_9"
+                    android:checked="true" />
             </TableRow>
 
             <TableRow>
                 <EditText
+                    android:id="@+id/player10"
                     android:layout_width="147dp"
                     android:inputType="textPersonName|text"
                     android:padding="3dip"
@@ -548,6 +605,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/jersey10"
                     android:layout_width="142dp"
                     android:layout_height="match_parent"
                     android:inputType="number"
@@ -557,6 +615,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/pos10"
                     android:layout_width="214dp"
                     android:layout_height="match_parent"
                     android:inputType="textCapWords|textCapCharacters"
@@ -565,11 +624,14 @@
                     android:textAlignment="viewStart"
                     android:textSize="22sp" />
 
-                <CheckBox android:checked="true" />
+                <CheckBox
+                    android:id="@+id/cb_10"
+                    android:checked="true" />
             </TableRow>
 
             <TableRow>
                 <EditText
+                    android:id="@+id/player11"
                     android:layout_width="147dp"
                     android:inputType="textPersonName|text"
                     android:padding="3dip"
@@ -578,6 +640,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/jersey11"
                     android:layout_width="142dp"
                     android:layout_height="match_parent"
                     android:inputType="number"
@@ -587,6 +650,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/pos11"
                     android:layout_width="214dp"
                     android:layout_height="match_parent"
                     android:inputType="textCapWords|textCapCharacters"
@@ -595,7 +659,9 @@
                     android:textAlignment="viewStart"
                     android:textSize="22sp" />
 
-                <CheckBox android:checked="true" />
+                <CheckBox
+                    android:id="@+id/cb_11"
+                    android:checked="true" />
             </TableRow>
         </TableLayout>
     </ScrollView>
