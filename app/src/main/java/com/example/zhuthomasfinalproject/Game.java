@@ -1,7 +1,13 @@
 package com.example.zhuthomasfinalproject;
 
+import android.util.Printer;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Date;
 import java.sql.Time;
+import java.util.List;
 
 public class Game {
     private Team team; //team stats are being tracked for
@@ -97,6 +103,8 @@ public class Game {
             Playing[i].getCurrentStats().addPlayingTime(time);
         }
     }
+
+
     /**
      * Method that creates String representation of class
      * @return - string representation

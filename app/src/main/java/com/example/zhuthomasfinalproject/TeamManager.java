@@ -3,8 +3,9 @@ package com.example.zhuthomasfinalproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TableRow;
 import android.widget.TextView;
 public class TeamManager extends AppCompatActivity{
     private Spinner spn_team; //team tracking stats for
@@ -13,8 +14,11 @@ public class TeamManager extends AppCompatActivity{
     private TextView txt_players[]; //array of players on team
     private TextView txt_jerseyNums[];//array of jersey numbers
     private TextView txt_activePlayers[];
+    private Button btn_addNewTeam;
+    private Button btn_saveTeam;
+    private Button btn_newPlayer;
     private int num[]; //array of players jersey number of team
-
+    private Team team;
     /**
      * called when TeamManager window starts up
      * @param savedInstanceState - used by the system
@@ -57,8 +61,51 @@ public class TeamManager extends AppCompatActivity{
         txt_jerseyNums[9] = (TextView)findViewById(R.id.jersey10); //tenth players jersey number
         txt_jerseyNums[10] = (TextView)findViewById(R.id.jersey11); //eleventh players jersey number
 
-        txt_activePlayers[0] = (TextView)findViewById(R.id.cb_1);
+        txt_activePlayers[0] = (TextView)findViewById(R.id.cb_1); //if player one is playing in game
+        txt_activePlayers[1] = (TextView)findViewById(R.id.cb_2); //if player two is playing in game
+        txt_activePlayers[2] = (TextView)findViewById(R.id.cb_3); //if player three is playing in game
+        txt_activePlayers[3] = (TextView)findViewById(R.id.cb_4); //if player four is playing in game
+        txt_activePlayers[4] = (TextView)findViewById(R.id.cb_5); //if player five is playing in game
+        txt_activePlayers[5] = (TextView)findViewById(R.id.cb_6); //if player six is playing in game
+        txt_activePlayers[6] = (TextView)findViewById(R.id.cb_7); //if player seven is playing in game
+        txt_activePlayers[7] = (TextView)findViewById(R.id.cb_8); //if player eight is playing in game
+        txt_activePlayers[8] = (TextView)findViewById(R.id.cb_9); //if player nine is playing in game
+        txt_activePlayers[9] = (TextView)findViewById(R.id.cb_10); //if player ten is playing in game
+        txt_activePlayers[10] = (TextView)findViewById(R.id.cb_11); //if player eleven is playing in game
+
+        btn_addNewTeam = (Button)findViewById(R.id.btn_add_new_team);
+        btn_saveTeam = (Button)findViewById(R.id.btn_save);
+        btn_newPlayer = (Button)findViewById(R.id.btn_new_player);
 
     }
+
+    /**
+     * method to create new team when the create new team button is pressed
+     * @param v - current window
+     */
+    public void onCreateNewTeam(View v){
+        StatsManager.getCurrentGame().getTeam();
+    }
+
+    /**
+     * method to create new player when the new player button is pressed
+     * @param v - current window
+     */
+    public void onNewPlayer(View v){
+        StatsManager.getCurrentGame().getTeam();
+    }
+
+    /**
+     * method to save changes to team when the save changes button is pressed
+     * @param v - current window
+     */
+    public void onSaveChanges(View v){
+        StatsManager.getCurrentGame().getTeam();
+    }
+    //if user has selected a pre existing team
+    /*
+    if(!spn_team.equals("n/a")){
+
+    }*/
 
 }

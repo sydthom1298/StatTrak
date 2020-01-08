@@ -122,7 +122,6 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         txt_points.setText(Integer.toString(StatsManager.getCurrentGame().getPoints()));
         //update the status display
         txt_playDesc.setText("# " + StatsManager.getCurrentPlayer().getJerseyNum() + " scored 2 points");
-
     }
 
     /**
@@ -131,7 +130,6 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onTwoPtMisses(View v) {
         StatsManager.getCurrentPlayer().getCurrentStats().addTwoPtMisses();
-
     }
 
     /**

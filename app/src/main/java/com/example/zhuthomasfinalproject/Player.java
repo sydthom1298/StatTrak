@@ -12,15 +12,9 @@ public class Player {
 
     private PlayerStats currentStats;
 
-    public PlayerStats getCurrentStats() {
-        return currentStats;
-    }
-
-    public void setCurrentStats(PlayerStats cS) {
-        currentStats = cS;
-    }
-
-
+    /**
+     * default constructor that contructs a player class and initializes attributes
+     */
     public Player(){
         jerseyNum = 0;
         name = "";
@@ -28,11 +22,26 @@ public class Player {
         ArrayList<PlayerStats> stats = new ArrayList<PlayerStats>();
 
     }
+
+    /**
+     * constructor that creates and player class with parameters, initializes attributes and
+     * calls default constructor
+     * @param n - name of player
+     * @param num - number of player
+     */
     public Player(String n, int num){
         this();
         name = n;
         jerseyNum = num;
     }
+
+    /**
+     * constructor that creates and player class with parameters, initializes attributes and
+     * calls default constructor
+     * @param n - name of player
+     * @param num - number of player
+     * @param p - player stats for player
+     */
     public Player(String n, int num, ArrayList<PlayerStats> p){
         this();
         name = n;
@@ -40,18 +49,50 @@ public class Player {
         stats = p;
     }
 
+    /**
+     * accessor that gest the current stats of the player
+     * @return - player stats
+     */
+    public PlayerStats getCurrentStats() {
+        return currentStats;
+    }
+
+    /**
+     * mutator that sets the current stats of the player
+     * @param cS - current stats to set
+     */
+    public void setCurrentStats(PlayerStats cS) {
+        currentStats = cS;
+    }
+
+    /**
+     * accessor that gets the jersey number of the player
+     * @return - jersey number
+     */
     public int getJerseyNum() {
         return jerseyNum;
     }
 
+    /**
+     * mutator that sets the jersey number of the player
+     * @param num - jersey number to set
+     */
     public void setJerseyNum(int num) {
         jerseyNum = num;
     }
 
+    /**
+     * accessor that gets the name of the player
+     * @return - name of player
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * mutator that sets the name of the player
+     * @param n - name of player to set
+     */
     public void setName(String n) {
         name = n;
     }

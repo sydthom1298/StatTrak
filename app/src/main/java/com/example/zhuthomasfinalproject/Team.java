@@ -5,6 +5,7 @@ public class Team {
     private String name;
     private ArrayList<Player> players;
 
+
     /**
      * default constructor that constructs a team class and initializes attributes
      */
@@ -72,12 +73,13 @@ public class Team {
 
     }*/
 
-    public void addPlayer( Player p) {
+    public void addPlayer(Player p) {
         players.add(p);
     }
-    public Player findPlayer( String name, int num) {
-        for( Player p : this.players) {
-            if( p.getName().equals(name) && (num == p.getJerseyNum())) {
+
+    public Player findPlayer(String name, int num) {
+        for(Player p : this.players){
+            if(p.getName().equals(name) && (num == p.getJerseyNum())){
                 return p;
             }
         }
