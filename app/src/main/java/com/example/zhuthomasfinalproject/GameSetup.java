@@ -18,37 +18,40 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class GameSetup extends AppCompatActivity {
+    private ArrayList<String> jerseyNums;
+    private ArrayList<Team> userTeams;
+    private Spinner teamSelector;
+    private Team currentTeam; // stores the current selected team as an object
+    private boolean teamInit;
+    private ArrayAdapter jerseyAdapter;
+    ;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setup);
 
-        System.out.println("Hey");
 
-        // stores saved teams as an ArrayList of Teams
-        final ArrayList<Team> userTeams;
+        Spinner jerseyNumSelect1 = findViewById(R.id.num1_input);
+        Spinner jerseyNumSelect2 = findViewById(R.id.num2_input);
+        Spinner jerseyNumSelect3 = findViewById(R.id.num3_input);
+        Spinner jerseyNumSelect4 = findViewById(R.id.num4_input);
+        Spinner jerseyNumSelect5 = findViewById(R.id.num5_input);
+
+
         // stores saved team names for display in spinner
         ArrayList<String> sUserTeams = new ArrayList<>();
-        ArrayList<String> jerseyNums = new ArrayList<>(); // stores selected team's jersey numbers in a String ArrayList
-        Team currentTeam = new Team(); // stores the current selected team as an object
+        currentTeam = new Team(); // initialize currently selected
         // stores the current selected team as a String
         String sCurrentTeam;
 
-        // objects to store input widget to select team
-        final Spinner teamSelector;
-
-
-
         // arrays to store the 5 spinners and 5 jersey number displays
-        final Spinner[] numSelectors = {findViewById(R.id.num1_input), findViewById(R.id.num2_input),
-                findViewById(R.id.num3_input), findViewById(R.id.num4_input), findViewById(R.id.num5_input)};
-        final TextView[] jerseyNumDisplays = {findViewById(R.id.jersey_num1), findViewById(R.id.jersey_num2),
-                findViewById(R.id.jersey_num3), findViewById(R.id.jersey_num4), findViewById(R.id.jersey_num5)};
+        final Spinner[] numSelectors = {jerseyNumSelect1, jerseyNumSelect2,
+                jerseyNumSelect3, jerseyNumSelect4, jerseyNumSelect5};
+
 
 
         //TODO - read data file on user teams, load as teams into array, then display team names in text box
-        //loadFile(userTeams);
         userTeams = new ArrayList<>();
 
 
@@ -96,34 +99,35 @@ public class GameSetup extends AppCompatActivity {
         ArrayAdapter<String> teamAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sUserTeams);
         teamSelector.setAdapter(teamAdapter);
 
-        ArrayAdapter<String> jerseyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, jerseyNums);
-        for (int i = 0; i < 5; i++) {
-            numSelectors[i].setAdapter(jerseyAdapter);
-        }
+
 
         teamSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                Spinner altTeamSelector = teamSelector;
-                String sCurrentTeam = altTeamSelector.getSelectedItem().toString();
-                ArrayList<Team> teams = userTeams;
-                Spinner[] numSelects = numSelectors;
-                TextView[] numDisplays = jerseyNumDisplays;
+                if (!teamInit) {
+                    teamInit = true;
+                    return;
+                }
 
-                Team currentTeam = new Team();
-                for (int i = 0; i < teams.size(); i++) {
-                    if (sCurrentTeam.equals(teams.get(i).getName())) {
-                        currentTeam = teams.get(i);
+                String sCurrentTeam = teamSelector.getSelectedItem().toString();
+                jerseyNums = new ArrayList<>();
+
+                for (int i = 0; i < userTeams.size(); i++) {
+                    if (sCurrentTeam.equals(userTeams.get(i).getName())) {
+                        currentTeam = userTeams.get(i);
+                        System.out.println(currentTeam);
                     }
                 }
-                for (int i = 0; i < currentTeam.getPlayers().size(); i++) {
-                    System.out.println(currentTeam.getPlayers().get(i).getJerseyNum());
+
+                for (int i = 0; i < currentTeam.getNumPlayers(); i++ ) {
+                    jerseyNums.add(i, Integer.toString(currentTeam.getPlayers().get(i).getJerseyNum()));
+                }
+                jerseyAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, jerseyNums);
+
+                for (int i = 0; i < 5; i++) {
+                    numSelectors[i].setAdapter(jerseyAdapter);
                 }
 
-
-                /*for (int i = 0; i < currentTeam.getNumPlayers(); i++ ) {
-                    jerseyNums.add(i, Integer.toString(currentTeam.getPlayers().get(i).getJerseyNum()));
-                }*/
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
@@ -131,11 +135,8 @@ public class GameSetup extends AppCompatActivity {
 
         });
 
-        /*for (int i = 0; i < 5; i++) {
-            numDisplays[i].setText(numSelects[i].getSelectedItem().toString());
-        }*/
-
     }
+
 
 
     public void onContinue(View v) { // user wants to continue to tracker
