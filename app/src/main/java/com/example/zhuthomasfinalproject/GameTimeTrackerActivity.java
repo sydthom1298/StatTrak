@@ -53,9 +53,6 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_time_tracker);
 
-        // TODO: add player stats
-        //StatsManager.addPlayerStats();
-
         //get a control object from the xml id of the control
         txt_points = (TextView)findViewById(R.id.team_points); //points display
         txt_quarter = (TextView)findViewById(R.id.quarter); //quarter display
