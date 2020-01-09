@@ -10,6 +10,9 @@ public final class StatsManager {
     private static boolean test = true;
 
     private static Player Playing[];
+    private static ArrayList<Team> team[]; //arrayList of Team
+
+
 
     public StatsManager() {
 
@@ -57,16 +60,16 @@ public final class StatsManager {
         return currentGame;
     }
 
-    public static void setCurrentGame(Game game) {
-        currentGame = game;
+    public static void setCurrentGame(Game g) {
+        currentGame = g;
     }
 
     public static Season getCurrentSeason() {
         return currentSeason;
     }
 
-    public static void setCurrentSeason(Season season) {
-        currentSeason = season;
+    public static void setCurrentSeason(Season s) {
+        currentSeason = s;
     }
 
     public static Season newSeason() {
@@ -74,9 +77,8 @@ public final class StatsManager {
         return s;
     }
 
-    public static void addToRoster( String name, int num ) {
+    public static void addToRoster(String name, int num) {
         Player p = new Player(name, num);
-
         currentSeason.getRoster().addPlayer(p);
     }
 
@@ -89,17 +91,37 @@ public final class StatsManager {
         Playing[slot].Bench(null);  //TODO pass in time
         p.Play(null); //TODO pass in time
         Playing[slot] = p;
-
     }
 
     public static void removePlayerFromGame(int slot) {
         Playing[slot].Bench(null);  // TODO pass in time
-
         Playing[slot] = null;
     }
 
     public static void selectPlayer(String name, int number) {
         currentPlayer = currentGame.getTeam().findPlayer(name, number);
     }
+
+    public static Player[] getPlaying() {
+        return Playing;
+    }
+
+    public static void setPlaying(Player[] p) {
+        Playing = p;
+    }
+
+    public static ArrayList<Team>[] getTeam() {
+        return team;
+    }
+
+    public static void setTeam(ArrayList<Team>[] t) {
+        team = t;
+    }
+    /*
+    //TODO: method to add team
+    public static void addTeam(Team t){
+
+    }*/
+
 
 }

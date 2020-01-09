@@ -14,11 +14,13 @@ public class TeamManager extends AppCompatActivity{
     private TextView txt_players[]; //array of players on team
     private TextView txt_jerseyNums[];//array of jersey numbers
     private TextView txt_activePlayers[];
+    private TextView txt_newTeam;
     private Button btn_addNewTeam;
     private Button btn_saveTeam;
     private Button btn_newPlayer;
     private int num[]; //array of players jersey number of team
     private Team team;
+    private String name; //name of team
     /**
      * called when TeamManager window starts up
      * @param savedInstanceState - used by the system
@@ -36,6 +38,7 @@ public class TeamManager extends AppCompatActivity{
         spn_team = (Spinner)findViewById(R.id.manage_team_selector);
         txt_numPlayers = (TextView)findViewById(R.id.num_players);
         txt_numActivePlayers = (TextView)findViewById(R.id.act_players);
+        txt_newTeam = (TextView)findViewById(R.id.txt_new_team_name);
 
         txt_players[0] = (TextView)findViewById(R.id.player1); //first player
         txt_players[1] = (TextView)findViewById(R.id.player2); //second player
@@ -84,7 +87,11 @@ public class TeamManager extends AppCompatActivity{
      * @param v - current window
      */
     public void onCreateNewTeam(View v){
-        StatsManager.getCurrentGame().getTeam();
+
+        //name = txt_newTeam;
+        team = new Team(name);
+        //StatsManager.getTeamList().add(team);
+
     }
 
     /**
