@@ -55,6 +55,7 @@
         android:layout_marginBottom="15dp"
         android:backgroundTint="@android:color/white"
         android:fontFamily="@font/raleway_light"
+        android:onClick="launchStatModeSelection"
         android:text="@string/menu_btn_view_stats"
         android:textColor="@color/titles"
         android:textSize="30sp"
