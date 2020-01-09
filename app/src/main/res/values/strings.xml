@@ -57,7 +57,7 @@
     <string name="team_fouls">1</string>
     <string name="team_pts_label">Points</string>
     <string name="team_fouls_label">Team Fouls</string>
-    <string name="recent_play_desc">#11 scored 2 points!</string>
+    <string name="recent_play_desc">last play</string>
     <string name="btn_ft_makes">FT Make</string>
     <string name="btn_ft_misses">FT Miss</string>
     <string name="btn_three_pt_makes">3PT Make</string>

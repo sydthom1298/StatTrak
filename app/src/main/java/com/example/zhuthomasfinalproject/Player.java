@@ -116,7 +116,6 @@ public class Player {
     public void addPlayerStat(long t){
         PlayerStats s = new PlayerStats(t);
         currentStats = s;
-
     }
     public void Play(LocalDateTime start){
         //set start time (game clock)

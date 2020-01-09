@@ -18,35 +18,39 @@ public final class StatsManager {
     }
     //TODO: remove test data when real data is available
     public static void initStatsManager() {
-        Playing = new Player[5];
-        Team team;
-        if(test){
-            long t = System.currentTimeMillis();
-            Playing[0] = new Player( "Jessica", 7);
-            Playing[0].addPlayerStat(t);
-            Playing[1] = new Player( "Sydney", 11);
-            Playing[1].addPlayerStat(t);
-            Playing[2] = new Player( "Tammy", 17);
-            Playing[2].addPlayerStat(t);
-            Playing[3] = new Player( "Sarah", 8);
-            Playing[3].addPlayerStat(t);
-            Playing[4] = new Player( "Emma", 12);
-            Playing[4].addPlayerStat(t);
-            currentPlayer = Playing[0];
-            team = new Team("MyTeam", new ArrayList(Arrays.asList(Playing)));
-            currentGame = new Game(team, "them");
-            currentGame.setPlaying(Playing);
-            currentGame.setTeam(team);
-        }
+        //Playing = currentGame.getPlaying();
+        //Playing = new Player[5];
+        //Team team;
+        //if(test){
+            //long t = System.currentTimeMillis();
+            //Playing[0] = new Player( "Jessica", 7);
+            //Playing[0].addPlayerStat(t);
+            //Playing[1] = new Player( "Sydney", 11);
+            //Playing[1].addPlayerStat(t);
+            //Playing[2] = new Player( "Tammy", 17);
+            //Playing[2].addPlayerStat(t);
+            //Playing[3] = new Player( "Sarah", 8);
+            //Playing[3].addPlayerStat(t);
+            //Playing[4] = new Player( "Emma", 12);
+            //Playing[4].addPlayerStat(t);
+            //currentPlayer = Playing[0];
+            //team = new Team("MyTeam", new ArrayList(Arrays.asList(Playing)));
+            //currentGame = new Game(team, "them");
+            //currentGame.setPlaying(Playing);
+            //currentGame.setTeam(team);
+        //}
     }
+
+
+
     public static Player getCurrentPlayer() {
         return currentPlayer;
     }
 
     public static void setCurrentPlayer(Player cp) {
-        System.out.println("OLD Current: " + currentPlayer.getCurrentStats().toString());
+        //System.out.println("OLD Current: " + currentPlayer.getCurrentStats().toString());
         currentPlayer = cp;
-        System.out.println("NEW Current: " + currentPlayer.getCurrentStats().toString());
+        //System.out.println("NEW Current: " + currentPlayer.getCurrentStats().toString());
     }
 
     public static Game getCurrentGame() {
