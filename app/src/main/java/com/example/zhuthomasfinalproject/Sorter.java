@@ -4,7 +4,6 @@ package com.example.zhuthomasfinalproject;
 // getField() to get the field value.  Probably need 2 sort methods - 1 for String and 1 for int.
 public class Sorter {
 
-
     private int lastSortCount;
     private long lastSortTime;
     private boolean ascending = true;

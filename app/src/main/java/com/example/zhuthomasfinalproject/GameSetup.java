@@ -18,42 +18,56 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class GameSetup extends AppCompatActivity {
-    private ArrayList<Integer> jerseyNums;
+    // use to restrict enabled jersey numbers
     private ArrayList<Integer> jerseyNums1;
     private ArrayList<Integer> jerseyNums2;
     private ArrayList<Integer> jerseyNums3;
     private ArrayList<Integer> jerseyNums4;
     private ArrayList<Integer> jerseyNums5;
+
+    // master arraylist of possible jersey numbers for the selected team
+    private ArrayList<Integer> jerseyNums;
+    // list of saved teams that the user can choose from
     private ArrayList<Team> userTeams;
+
+    // object to represent Spinner widget to select user's team from
     private Spinner teamSelector;
-    private Team currentTeam; // stores the current selected team as an object
+    // stores the current selected team (in the Spinner) as an object
+    private Team currentTeam;
+    // ArrayAdapter to display entries for jersey number spinner
     private ArrayAdapter jerseyAdapter;
 
-    private Player[] startingLineup;
-
+    // object to represent the opponent team input textbox
     private EditText oppTeam;
 
-    Spinner jNumSelector1;
-    TextView jNumDisplay1;
+    // objects to represent the Spinners for jersey number selector and the textViews for jersey number display
+    private Spinner jNumSelector1;
+    private TextView jNumDisplay1;
 
-    Spinner jNumSelector2;
-    TextView jNumDisplay2;
+    private Spinner jNumSelector2;
+    private TextView jNumDisplay2;
 
-    Spinner jNumSelector3;
-    TextView jNumDisplay3;
+    private Spinner jNumSelector3;
+    private TextView jNumDisplay3;
 
-    Spinner jNumSelector4;
-    TextView jNumDisplay4;
+    private Spinner jNumSelector4;
+    private TextView jNumDisplay4;
 
-    Spinner jNumSelector5;
-    TextView jNumDisplay5;
+    private Spinner jNumSelector5;
+    private TextView jNumDisplay5;
 
+    // Array of Spinners to more efficiently set (all display same values)
     private Spinner[] numSelectors;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        // setup screen from xml
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setup);
 
+        // initialize the team input widget
+        teamSelector = findViewById(R.id.team_input);
+
+        // initializes jersey number spinner and display text box objects to their corresponding widgets
         jNumSelector1 = findViewById(R.id.num1_input);
         jNumDisplay1 = findViewById(R.id.jersey_num1);
 
@@ -73,12 +87,13 @@ public class GameSetup extends AppCompatActivity {
         ArrayList<String> sUserTeams = new ArrayList<>();
         currentTeam = new Team(); // initialize currently selected
 
+        // initialize array of jersey number spinners to hold the five spinners on the form
         numSelectors = new Spinner[]{jNumSelector1, jNumSelector2, jNumSelector3, jNumSelector4, jNumSelector5};
 
         //TODO - read data file on user teams, load as teams into array, then display team names in text box
         userTeams = new ArrayList<>();
 
-        // sample data
+        // sample data (remove when manage teams works)
         Player tempPlayer1 = new Player("Kyle", 7);
         Player tempPlayer2 = new Player("Pascal",43);
         Player tempPlayer3 = new Player("Terence", 0);
@@ -109,43 +124,51 @@ public class GameSetup extends AppCompatActivity {
 
         userTeams.add(team);
 
-
-        // store the team_input view widget
-        teamSelector = findViewById(R.id.team_input);
-
-
-        // loops through saved teams, saves team names in ArrayList
+        // loops through saved teams, saves team names as Strings in an ArrayList
         for(int i = 0; i < userTeams.size(); i++) {
             sUserTeams.add(i, userTeams.get(i).getName());
         }
 
-        // ArrayAdapter for the list of team names (to be displayed in combo box)
+        // ArrayAdapter for the list of team names (to be displayed in team selection Spinner)
         ArrayAdapter<String> teamAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sUserTeams);
         teamSelector.setAdapter(teamAdapter);
 
-
-
+        // checks to see if the state of the team selector Spinner has changed
         teamSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
+            /**
+             * runs when the item selected has changed
+             */
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String sCurrentTeam = teamSelector.getSelectedItem().toString();
-                jerseyNums = new ArrayList<>();
+                String sCurrentTeam = teamSelector.getSelectedItem().toString(); // get the team name selected in the
+                jerseyNums = new ArrayList<>(); // initialize an array containing jersey numbers
 
+                // loop through the arraylist of teams available (saved)
                 for (int i = 0; i < userTeams.size(); i++) {
+                    // check if the name selected in the team selection spinner matches the Team at i in the arraylist
                     if (sCurrentTeam.equals(userTeams.get(i).getName())) {
+                        // if the String and team name match, set the currently selected team to the Team at i in the arrayList
                         currentTeam = userTeams.get(i);
-                        System.out.println(currentTeam);
                     }
                 }
 
+                // loop for the number of players on the currently selected team
                 for (int i = 0; i < currentTeam.getNumPlayers(); i++ ) {
+                    // add the jersey number of each player on that team to an arrayList of Integers
                     jerseyNums.add(i, currentTeam.getPlayers().get(i).getJerseyNum());
                 }
+                // sort the numbers in order for better display
+                // TODO consider sorting at a different stage to prevent redundance (i.e. in ManageTeams)
                 sortJerseyNums(jerseyNums, 0, jerseyNums.size() - 1);
+
+                // initializes an ArrayAdapter for the jersey numbers
                 jerseyAdapter = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, jerseyNums);
 
+                // loop 5 times (five Spinners for jersey numbers)
                 for (int i = 0; i < 5; i++) {
+                    // set every array to display the jersey numbers available to select from on the given team
                     numSelectors[i].setAdapter(jerseyAdapter);
+                    // set the selected item to a default value (first selector is set to first available number, etc.)
                     numSelectors[i].setSelection(i);
                 }
 
@@ -153,14 +176,19 @@ public class GameSetup extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
             }
-
         });
 
 
+        // TODO error-check jersey numbers (i.e. each number can only be selected one time)
 
+        // listeners for state change for each of the jersey number selector spinners
         jNumSelector1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
+            /**
+             * Runs when the selected item changes
+             */
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // sets the corresponding jersey number to the number selected in the Spinner
                 jNumDisplay1.setText(jNumSelector1.getSelectedItem().toString());
 
             }
@@ -171,6 +199,7 @@ public class GameSetup extends AppCompatActivity {
             }
         });
 
+        // repeat for the other four Spinners
         jNumSelector2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -269,31 +298,44 @@ public class GameSetup extends AppCompatActivity {
     }
 
     public void onContinue(View v) { // user wants to continue to tracker
+        // array of Players to store the five starting players
+        Player[] startingLineup;
         // objects to represent the input for the user's team and the opponent's team
         oppTeam = findViewById(R.id.opp_input);
+        // stores the value of that text input as a String
         String opp = oppTeam.getText().toString();
 
+        // initialize the array of Players
         startingLineup = new Player[5];
+
+        // loop 5 times (through each number selection spinner)
         for(int i = 0; i < 5; i++) {
+            // loop through every player on the chosen team's roster
             for (int j = 0; j < currentTeam.getNumPlayers(); j++) {
+                // check if the number selected (in the selector at i in the array of selectors)
+                // matches the Player at j in the ArrayList that represents a team's roster
                 if(numSelectors[i].getSelectedItem().equals(currentTeam.getPlayers().get(j).getJerseyNum())) {
+                    // add that player to the starting lineup
                     startingLineup[i] = currentTeam.getPlayers().get(j);
                 }
             }
         }
 
-
+        // create a new game with attributes of the user's team, and their inputted opponent
         StatsManager.setCurrentGame(new Game(currentTeam, opp));
+        // set the Playing players in the game to the starting lineup to start (in the tracker)
         StatsManager.getCurrentGame().setPlaying(startingLineup);
 
+        // TODO add to when the game clock starts so minutes played are more accurate
+        /*// loops 5 times (five starting players)
         for (int i = 0; i < 5; i++) {
+            // adds new stats to each player
             long t = System.currentTimeMillis();
             StatsManager.getCurrentGame().getTeam().getPlayers().get(i).addPlayerStat(t);
-        }
+        }*/
+
+        // sets the current player as a default to the first player listed in the starting lineup
         StatsManager.setCurrentPlayer(startingLineup[0]);
-
-
-
 
         launchGameTracker(v); // launch the tracker
     }

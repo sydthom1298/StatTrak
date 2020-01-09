@@ -15,41 +15,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_menu);
 
         //variables that store the attributes of the Buttons on the menu
-        final Button btn_new_game = findViewById(R.id.track_new);
-        final Button btn_view_stats = findViewById(R.id.view_stats);
         final Button btn_manage_teams = findViewById(R.id.manage_teams);
         final Button btn_credits = findViewById(R.id.credits);
-
-        //event listeners to check when buttons are selected by the user
-/*
+        /*
 */
-        btn_view_stats.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //executes on main thread after user selects "view statistics" button
-                //redirects to statistic mode selection layout
-                setContentView(R.layout.stat_mode_selection);
 
-                final Button btn_game_stats = findViewById(R.id.btn_game_mode);
-                final Button btn_szn_stats = findViewById(R.id.btn_team_mode);
-
-                btn_game_stats.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        //executes on main thread after user selects "credits" button
-                        //redirects to team manager layout
-                        setContentView(R.layout.game_stats);
-                    }
-                });
-
-                btn_szn_stats.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        //executes on main thread after user selects "credits" button
-                        //redirects to team manager layout
-                        setContentView(R.layout.season_stats);
-                    }
-                });
-
-            }
-        });
 
         btn_manage_teams.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -71,12 +41,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void onTrackNew(View v) {
-
-    }
 
     public void launchGameSetup(View v) {
         Intent i = new Intent(this, GameSetup.class);
+        startActivity(i);
+
+    }
+
+    public void launchStatModeSelection(View v) {
+        Intent i = new Intent(this, StatModeSelection.class);
         startActivity(i);
     }
 }
