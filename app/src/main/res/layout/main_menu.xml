@@ -74,6 +74,7 @@
         android:layout_marginBottom="15dp"
         android:backgroundTint="@android:color/white"
         android:fontFamily="@font/raleway_light"
+        android:onClick="launchTeamManager"
         android:text="@string/menu_btn_manage_teams"
         android:textColor="@color/titles"
         android:textSize="30sp"

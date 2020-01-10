@@ -1,12 +1,16 @@
 package com.example.zhuthomasfinalproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 public class TeamManager extends AppCompatActivity{
     private Spinner spn_team; //team tracking stats for
     private TextView txt_numPlayers; //number of players on team
@@ -20,6 +24,10 @@ public class TeamManager extends AppCompatActivity{
     private Button btn_newPlayer;
     private int num[]; //array of players jersey number of team
     private Team team;
+    private TableLayout tbl_players;
+    private TableRow tbl_header;
+    private TableRow tbl_row;
+
     /**
      * called when TeamManager window starts up
      * @param savedInstanceState - used by the system
@@ -30,15 +38,16 @@ public class TeamManager extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.team_manager);
         //set size of arrays
-        txt_players = new TextView[StatsManager.getCurrentGame().getTeam().getNumPlayers()];
-        txt_jerseyNums = new TextView[StatsManager.getCurrentGame().getTeam().getNumPlayers()];
-        txt_activePlayers = new TextView[StatsManager.getCurrentGame().getTeam().getNumPlayers()];
+        txt_players = new TextView[15];
+        txt_jerseyNums = new TextView[15];
+        txt_activePlayers = new TextView[15];
         //get a control object from the xml id of the control
         spn_team = (Spinner)findViewById(R.id.manage_team_selector);
         txt_numPlayers = (TextView)findViewById(R.id.num_players);
         txt_numActivePlayers = (TextView)findViewById(R.id.act_players);
         txt_newTeam = (TextView)findViewById(R.id.txt_new_team_name);
 
+/* DON't NEED THESE
         txt_players[0] = (TextView)findViewById(R.id.player1); //first player
         txt_players[1] = (TextView)findViewById(R.id.player2); //second player
         txt_players[2] = (TextView)findViewById(R.id.player3); //third player
@@ -74,10 +83,18 @@ public class TeamManager extends AppCompatActivity{
         txt_activePlayers[8] = (TextView)findViewById(R.id.cb_9); //if player nine is playing in game
         txt_activePlayers[9] = (TextView)findViewById(R.id.cb_10); //if player ten is playing in game
         txt_activePlayers[10] = (TextView)findViewById(R.id.cb_11); //if player eleven is playing in game
-
+*/
         btn_addNewTeam = (Button)findViewById(R.id.btn_add_new_team);
         btn_saveTeam = (Button)findViewById(R.id.btn_save);
         btn_newPlayer = (Button)findViewById(R.id.btn_new_player);
+        tbl_players = (TableLayout)findViewById(R.id.roster_table);
+        tbl_row = (TableRow)findViewById(R.id.roster_row);
+        tbl_header = (TableRow)findViewById(R.id.roster_header);
+
+        tbl_players.removeAllViews();
+        tbl_players.addView(tbl_header);
+        tbl_players.addView(tbl_row);
+
 
     }
 
@@ -93,21 +110,70 @@ public class TeamManager extends AppCompatActivity{
 
     }
 
+    EditText newName() {
+        EditText e = new EditText(this);
+        EditText orig = (EditText)(tbl_row.getVirtualChildAt(0));
+        e.setLayoutParams(tbl_row.getVirtualChildAt(0).getLayoutParams());
+        e.setFontFeatureSettings(orig.getFontFeatureSettings());
+        e.setTypeface(orig.getTypeface());
+        e.setTextSize(orig.getTextSize());
+        return e;
+    }
+    EditText newNumber() {
+        EditText e = new EditText(this);
+        EditText orig = (EditText)(tbl_row.getVirtualChildAt(1));
+        e.setFontFeatureSettings(orig.getFontFeatureSettings());
+        e.setTypeface(orig.getTypeface());
+        e.setTextSize(orig.getTextSize());
+        return e;
+    }
+    EditText newPos() {
+        EditText e = new EditText(this);
+        EditText orig = (EditText)(tbl_row.getVirtualChildAt(2));
+        e.setFontFeatureSettings(orig.getFontFeatureSettings());
+        e.setTypeface(orig.getTypeface());
+        e.setTextSize(orig.getTextSize());
+        return e;
+    }
+    CheckBox newCheck() {
+        CheckBox c = new CheckBox(this);
+        c.setLayoutParams(tbl_row.getVirtualChildAt(3).getLayoutParams());
+        return c;
+    }
     /**
      * method to create new player when the new player button is pressed
      * @param v - current window
      */
     public void onNewPlayer(View v){
-
-        StatsManager.getCurrentGame().getTeam();
+        TableRow r = new TableRow(this);
+        r.addView(newName());
+        r.addView(newNumber());
+        r.addView(newPos());
+        r.addView(newCheck());
+        tbl_players.addView(r,tbl_row.getLayoutParams());
     }
+
+    // TODO Add way to scroll player list so that the cell being edited is above the popup keyboard
 
     /**
      * method to save changes to team when the save changes button is pressed
      * @param v - current window
      */
     public void onSaveChanges(View v){
-        StatsManager.getCurrentGame().getTeam();
+
+        for(int i=0; i<tbl_players.getChildCount(); i++) {
+            TableRow r = (TableRow)tbl_players.getChildAt(i);
+
+            EditText name = (EditText)r.getVirtualChildAt(0);
+            //...
+
+            //TODO make changes to StatsManager to save the edits on teams.
+
+
+        }
+
+
+
     }
     //if user has selected a pre existing team
     /*

@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         final Button btn_credits = findViewById(R.id.credits);
         /*
 */
-
+/*
 
         btn_manage_teams.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
                 setContentView(R.layout.team_manager);
             }
         });
+        */
+
 
         btn_credits.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -48,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void launchStatModeSelection(View v) {
         Intent i = new Intent(this, StatModeSelection.class);
+        startActivity(i);
+    }
+
+    public void launchTeamManager(View v) {
+        Intent i = new Intent(this, TeamManager.class);
         startActivity(i);
     }
 }

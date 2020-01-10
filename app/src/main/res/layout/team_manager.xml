@@ -201,6 +201,7 @@
         android:layout_marginTop="40dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_medium"
+        android:onClick="onNewPlayer"
         android:text="@string/add_new_player"
         android:textColor="@color/titles"
         android:textSize="28sp"
@@ -233,8 +234,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_add_new_team">
 
-            <TableRow>
-
+            <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/roster_header">
                 <TextView
                     android:id="@+id/playerName"
                     android:layout_width="333dp"
@@ -271,8 +272,8 @@
                     android:textSize="22sp" />
             </TableRow>
 
-            <TableRow>
-
+            <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/roster_row">
                 <EditText
                     android:id="@+id/player1"
                     android:layout_width="147dp"
