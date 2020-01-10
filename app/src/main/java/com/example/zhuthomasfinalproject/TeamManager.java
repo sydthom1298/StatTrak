@@ -2,6 +2,8 @@ package com.example.zhuthomasfinalproject;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -11,7 +13,10 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-public class TeamManager extends AppCompatActivity{
+
+import java.util.ArrayList;
+
+public class TeamManager extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private Spinner spn_team; //team tracking stats for
     private TextView txt_numPlayers; //number of players on team
     private TextView txt_numActivePlayers; //number of active players on team
@@ -27,6 +32,8 @@ public class TeamManager extends AppCompatActivity{
     private TableLayout tbl_players;
     private TableRow tbl_header;
     private TableRow tbl_row;
+    private int playersCount;
+    private int activePlayersCount;
 
     /**
      * called when TeamManager window starts up
@@ -46,6 +53,10 @@ public class TeamManager extends AppCompatActivity{
         txt_numPlayers = (TextView)findViewById(R.id.num_players);
         txt_numActivePlayers = (TextView)findViewById(R.id.act_players);
         txt_newTeam = (TextView)findViewById(R.id.txt_new_team_name);
+        txt_numPlayers.setText("0");
+        txt_numActivePlayers.setText("0");
+        ArrayList<Team> teamList;
+
 
 /* DON't NEED THESE
         txt_players[0] = (TextView)findViewById(R.id.player1); //first player
@@ -91,13 +102,29 @@ public class TeamManager extends AppCompatActivity{
         tbl_row = (TableRow)findViewById(R.id.roster_row);
         tbl_header = (TableRow)findViewById(R.id.roster_header);
 
-        tbl_players.removeAllViews();
-        tbl_players.addView(tbl_header);
-        tbl_players.addView(tbl_row);
+        clearTable();
 
+        teamList = StatsManager.getTeams();
+        teamList.add(new Team("Test1"));
+        teamList.add(new Team("Test2"));
+        Team[] array = teamList.toArray(new Team[teamList.size()]);
 
+        // Create an ArrayAdapter using the string array and a default spinner layout
+    //    ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this,
+     //           R.layout.team_manager, R.id.manage_team_selector, array);
+      //  spn_team.setAdapter(adapter);
     }
 
+    public void clearTable() {
+        tbl_players.removeAllViews();
+        tbl_players.addView(tbl_header);
+    }
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id){
+
+    }
+    public void onNothingSelected(AdapterView<?> parent){
+
+    }
     /**
      * method to create new team when the create new team button is pressed
      * @param v - current window
@@ -107,7 +134,9 @@ public class TeamManager extends AppCompatActivity{
         teamName = txt_newTeam.getText().toString();
         team = new Team(teamName);
         StatsManager.addTeam(team);
-
+        clearTable();
+        txt_numPlayers.setText(Integer.toString(0));
+        playersCount = 0; 
     }
 
     EditText newName() {
@@ -151,6 +180,10 @@ public class TeamManager extends AppCompatActivity{
         r.addView(newPos());
         r.addView(newCheck());
         tbl_players.addView(r,tbl_row.getLayoutParams());
+        playersCount++;
+        txt_numPlayers.setText(Integer.toString(playersCount));
+
+
     }
 
     // TODO Add way to scroll player list so that the cell being edited is above the popup keyboard
@@ -160,15 +193,27 @@ public class TeamManager extends AppCompatActivity{
      * @param v - current window
      */
     public void onSaveChanges(View v){
-
-        for(int i=0; i<tbl_players.getChildCount(); i++) {
+        Player p;
+        Team t;
+        t = new Team(txt_newTeam.getText().toString());
+        for(int i = 0; i < tbl_players.getChildCount(); i++){
             TableRow r = (TableRow)tbl_players.getChildAt(i);
 
+
             EditText name = (EditText)r.getVirtualChildAt(0);
-            //...
+            EditText number = (EditText)r.getVirtualChildAt(1);
+            EditText position = (EditText)r.getVirtualChildAt(2);
+            CheckBox active = (CheckBox)r.getVirtualChildAt(3);
 
-            //TODO make changes to StatsManager to save the edits on teams.
+            name.getText();
+            number.getText();
+            position.getText();
+            active.isChecked();
 
+            p = new Player(name.getText().toString(), Integer.parseInt(number.getText().toString()));
+            p.setPosition(position.getText().toString());
+            p.setActive(active.isChecked());
+            t.addPlayer(p);
 
         }
 

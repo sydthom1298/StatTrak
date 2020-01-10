@@ -7,6 +7,8 @@ import java.util.ArrayList;
 public class Player {
     private int jerseyNum;
     private String name;
+    private String position;
+    private boolean active;
     private ArrayList<PlayerStats> stats; //list of players stats for player
     private boolean inGame; //indicator to tell if player is playing in the game
 
@@ -95,6 +97,22 @@ public class Player {
      */
     public void setName(String n) {
         name = n;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String p) {
+        position = p;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean a) {
+        active = a;
     }
 
     public ArrayList<PlayerStats> getStats() {

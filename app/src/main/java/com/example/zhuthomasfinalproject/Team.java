@@ -97,8 +97,10 @@ public class Team {
      * @return - String representation
      */
     public String toString(){
+
         String str = "";
-        str += "Name: " + name+ "\nPlayers: " + players;
+        //str += "Name: " + name+ "\nPlayers: " + players;
+        str += name;
         //TODO add missing fields
         return str;
     }

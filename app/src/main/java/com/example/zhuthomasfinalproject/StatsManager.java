@@ -10,7 +10,7 @@ public final class StatsManager {
     private static boolean test = true;
 
     private static Player Playing[];
-    private static ArrayList<Team> teams; //arrayList of Teams
+    private static ArrayList<Team> teams = new ArrayList<Team>(); //arrayList of Teams
 
 
 
@@ -108,6 +108,14 @@ public final class StatsManager {
 
     public static void setPlaying(Player[] p) {
         Playing = p;
+    }
+
+    public static ArrayList<Team> getTeams() {
+        return teams;
+    }
+
+    public static void setTeams(ArrayList<Team> t) {
+        teams = t;
     }
 
     /**
