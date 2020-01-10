@@ -7,7 +7,8 @@ public class Sorter {
     private int lastSortCount;
     private long lastSortTime;
     private boolean ascending = true;
-    public Sorter( boolean ascend ) {
+
+    public Sorter(boolean ascend) {
         ascending = ascend;
     }
 
@@ -21,7 +22,7 @@ public class Sorter {
     public void mergeSort(int[] nums, int n){
         lastSortCount = 0; //reset loop count
         lastSortTime = System.currentTimeMillis(); //record start time
-        if( ascending ) {
+        if(ascending) {
             mergeSAscend(nums, n); //start the sort
         } else {
             mergeSDescend(nums, n);
@@ -71,7 +72,7 @@ public class Sorter {
         j = 0;
         k = 0;
 
-        /*merge 2 sorted sub arrays back into main (nums) array, taking lowest values
+        /* merge 2 sorted sub arrays back into main (nums) array, taking lowest values
         first (ascending) and highest values first (descending).
         k indexes combined array
         i indexes left sub-array
@@ -147,7 +148,7 @@ public class Sorter {
         j = 0;
         k = 0;
 
-        /*merge 2 sorted sub arrays back into main (nums) array, taking lowest values
+        /* merge 2 sorted sub arrays back into main (nums) array, taking lowest values
         first (ascending) and highest values first (descending).
         k indexes combined array
         i indexes left sub-array

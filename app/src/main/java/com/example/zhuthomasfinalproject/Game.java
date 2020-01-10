@@ -46,18 +46,34 @@ public class Game {
         Playing = p;
     }
 
+    /**
+     * accessor that gets the team tracking stats for
+     * @return - team
+     */
     public Team getTeam() {
         return team;
     }
 
+    /**
+     * mutator that sets the team that the stats are being tracked for
+     * @param t - team to set
+     */
     public void setTeam(Team t) {
         team = t;
     }
 
+    /**
+     * accessor that gets the opponent team is playing
+     * @return - opponent
+     */
     public String getOpponent() {
         return opponent;
     }
 
+    /**
+     * mutator that sets the opponent team is playing
+     * @param o - opponent to set
+     */
     public void setOpponent(String o) {
         opponent = o;
     }
@@ -69,31 +85,64 @@ public class Game {
         dateTime = dT;
     }
 
+    /**
+     * mutator that gets the number of team fouls for the team
+     * @return - number of team fouls
+     */
     public int getTeamFouls() {
         return teamFouls;
     }
+
+    /**
+     * method that adds to team fouls
+     */
     public void addTeamFouls(){
         teamFouls++;
     }
+
+    /**
+     * method that subtracts from team fouls
+     */
     public void subtractTeamFouls(){
         teamFouls--;
     }
+
+    /**
+     * mutator that sets team fouls
+     * @param tF - team fouls to set
+     */
     public void setTeamFouls(int tF) {
         teamFouls = tF;
     }
 
+    /**
+     * accessor that gets the number of points scored by team in game
+     * @return - number of points
+     */
     public int getPoints() {
         return points;
     }
 
+    /**
+     * mutator that sets the number of points scored by team in game
+     * @param p - points to set
+     */
     public void setPoints(int p) {
         points = p;
     }
 
+    /**
+     * method that adds points
+     * @param ptsToAdd - points to add
+     */
     public void addPoints(int ptsToAdd) {
         points += ptsToAdd;
     }
 
+    /**
+     * method that subtracts points
+     * @param ptsToSub - points to subtract
+     */
     public void subtractPoints(int ptsToSub) {
         points -= ptsToSub;
     }
