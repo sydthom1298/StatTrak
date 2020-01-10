@@ -47,17 +47,31 @@
         android:contentDescription="@string/ss_desc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instruct_text"
-        app:layout_constraintVertical_bias="0.66"
+        app:layout_constraintVertical_bias="0.82"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-    <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="188dp"
-        android:layout_height="92dp"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="364dp" />
+    <Button
+        android:id="@+id/btn_left"
+        android:layout_width="88dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="256dp"
+        android:fontFamily="@font/raleway_semibold"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/instruct_img"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/instruct_text" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="88dp"
+        android:layout_height="70dp"
+        android:fontFamily="@font/raleway_semibold"
+        android:textSize="24sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_left"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/instruct_img" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

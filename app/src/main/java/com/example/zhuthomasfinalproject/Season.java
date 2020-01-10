@@ -10,7 +10,7 @@ public class Season {
     private int endYear;
     public Season(){
         startYear = Calendar.getInstance().get(Calendar.YEAR);
-        endYear = startYear+1;
+        endYear = startYear + 1;
         ArrayList<Game> games = new ArrayList<Game>();
     }
     public Season(Team t, int sYear, int eYear){

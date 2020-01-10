@@ -16,9 +16,7 @@ public class StatModeSelection extends AppCompatActivity {
         launchSeasonSummary(v);
     }
 
-    public void onGameSelection(View v){
-        launchGameSummary(v);
-    }
+    public void onGameSelection(View v){ launchGameSummary(v); }
 
     public void launchGameSummary(View v) {
         Intent i = new Intent(this, GameStatsSummary.class);
@@ -26,8 +24,8 @@ public class StatModeSelection extends AppCompatActivity {
     }
 
     public void launchSeasonSummary(View v) {
-        Intent i = new Intent(this, SeasonStatsSummary.class);
-        startActivity(i);
+        Intent j = new Intent(this, SeasonStatsSummary.class);
+        startActivity(j);
     }
 }
 
