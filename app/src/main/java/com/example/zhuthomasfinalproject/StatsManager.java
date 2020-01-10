@@ -10,7 +10,7 @@ public final class StatsManager {
     private static boolean test = true;
 
     private static Player Playing[];
-    private static ArrayList<Team> team[]; //arrayList of Team
+    private static ArrayList<Team> teams; //arrayList of Teams
 
 
 
@@ -110,18 +110,13 @@ public final class StatsManager {
         Playing = p;
     }
 
-    public static ArrayList<Team>[] getTeam() {
-        return team;
-    }
-
-    public static void setTeam(ArrayList<Team>[] t) {
-        team = t;
-    }
-    /*
-    //TODO: method to add team
+    /**
+     * method that adds team entered by user to array list of teams
+     * @param t - team to add
+     */
     public static void addTeam(Team t){
-
-    }*/
+        teams.add(t);
+    }
 
 
 }

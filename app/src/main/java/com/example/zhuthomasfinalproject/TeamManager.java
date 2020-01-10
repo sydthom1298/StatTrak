@@ -20,7 +20,6 @@ public class TeamManager extends AppCompatActivity{
     private Button btn_newPlayer;
     private int num[]; //array of players jersey number of team
     private Team team;
-    private String name; //name of team
     /**
      * called when TeamManager window starts up
      * @param savedInstanceState - used by the system
@@ -87,10 +86,10 @@ public class TeamManager extends AppCompatActivity{
      * @param v - current window
      */
     public void onCreateNewTeam(View v){
-
-        //name = txt_newTeam;
-        team = new Team(name);
-        //StatsManager.getTeamList().add(team);
+        String teamName;
+        teamName = txt_newTeam.getText().toString();
+        team = new Team(teamName);
+        StatsManager.addTeam(team);
 
     }
 
@@ -99,6 +98,7 @@ public class TeamManager extends AppCompatActivity{
      * @param v - current window
      */
     public void onNewPlayer(View v){
+
         StatsManager.getCurrentGame().getTeam();
     }
 
