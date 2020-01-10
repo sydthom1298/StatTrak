@@ -30,6 +30,7 @@
     <string name="instructions_title">Instructions</string>
     <string name="menu_instructions">Upon first opening the app…</string>
     <string name="ss_desc">A screenshot that visually demonstrates the written instructions</string>
+    <string name="left_arrow">--</string>
 
 
     <string name="manager_title">Manage Teams</string>
@@ -98,6 +99,5 @@
     \n32\t\t\t17\t\t9\t\t\t\t2\t\t\t\t3\t\t\t\t0</string>
     // replace with an array later
     <string name="season_avgs_title">Overall:</string>
-
 
 </resources>

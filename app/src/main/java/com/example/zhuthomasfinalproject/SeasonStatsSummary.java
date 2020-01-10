@@ -1,6 +1,13 @@
+/*
+Jessica Zhu
+January 9 2019
+Class to represent...
+ */
 package com.example.zhuthomasfinalproject;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -9,18 +16,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class SeasonStatsSummary extends AppCompatActivity {
-    private ArrayAdapter <Team> teamAdapter;
-    private ArrayList<Team> teams;
-
+    private ArrayAdapter<String> teamAdapter;
+    private ArrayAdapter<String> sznAdapter;
+    private ArrayList<Team> userTeams;
+    private ArrayList<String> sUserTeams;
+    private ArrayList<String> seasons;
 
     private Spinner teamSelector;
-    public void onCreate(final Bundle savedInstanceState){
+
+    protected void onCreate(final Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.season_stats);
 
         teamSelector = findViewById(R.id.szn_team_selector);
-
-        teams = new ArrayList<>();
+        // initialize a new arraylist to store existing, saved teams
+        userTeams = new ArrayList<>();
+        sUserTeams = new ArrayList<>();
+        seasons = new ArrayList<>();
 
         // sample data (remove when manage teams works)
         Player tempPlayer1 = new Player("Kyle", 7);
@@ -36,7 +48,7 @@ public class SeasonStatsSummary extends AppCompatActivity {
         tempPlayers.add(tempPlayer5);
         Team team = new Team("Raptors", tempPlayers);
 
-        teams.add(team);
+        userTeams.add(team);
 
         tempPlayer1 = new Player("Jess", 1);
         tempPlayer2 = new Player("Sydney",2);
@@ -51,16 +63,29 @@ public class SeasonStatsSummary extends AppCompatActivity {
         tempPlayers.add(tempPlayer5);
         team = new Team("Phoenix", tempPlayers);
 
-        teams.add(team);
+        userTeams.add(team);
 
-        //teamAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, teams);
+        // loops through saved teams, saves team names as Strings in an ArrayList
+        for(int i = 0; i < userTeams.size(); i++) {
+            sUserTeams.add(i, userTeams.get(i).getName());
+        }
+
+        teamAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sUserTeams);
         teamSelector.setAdapter(teamAdapter);
 
+        teamSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-    }
+                sznAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, seasons);
 
-    @Override
-    public void onBackPressed() {
-        finish();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 }

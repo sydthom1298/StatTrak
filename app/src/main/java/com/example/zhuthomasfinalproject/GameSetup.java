@@ -1,3 +1,8 @@
+/*
+Jessica Zhu
+January 6 2019
+Class that...
+ */
 package com.example.zhuthomasfinalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,11 +24,7 @@ import java.util.ArrayList;
 
 public class GameSetup extends AppCompatActivity {
     // use to restrict enabled jersey numbers
-    private ArrayList<Integer> jerseyNums1;
-    private ArrayList<Integer> jerseyNums2;
-    private ArrayList<Integer> jerseyNums3;
-    private ArrayList<Integer> jerseyNums4;
-    private ArrayList<Integer> jerseyNums5;
+    private ArrayAdapter<Integer> jerseyNums1;
 
     // master arraylist of possible jersey numbers for the selected team
     private ArrayList<Integer> jerseyNums;
@@ -90,6 +91,8 @@ public class GameSetup extends AppCompatActivity {
         // initialize array of jersey number spinners to hold the five spinners on the form
         numSelectors = new Spinner[]{jNumSelector1, jNumSelector2, jNumSelector3, jNumSelector4, jNumSelector5};
 
+        jerseyNums = new ArrayList<>(); // initialize an array containing jersey numbers
+
         //TODO - read data file on user teams, load as teams into array, then display team names in text box
         userTeams = new ArrayList<>();
 
@@ -141,8 +144,7 @@ public class GameSetup extends AppCompatActivity {
              */
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String sCurrentTeam = teamSelector.getSelectedItem().toString(); // get the team name selected in the
-                jerseyNums = new ArrayList<>(); // initialize an array containing jersey numbers
-
+                jerseyNums = new ArrayList<>();
                 // loop through the arraylist of teams available (saved)
                 for (int i = 0; i < userTeams.size(); i++) {
                     // check if the name selected in the team selection spinner matches the Team at i in the arraylist
@@ -191,6 +193,18 @@ public class GameSetup extends AppCompatActivity {
                 // sets the corresponding jersey number to the number selected in the Spinner
                 jNumDisplay1.setText(jNumSelector1.getSelectedItem().toString());
 
+                jerseyNums1 = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, jerseyNums) {
+                    @Override
+                    public boolean isEnabled(int position) {
+                        if (position == 0) {
+                            return false;
+                        }
+                        return true;
+                    }
+                };
+
+
+
             }
 
             @Override
@@ -204,6 +218,8 @@ public class GameSetup extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 jNumDisplay2.setText(jNumSelector2.getSelectedItem().toString());
+
+
             }
 
             @Override
