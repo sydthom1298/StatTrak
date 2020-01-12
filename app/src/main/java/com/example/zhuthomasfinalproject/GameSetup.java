@@ -91,10 +91,8 @@ public class GameSetup extends AppCompatActivity {
         // initialize array of jersey number spinners to hold the five spinners on the form
         numSelectors = new Spinner[]{jNumSelector1, jNumSelector2, jNumSelector3, jNumSelector4, jNumSelector5};
 
-        jerseyNums = new ArrayList<>(); // initialize an array containing jersey numbers
-
         //TODO - read data file on user teams, load as teams into array, then display team names in text box
-        userTeams = new ArrayList<>();
+        userTeams = StatsManager.getTeams();
 
         // sample data (remove when manage teams works)
         Player tempPlayer1 = new Player("Kyle", 7);
@@ -144,7 +142,7 @@ public class GameSetup extends AppCompatActivity {
              */
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String sCurrentTeam = teamSelector.getSelectedItem().toString(); // get the team name selected in the
-                jerseyNums = new ArrayList<>();
+                jerseyNums = new ArrayList<>(); // initialize jersey number arraylist
                 // loop through the arraylist of teams available (saved)
                 for (int i = 0; i < userTeams.size(); i++) {
                     // check if the name selected in the team selection spinner matches the Team at i in the arraylist

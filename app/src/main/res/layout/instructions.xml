@@ -26,52 +26,40 @@
 
     <TextView
         android:id="@+id/instruct_text"
-        android:layout_width="1200dp"
-        android:layout_height="86dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="1010dp"
+        android:layout_height="596dp"
+        android:layout_marginTop="32dp"
+        android:scrollbars="vertical"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_light"
         android:text="@string/menu_instructions"
         android:textColor="@color/titles"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instruct_title" />
-
-    <ImageView
-        android:id="@+id/instruct_img"
-        android:layout_width="800dp"
-        android:layout_height="500dp"
-        android:layout_marginBottom="32dp"
-        android:contentDescription="@string/ss_desc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instruct_text"
-        app:layout_constraintVertical_bias="0.82"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        app:layout_constraintTop_toBottomOf="@+id/instruct_title"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btn_left"
         android:layout_width="88dp"
         android:layout_height="70dp"
-        android:layout_marginTop="256dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="100dp"
         android:fontFamily="@font/raleway_semibold"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/instruct_img"
-        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instruct_text" />
+        app:layout_constraintTop_toBottomOf="@+id/instruct_title" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="88dp"
         android:layout_height="70dp"
+        android:layout_marginEnd="24dp"
         android:fontFamily="@font/raleway_semibold"
         android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_left"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/instruct_img" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

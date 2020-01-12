@@ -15,20 +15,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_menu);
 
         //variables that store the attributes of the Buttons on the menu
-        final Button btn_manage_teams = findViewById(R.id.manage_teams);
         final Button btn_credits = findViewById(R.id.credits);
-        /*
-*/
-/*
-
-        btn_manage_teams.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //executes on main thread after user selects "credits" button
-                //redirects to team manager layout
-                setContentView(R.layout.team_manager);
-            }
-        });
-        */
 
 
         btn_credits.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void launchTeamManager(View v) {
         Intent i = new Intent(this, TeamManager.class);
+        startActivity(i);
+    }
+
+    public void launchInstructions(View v) {
+        Intent i = new Intent(this, Instructions.class);
         startActivity(i);
     }
 }

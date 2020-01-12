@@ -83,15 +83,31 @@
     <string name="player_5">4</string>
 
     <string name="game_summ_title">Game Complete!</string>
-    <string name="header">Name\t\t\t\t\t\tJersey #\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tMin\t\tPts\t\tAsts\t\tStls\t\tTOs\t\tBlk
-    \nKyle Lowry\t\t\t\t7\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t32\t\t\t17\t\t9\t\t\t\t2\t\t\t\t3\t\t\t\t0</string>
-    // replace with an array later
     <string name="game_info">TEAM NAME vs. TEAM NAME\nDD/MM/YYYY</string>
     <string name="btn_export_stats">Export Stats</string>
 
     <string name="game_stats_title">Game Statistics</string>
-    // should change once a team/game are selected
     <string name="game_prompt">Game:</string>
+    <string name="table_title_mins">MIN</string>
+    <string name="table_title_pts">PTS</string>
+    <string name="table_title_asts">ASTS</string>
+    <string name="table_title_rebs">TREBS</string>
+    <string name="table_title_def_rebs">DREB</string>
+    <string name="table_title_off_rebs">OREB</string>
+    <string name="table_title_twos">2P</string>
+    <string name="table_title_twoatts">2PA</string>
+    <string name="table_title_fgpct">FG%</string>
+    <string name="table_title_threes">3P</string>
+    <string name="table_title_threeatts">3PA</string>
+    <string name="table_title_3ptpct">FG3%</string>
+    <string name="table_title_fts">FT</string>
+    <string name="table_title_ftas">FTA</string>
+    <string name="table_title_ftpct">FT%</string>
+    <string name="table_title_tos">TOV</string>
+    <string name="table_title_stls">STL</string>
+    <string name="table_title_blks">BLK</string>
+    <string name="table_title_fouls">FOULS</string>
+
 
     <string name="season_stats_title">Season Statistics</string>
     <string name="season_prompt">Season:</string>

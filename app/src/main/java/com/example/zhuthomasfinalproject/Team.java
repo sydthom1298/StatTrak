@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Team {
     private String name;
     private ArrayList<Player> players;
-
+    private ArrayList<Season> seasons;
 
     /**
      * default constructor that constructs a team class and initializes attributes
@@ -12,6 +12,7 @@ public class Team {
     public Team(){
         name = "";
         players = new ArrayList<Player>();
+        seasons = new ArrayList<>();
     }
 
 
@@ -30,8 +31,7 @@ public class Team {
      * @param p - array list that stores all the players on the team
      */
     public Team(String n, ArrayList<Player> p){
-        this();
-        name = n;
+        this(n);
         players = p;
     }
 
@@ -93,8 +93,29 @@ public class Team {
         players.remove(p);
     }
 
+    public ArrayList<Season> getSeasons() {
+        return seasons;
+    }
+
+    public Season getSeason(int startYear) {
+        for (int i = 0; i < seasons.size(); i++) {
+            if (seasons.get(i).getStartYear() == startYear) {
+                return seasons.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void setSeasons(ArrayList<Season> s) {
+        seasons = s;
+    }
+
+    public void addSeason() {
+        seasons.add(new Season());
+    }
+
     /**
-     * creates String representaiton of class
+     * creates String representation of class
      * @return - String representation
      */
     public String toString(){

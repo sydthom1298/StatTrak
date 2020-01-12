@@ -57,9 +57,9 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
         btn_newPlayer = (Button)findViewById(R.id.btn_new_player);
         tbl_players = (TableLayout)findViewById(R.id.roster_table);
         tbl_row = (TableRow)findViewById(R.id.roster_row);
-        tbl_header = (TableRow)findViewById(R.id.roster_header);
+        tbl_header = (TableRow)findViewById(R.id.stat_summ_header);
 
-        clearTable();
+        //clearTable();
 
         StatsManager.addTeam(new Team("Select team to edit")); //TODO: remove this
         // Create an ArrayAdapter using the string array and a default spinner layout

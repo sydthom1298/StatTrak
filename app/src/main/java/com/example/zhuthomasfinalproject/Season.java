@@ -11,9 +11,10 @@ public class Season {
     public Season(){
         startYear = Calendar.getInstance().get(Calendar.YEAR);
         endYear = startYear + 1;
-        ArrayList<Game> games = new ArrayList<Game>();
+        games = new ArrayList<Game>();
     }
     public Season(Team t, int sYear, int eYear){
+        this();
         roster = t;
         startYear = sYear;
         endYear = eYear;
@@ -62,7 +63,7 @@ public class Season {
 
     public String toString() {
         String str = "";
-        str += "Start Year: " + startYear + "\nEnd Year: " + endYear;
+        str += startYear + " - " + endYear;
         //TODO add missing field
         return str;
     }
