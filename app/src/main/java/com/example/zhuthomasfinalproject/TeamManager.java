@@ -12,17 +12,14 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class TeamManager extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private Spinner spn_team; //team tracking stats for
     private TextView txt_numPlayers; //number of players on team
     private TextView txt_numActivePlayers; //number of active players on team
-    private TextView txt_players[]; //array of players on team
-    private TextView txt_jerseyNums[];//array of jersey numbers
-    private TextView txt_activePlayers[];
     private TextView txt_newTeam;
     private Button btn_addNewTeam;
     private Button btn_saveTeam;
@@ -44,10 +41,7 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
         //set up screen from xml
         super.onCreate(savedInstanceState);
         setContentView(R.layout.team_manager);
-        //set size of arrays
-        txt_players = new TextView[15];
-        txt_jerseyNums = new TextView[15];
-        txt_activePlayers = new TextView[15];
+
         //get a control object from the xml id of the control
         spn_team = (Spinner)findViewById(R.id.manage_team_selector);
         txt_numPlayers = (TextView)findViewById(R.id.num_players);
@@ -58,43 +52,6 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
         ArrayList<Team> teamList;
 
 
-/* DON't NEED THESE
-        txt_players[0] = (TextView)findViewById(R.id.player1); //first player
-        txt_players[1] = (TextView)findViewById(R.id.player2); //second player
-        txt_players[2] = (TextView)findViewById(R.id.player3); //third player
-        txt_players[3] = (TextView)findViewById(R.id.player4); //fourth player
-        txt_players[4] = (TextView)findViewById(R.id.player5); //fifth player
-        txt_players[5] = (TextView)findViewById(R.id.player6); //sixth player
-        txt_players[6] = (TextView)findViewById(R.id.player7); //seventh player
-        txt_players[7] = (TextView)findViewById(R.id.player8); //eighth player
-        txt_players[8] = (TextView)findViewById(R.id.player9); //ninth player
-        txt_players[9] = (TextView)findViewById(R.id.player10); //tenth player
-        txt_players[10] = (TextView)findViewById(R.id.player11); //eleventh player
-
-        txt_jerseyNums[0] = (TextView)findViewById(R.id.jersey1); //first players jersey number
-        txt_jerseyNums[1] = (TextView)findViewById(R.id.jersey2); //second players jersey number
-        txt_jerseyNums[2] = (TextView)findViewById(R.id.jersey3); //third players jersey number
-        txt_jerseyNums[3] = (TextView)findViewById(R.id.jersey4); //fourth players jersey number
-        txt_jerseyNums[4] = (TextView)findViewById(R.id.jersey5); //fifth players jersey number
-        txt_jerseyNums[5] = (TextView)findViewById(R.id.jersey6); //sixth players jersey number
-        txt_jerseyNums[6] = (TextView)findViewById(R.id.jersey7); //seventh players jersey number
-        txt_jerseyNums[7] = (TextView)findViewById(R.id.jersey8); //eighth players jersey number
-        txt_jerseyNums[8] = (TextView)findViewById(R.id.jersey9); //ninth players jersey number
-        txt_jerseyNums[9] = (TextView)findViewById(R.id.jersey10); //tenth players jersey number
-        txt_jerseyNums[10] = (TextView)findViewById(R.id.jersey11); //eleventh players jersey number
-
-        txt_activePlayers[0] = (TextView)findViewById(R.id.cb_1); //if player one is playing in game
-        txt_activePlayers[1] = (TextView)findViewById(R.id.cb_2); //if player two is playing in game
-        txt_activePlayers[2] = (TextView)findViewById(R.id.cb_3); //if player three is playing in game
-        txt_activePlayers[3] = (TextView)findViewById(R.id.cb_4); //if player four is playing in game
-        txt_activePlayers[4] = (TextView)findViewById(R.id.cb_5); //if player five is playing in game
-        txt_activePlayers[5] = (TextView)findViewById(R.id.cb_6); //if player six is playing in game
-        txt_activePlayers[6] = (TextView)findViewById(R.id.cb_7); //if player seven is playing in game
-        txt_activePlayers[7] = (TextView)findViewById(R.id.cb_8); //if player eight is playing in game
-        txt_activePlayers[8] = (TextView)findViewById(R.id.cb_9); //if player nine is playing in game
-        txt_activePlayers[9] = (TextView)findViewById(R.id.cb_10); //if player ten is playing in game
-        txt_activePlayers[10] = (TextView)findViewById(R.id.cb_11); //if player eleven is playing in game
-*/
         btn_addNewTeam = (Button)findViewById(R.id.btn_add_new_team);
         btn_saveTeam = (Button)findViewById(R.id.btn_save);
         btn_newPlayer = (Button)findViewById(R.id.btn_new_player);
@@ -104,26 +61,75 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
 
         clearTable();
 
-        teamList = StatsManager.getTeams();
-        teamList.add(new Team("Test1"));
-        teamList.add(new Team("Test2"));
-        Team[] array = teamList.toArray(new Team[teamList.size()]);
-
+        StatsManager.addTeam(new Team("Select team to edit")); //TODO: remove this
         // Create an ArrayAdapter using the string array and a default spinner layout
-    //    ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this,
-     //           R.layout.team_manager, R.id.manage_team_selector, array);
-      //  spn_team.setAdapter(adapter);
+        ArrayAdapter<Team> adapter = new ArrayAdapter<Team>(this,
+                R.layout.support_simple_spinner_dropdown_item, StatsManager.getTeams());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+/*
+        ArrayList<String>array = new ArrayList<String>();
+        array.add("abc");
+        array.add("def");
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                R.layout.support_simple_spinner_dropdown_item, array);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+*/
+        spn_team.setAdapter(adapter);
+        spn_team.setOnItemSelectedListener(this);
+        enableButtons(false);
     }
 
-    public void clearTable() {
+
+    private void clearTable() {
         tbl_players.removeAllViews();
         tbl_players.addView(tbl_header);
     }
+    private void enableButtons(boolean enable) {
+        btn_newPlayer.setEnabled(enable);
+
+        btn_saveTeam.setEnabled(enable);
+    }
+    private boolean firstTime = true;
+    private Team selectedTeam;
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id){
+        Team t;
+        if(firstTime) {
+            firstTime = false;
+            return;
+        }
+        clearTable();
+        t = (Team) parent.getItemAtPosition(pos);
+        if( t.getName().equals("Select team to edit")) {
+            playersCount = 0;
+            txt_numPlayers.setText(Integer.toString(playersCount));
+            enableButtons(false);
+        } else {
+            enableButtons(true);
+        }
+        selectedTeam = t;
+        for( int i=0; i<t.getNumPlayers(); i++) {
+            TableRow r = new TableRow(this);
+            EditText n,num,position;
+            CheckBox chk;
+            r.addView(n =newName());
+            r.addView(num = newNumber());
+            r.addView(position = newPos());
+            r.addView(chk = newCheck());
+            Player p = t.getPlayers().get(i);
+            n.setText(p.getName());
+            num.setText(Integer.toString(p.getJerseyNum()));
+            position.setText(p.getPosition());
+            chk.setEnabled(p.isActive());
+
+            tbl_players.addView(r,tbl_row.getLayoutParams());
+            playersCount++;
+            txt_numPlayers.setText(Integer.toString(playersCount));
+        }
 
     }
     public void onNothingSelected(AdapterView<?> parent){
-
+        String a = "Test";
     }
     /**
      * method to create new team when the create new team button is pressed
@@ -136,9 +142,12 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
         StatsManager.addTeam(team);
         clearTable();
         txt_numPlayers.setText(Integer.toString(0));
-        playersCount = 0; 
-    }
+        playersCount = 0;
+        TextView t = (TextView)spn_team.getChildAt(spn_team.getChildCount()-1);
+        txt_newTeam.setText("");
+        spn_team.setSelection(spn_team.getAdapter().getCount()-1);
 
+    }
     EditText newName() {
         EditText e = new EditText(this);
         EditText orig = (EditText)(tbl_row.getVirtualChildAt(0));
@@ -175,10 +184,12 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
      */
     public void onNewPlayer(View v){
         TableRow r = new TableRow(this);
-        r.addView(newName());
-        r.addView(newNumber());
-        r.addView(newPos());
-        r.addView(newCheck());
+        EditText n,num,pos;
+        CheckBox chk;
+        r.addView(n =newName());
+        r.addView(num = newNumber());
+        r.addView(pos = newPos());
+        r.addView(chk = newCheck());
         tbl_players.addView(r,tbl_row.getLayoutParams());
         playersCount++;
         txt_numPlayers.setText(Integer.toString(playersCount));
@@ -195,8 +206,10 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
     public void onSaveChanges(View v){
         Player p;
         Team t;
-        t = new Team(txt_newTeam.getText().toString());
-        for(int i = 0; i < tbl_players.getChildCount(); i++){
+
+        t = selectedTeam;
+
+        for(int i = 1; i < tbl_players.getChildCount(); i++){
             TableRow r = (TableRow)tbl_players.getChildAt(i);
 
 
@@ -205,25 +218,36 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
             EditText position = (EditText)r.getVirtualChildAt(2);
             CheckBox active = (CheckBox)r.getVirtualChildAt(3);
 
-            name.getText();
-            number.getText();
-            position.getText();
-            active.isChecked();
 
-            p = new Player(name.getText().toString(), Integer.parseInt(number.getText().toString()));
-            p.setPosition(position.getText().toString());
-            p.setActive(active.isChecked());
-            t.addPlayer(p);
+            String numString;
+            int num;
+            numString = number.getText().toString();
+            try {
+                num = Integer.parseInt(numString);
+            } catch( Exception x) {
+                num = -1;
+            }
+            p = t.findPlayer(name.getText().toString(), num);
+
+            if( p != null ) {
+                p.setPosition(position.getText().toString());
+                p.setActive(active.isChecked());
+            } else {
+                p = new Player(name.getText().toString(), num);
+                p.setPosition(position.getText().toString());
+                p.setActive(active.isChecked());
+                t.addPlayer(p);
+
+            }
+
+
+
 
         }
 
 
 
     }
-    //if user has selected a pre existing team
-    /*
-    if(!spn_team.equals("n/a")){
 
-    }*/
 
 }

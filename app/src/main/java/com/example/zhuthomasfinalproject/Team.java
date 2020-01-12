@@ -11,7 +11,7 @@ public class Team {
      */
     public Team(){
         name = "";
-        ArrayList<Player> players = new ArrayList<Player>();
+        players = new ArrayList<Player>();
     }
 
 
@@ -30,6 +30,7 @@ public class Team {
      * @param p - array list that stores all the players on the team
      */
     public Team(String n, ArrayList<Player> p){
+        this();
         name = n;
         players = p;
     }

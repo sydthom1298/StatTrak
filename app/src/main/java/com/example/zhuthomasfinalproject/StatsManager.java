@@ -1,7 +1,6 @@
 package com.example.zhuthomasfinalproject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public final class StatsManager {
     private static Player currentPlayer;
@@ -124,6 +123,15 @@ public final class StatsManager {
      */
     public static void addTeam(Team t){
         teams.add(t);
+    }
+
+    public static Team findTeam( String name) {
+        for(Team t: teams) {
+            if( t.getName().equals(name)) {
+                return t;
+            }
+        }
+        return null;
     }
 
 
