@@ -26,40 +26,41 @@
 
     <TextView
         android:id="@+id/instruct_text"
-        android:layout_width="1010dp"
-        android:layout_height="596dp"
-        android:layout_marginTop="32dp"
-        android:scrollbars="vertical"
+        android:layout_width="900dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="10dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_light"
+        android:scrollbars="vertical"
         android:text="@string/menu_instructions"
+        android:textAlignment="gravity"
         android:textColor="@color/titles"
-        android:textSize="24sp"
+        android:textSize="30sp"
+        android:padding="8dip"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instruct_title"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/btn_left"
-        android:layout_width="88dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="292dp"
-        android:fontFamily="@font/raleway_semibold"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instruct_title" />
-
-    <Button
+    <ImageButton
         android:id="@+id/btn_right"
-        android:layout_width="88dp"
-        android:layout_height="70dp"
-        android:layout_marginEnd="24dp"
-        android:fontFamily="@font/raleway_semibold"
-        android:textSize="24sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btn_left"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/instruct_text"
+        app:layout_constraintTop_toBottomOf="@+id/instruct_title"
+        app:srcCompat="@drawable/right" />
+
+    <ImageButton
+        android:id="@+id/btn_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        app:layout_constraintEnd_toStartOf="@+id/instruct_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/instruct_title"
+        app:srcCompat="@drawable/left" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

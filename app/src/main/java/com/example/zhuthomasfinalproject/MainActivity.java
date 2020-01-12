@@ -1,3 +1,10 @@
+/*
+Jessica Zhu and Sydney Thomas
+January 12 2020
+Window that displays the options in the main menu, allowing the user to access each via buttons.
+Each button opens a new window (each ha its own activity class), this window is mainly used for navigation.
+ */
+
 package com.example.zhuthomasfinalproject;
 
 import android.content.Intent;
@@ -13,19 +20,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
-
-        //variables that store the attributes of the Buttons on the menu
-        final Button btn_credits = findViewById(R.id.credits);
-
-
-        btn_credits.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //executes on main thread after user selects "credits" button
-                //redirects to credits layout
-                setContentView(R.layout.credits);
-            }
-        });
-
     }
 
 
@@ -49,4 +43,10 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, Instructions.class);
         startActivity(i);
     }
+    public void launchCredits(View v) {
+        Intent i = new Intent(this, Credits.class);
+        startActivity(i);
+    }
+
+
 }
