@@ -25,7 +25,10 @@ import java.util.ArrayList;
 public class GameSetup extends AppCompatActivity {
     // use to restrict enabled jersey numbers
     private ArrayAdapter<Integer> jerseyNums1;
-
+    private ArrayAdapter<Integer> jerseyNums2;
+    private ArrayAdapter<Integer> jerseyNums3;
+    private ArrayAdapter<Integer> jerseyNums4;
+    private ArrayAdapter<Integer> jerseyNums5;
     // master arraylist of possible jersey numbers for the selected team
     private ArrayList<Integer> jerseyNums;
     // list of saved teams that the user can choose from
@@ -59,11 +62,15 @@ public class GameSetup extends AppCompatActivity {
 
     // Array of Spinners to more efficiently set (all display same values)
     private Spinner[] numSelectors;
+    private boolean[] firsts;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         // setup screen from xml
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setup);
+
+        firsts = new boolean[]{true, true, true, true, true};
 
         // initialize the team input widget
         teamSelector = findViewById(R.id.team_input);
@@ -171,7 +178,6 @@ public class GameSetup extends AppCompatActivity {
                     // set the selected item to a default value (first selector is set to first available number, etc.)
                     numSelectors[i].setSelection(i);
                 }
-
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
@@ -188,20 +194,89 @@ public class GameSetup extends AppCompatActivity {
              * Runs when the selected item changes
              */
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (firsts[0]) {
+                    firsts[0] = false;
+                    return;
+                }
+
                 // sets the corresponding jersey number to the number selected in the Spinner
                 jNumDisplay1.setText(jNumSelector1.getSelectedItem().toString());
 
-                jerseyNums1 = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, jerseyNums) {
-                    @Override
+                jerseyNums2 = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, jerseyNums) {
                     public boolean isEnabled(int position) {
-                        if (position == 0) {
+                        int positionSelected = jNumSelector2.getSelectedItemPosition();
+                        if (position == positionSelected) {
                             return false;
                         }
                         return true;
                     }
                 };
+                jNumSelector2.setAdapter(jerseyNums2);
+                jNumDisplay2.setText(jNumSelector2.getSelectedItem().toString());
+
+                /*try {
+                    jNumSelector2.setSelection(jNumSelector1.getSelectedItemPosition() + 1, true);
+                } catch (java.lang.IndexOutOfBoundsException e) {
+                    jNumSelector2.setSelection(0, true);
+                }*/
 
 
+                jerseyNums3 = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, jerseyNums) {
+                    @Override
+                    public boolean isEnabled(int position) {
+                        int positionSelected = jNumSelector1.getSelectedItemPosition();
+                        if (position == positionSelected) {
+                            return false;
+                        }
+                        return true;
+                    }
+                };
+                jNumSelector3.setAdapter(jerseyNums3);
+                jNumDisplay3.setText(jNumSelector3.getSelectedItem().toString());
+
+                /*try {
+                    jNumSelector3.setSelection(jNumSelector2.getSelectedItemPosition() + 1, true);
+                } catch (java.lang.IndexOutOfBoundsException e) {
+                    jNumSelector3.setSelection(0, true);
+                }*/
+
+                jerseyNums4 = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, jerseyNums) {
+                    @Override
+                    public boolean isEnabled(int position) {
+                        int positionSelected = jNumSelector1.getSelectedItemPosition();
+                        if (position == positionSelected) {
+                            return false;
+                        }
+                        return true;
+                    }
+                };
+                jNumSelector4.setAdapter(jerseyNums4);
+                jNumDisplay4.setText(jNumSelector4.getSelectedItem().toString());
+
+                /*try {
+                    jNumSelector3.setSelection(jNumSelector2.getSelectedItemPosition() + 1, true);
+                } catch (java.lang.IndexOutOfBoundsException e) {
+                    jNumSelector3.setSelection(0, true);
+                } */
+
+                jerseyNums5 = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, jerseyNums) {
+                    @Override
+                    public boolean isEnabled(int position) {
+                        int positionSelected = jNumSelector1.getSelectedItemPosition();
+                        if (position == positionSelected) {
+                            return false;
+                        }
+                        return true;
+                    }
+                };
+                jNumSelector5.setAdapter(jerseyNums5);
+                jNumDisplay5.setText(jNumSelector5.getSelectedItem().toString());
+
+                /*try {
+                    jNumSelector3.setSelection(jNumSelector2.getSelectedItemPosition() + 1, true);
+                } catch (java.lang.IndexOutOfBoundsException e) {
+                    jNumSelector3.setSelection(0, true);
+                }*/
 
             }
 
@@ -215,8 +290,13 @@ public class GameSetup extends AppCompatActivity {
         jNumSelector2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                jNumDisplay2.setText(jNumSelector2.getSelectedItem().toString());
+                if (firsts[1]) {
+                    firsts[1] = false;
+                    return;
+                }
 
+                // sets the corresponding jersey number to the number selected in the Spinner
+                jNumDisplay2.setText(jNumSelector2.getSelectedItem().toString());
 
             }
 
@@ -261,6 +341,11 @@ public class GameSetup extends AppCompatActivity {
 
             }
         });
+    }
+
+
+    public void onEnabled(int position) {
+
     }
 
     /**

@@ -64,6 +64,10 @@ public class GameStatsSummary extends AppCompatActivity {
         tempGames.add(g1);
         s.setGames(tempGames);
         Season s1 = new Season(team, 2017,2018);
+        g = new Game(team, "Rabbits");
+        tempGames = new ArrayList<>();
+        tempGames.add(g);
+        s1.setGames(tempGames);
 
         ArrayList<Season> tempSeasons = new ArrayList<>();
         tempSeasons.add(s);
@@ -124,8 +128,6 @@ public class GameStatsSummary extends AppCompatActivity {
                     }
                 }
                 seasons = currentTeam.getSeasons();
-
-
                 games = new ArrayList<>();
                 sGames = new ArrayList<>();
                 for (int i = 0; i < seasons.size(); i++) {
@@ -137,7 +139,15 @@ public class GameStatsSummary extends AppCompatActivity {
                         sDate = dateFormat.format(d);
                         sGames.add("" + sDate + " vs. " + games.get(j).getOpponent());
                     }
+                }
 
+                int numGames;
+                games = new ArrayList<>();
+                for (int i = 0; i < seasons.size(); i++) {
+                    numGames = seasons.get(i).getGames().size();
+                    for (int j = 0; j < numGames; j++) {
+                        games.add(seasons.get(i).getGames().get(j));
+                    }
                 }
 
                 gameAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, sGames);
@@ -159,10 +169,13 @@ public class GameStatsSummary extends AppCompatActivity {
                 TextView playerName;
 
                 int indexOfGame = gameSelector.getSelectedItemPosition();
-                Game currentGame = games.get(indexOfGame);
+                ArrayList<Game> games1 = games;
+                System.out.println(games);
+                //System.out.println(games1.get(2));
+                //Game currentGame = games.get(indexOfGame);
 
-                /*
-                for (int i = 0; i < games.size(); i++) {
+
+                /*for (int i = 0; i < games.size(); i++) {
                     row = new TableRow(getApplicationContext());
                     playerName = newStat(row);
                     row.addView(playerName);

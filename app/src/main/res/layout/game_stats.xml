@@ -22,15 +22,15 @@
         android:id="@+id/btn_export_game_stats"
         android:layout_width="240dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_light"
         android:text="@string/btn_export_stats"
         android:textColor="@color/titles"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/table_scroller" />
 
     <Spinner
         android:id="@+id/game_selector"
@@ -96,24 +96,25 @@
 
     <ScrollView
         android:id="@+id/table_scroller"
-        android:layout_width="wrap_content"
-        android:layout_height="420dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="1200dp"
+        android:layout_height="390dp"
+        android:layout_marginTop="30dp"
         android:layout_weight="1"
         android:scrollbars="horizontal|vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/summ_team_prompt"
-        app:layout_constraintBottom_toTopOf="@+id/btn_export_game_stats">
+        app:layout_constraintTop_toBottomOf="@+id/summ_team_prompt">
 
         <HorizontalScrollView
             android:id="@+id/horizontalView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
-            android:scrollbars="horizontal"
+            android:nestedScrollingEnabled="true"
             android:scrollbarAlwaysDrawHorizontalTrack="true"
+            android:scrollbars="horizontal"
             app:layout_constraintBottom_toTopOf="@+id/btn_export_game_stats">
+
             <TableLayout
                 android:id="@+id/game_stats_table"
                 android:layout_width="1200dp"

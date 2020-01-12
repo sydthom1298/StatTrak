@@ -59,7 +59,7 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
         tbl_row = (TableRow)findViewById(R.id.roster_row);
         tbl_header = (TableRow)findViewById(R.id.stat_summ_header);
 
-        clearTable();
+        //clearTable();
 
         StatsManager.addTeam(new Team("Select team to edit")); //TODO: remove this
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -193,8 +193,6 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
         tbl_players.addView(r,tbl_row.getLayoutParams());
         playersCount++;
         txt_numPlayers.setText(Integer.toString(playersCount));
-
-
     }
 
     // TODO Add way to scroll player list so that the cell being edited is above the popup keyboard
