@@ -1,7 +1,9 @@
 /*
 Jessica Zhu
 January 9 2019
-Class that...
+Window that extends the AppCompatActivity class
+Allows user to view the statistics of saved teams, for specific games.
+These stats can also be written to data files for later use
  */
 package com.example.zhuthomasfinalproject;
 

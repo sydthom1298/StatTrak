@@ -1,7 +1,9 @@
 /*
 Jessica Zhu
 January 6 2019
-Class that...
+Window that extends the Activity Class
+Allows user to set up the attributes of a new game to track.
+When the user chooses to continue, all attributes selected are saved and applied to the tracker.
  */
 package com.example.zhuthomasfinalproject;
 
@@ -10,25 +12,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
-
-import java.sql.Array;
-import java.sql.SQLOutput;
+import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class GameSetup extends AppCompatActivity {
-    // use to restrict enabled jersey numbers
-    private ArrayAdapter<Integer> jerseyNums1;
-    private ArrayAdapter<Integer> jerseyNums2;
-    private ArrayAdapter<Integer> jerseyNums3;
-    private ArrayAdapter<Integer> jerseyNums4;
-    private ArrayAdapter<Integer> jerseyNums5;
+public class GameSetup extends AppCompatActivity implements Serializable {
     // master arraylist of possible jersey numbers for the selected team
     private ArrayList<Integer> jerseyNums;
     // list of saved teams that the user can choose from
@@ -62,15 +56,12 @@ public class GameSetup extends AppCompatActivity {
 
     // Array of Spinners to more efficiently set (all display same values)
     private Spinner[] numSelectors;
-    private boolean[] firsts;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         // setup screen from xml
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setup);
-
-        firsts = new boolean[]{true, true, true, true, true};
 
         // initialize the team input widget
         teamSelector = findViewById(R.id.team_input);
@@ -98,44 +89,23 @@ public class GameSetup extends AppCompatActivity {
         // initialize array of jersey number spinners to hold the five spinners on the form
         numSelectors = new Spinner[]{jNumSelector1, jNumSelector2, jNumSelector3, jNumSelector4, jNumSelector5};
 
+
+        userTeams = new ArrayList<>();
+
         //TODO - read data file on user teams, load as teams into array, then display team names in text box
-        userTeams = StatsManager.getTeams();
-
-        // sample data (remove when manage teams works)
-        Player tempPlayer1 = new Player("Kyle", 7);
-        Player tempPlayer2 = new Player("Pascal",43);
-        Player tempPlayer3 = new Player("Terence", 0);
-        Player tempPlayer4 = new Player("Fred", 23);
-        Player tempPlayer5 = new Player("OG", 3);
-        ArrayList<Player> tempPlayers = new ArrayList<>();
-        tempPlayers.add(tempPlayer1);
-        tempPlayers.add(tempPlayer2);
-        tempPlayers.add(tempPlayer3);
-        tempPlayers.add(tempPlayer4);
-        tempPlayers.add(tempPlayer5);
-        Team team = new Team("Raptors", tempPlayers);
-
-        userTeams.add(team);
-
-        tempPlayer1 = new Player("Jess", 1);
-        tempPlayer2 = new Player("Sydney",2);
-        tempPlayer3 = new Player("Emma", 3);
-        tempPlayer4 = new Player("Dani", 4);
-        tempPlayer5 = new Player("Maddie", 5);
-        tempPlayers = new ArrayList<>();
-        tempPlayers.add(tempPlayer1);
-        tempPlayers.add(tempPlayer2);
-        tempPlayers.add(tempPlayer3);
-        tempPlayers.add(tempPlayer4);
-        tempPlayers.add(tempPlayer5);
-        team = new Team("Phoenix", tempPlayers);
-
-        userTeams.add(team);
+        if (StatsManager.getTeams().size() >= 2) {
+            for (int i = 1; i < StatsManager.getTeams().size(); i++) {
+                userTeams.add(StatsManager.getTeams().get(i));
+            }
+        } else {
+            userTeams.add(new Team("You must create a new team in MANAGE TEAMS"));
+        }
 
         // loops through saved teams, saves team names as Strings in an ArrayList
         for(int i = 0; i < userTeams.size(); i++) {
             sUserTeams.add(i, userTeams.get(i).getName());
         }
+
 
         // ArrayAdapter for the list of team names (to be displayed in team selection Spinner)
         ArrayAdapter<String> teamAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sUserTeams);
@@ -146,11 +116,14 @@ public class GameSetup extends AppCompatActivity {
             @Override
             /**
              * runs when the item selected has changed
-             */
+            */
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String sCurrentTeam = teamSelector.getSelectedItem().toString(); // get the team name selected in the
                 jerseyNums = new ArrayList<>(); // initialize jersey number arraylist
-                // loop through the arraylist of teams available (saved)
+
+                currentTeam = StatsManager.findTeam(sCurrentTeam);
+
+                //loop through the arraylist of teams available (saved)
                 for (int i = 0; i < userTeams.size(); i++) {
                     // check if the name selected in the team selection spinner matches the Team at i in the arraylist
                     if (sCurrentTeam.equals(userTeams.get(i).getName())) {
@@ -159,11 +132,16 @@ public class GameSetup extends AppCompatActivity {
                     }
                 }
 
+                System.out.println(currentTeam);
+
                 // loop for the number of players on the currently selected team
                 for (int i = 0; i < currentTeam.getNumPlayers(); i++ ) {
                     // add the jersey number of each player on that team to an arrayList of Integers
                     jerseyNums.add(i, currentTeam.getPlayers().get(i).getJerseyNum());
                 }
+
+
+
                 // sort the numbers in order for better display
                 // TODO consider sorting at a different stage to prevent redundance (i.e. in ManageTeams)
                 sortJerseyNums(jerseyNums, 0, jerseyNums.size() - 1);
@@ -194,90 +172,8 @@ public class GameSetup extends AppCompatActivity {
              * Runs when the selected item changes
              */
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (firsts[0]) {
-                    firsts[0] = false;
-                    return;
-                }
-
                 // sets the corresponding jersey number to the number selected in the Spinner
                 jNumDisplay1.setText(jNumSelector1.getSelectedItem().toString());
-
-                jerseyNums2 = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, jerseyNums) {
-                    public boolean isEnabled(int position) {
-                        int positionSelected = jNumSelector2.getSelectedItemPosition();
-                        if (position == positionSelected) {
-                            return false;
-                        }
-                        return true;
-                    }
-                };
-                jNumSelector2.setAdapter(jerseyNums2);
-                jNumDisplay2.setText(jNumSelector2.getSelectedItem().toString());
-
-                /*try {
-                    jNumSelector2.setSelection(jNumSelector1.getSelectedItemPosition() + 1, true);
-                } catch (java.lang.IndexOutOfBoundsException e) {
-                    jNumSelector2.setSelection(0, true);
-                }*/
-
-
-                jerseyNums3 = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, jerseyNums) {
-                    @Override
-                    public boolean isEnabled(int position) {
-                        int positionSelected = jNumSelector1.getSelectedItemPosition();
-                        if (position == positionSelected) {
-                            return false;
-                        }
-                        return true;
-                    }
-                };
-                jNumSelector3.setAdapter(jerseyNums3);
-                jNumDisplay3.setText(jNumSelector3.getSelectedItem().toString());
-
-                /*try {
-                    jNumSelector3.setSelection(jNumSelector2.getSelectedItemPosition() + 1, true);
-                } catch (java.lang.IndexOutOfBoundsException e) {
-                    jNumSelector3.setSelection(0, true);
-                }*/
-
-                jerseyNums4 = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, jerseyNums) {
-                    @Override
-                    public boolean isEnabled(int position) {
-                        int positionSelected = jNumSelector1.getSelectedItemPosition();
-                        if (position == positionSelected) {
-                            return false;
-                        }
-                        return true;
-                    }
-                };
-                jNumSelector4.setAdapter(jerseyNums4);
-                jNumDisplay4.setText(jNumSelector4.getSelectedItem().toString());
-
-                /*try {
-                    jNumSelector3.setSelection(jNumSelector2.getSelectedItemPosition() + 1, true);
-                } catch (java.lang.IndexOutOfBoundsException e) {
-                    jNumSelector3.setSelection(0, true);
-                } */
-
-                jerseyNums5 = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, jerseyNums) {
-                    @Override
-                    public boolean isEnabled(int position) {
-                        int positionSelected = jNumSelector1.getSelectedItemPosition();
-                        if (position == positionSelected) {
-                            return false;
-                        }
-                        return true;
-                    }
-                };
-                jNumSelector5.setAdapter(jerseyNums5);
-                jNumDisplay5.setText(jNumSelector5.getSelectedItem().toString());
-
-                /*try {
-                    jNumSelector3.setSelection(jNumSelector2.getSelectedItemPosition() + 1, true);
-                } catch (java.lang.IndexOutOfBoundsException e) {
-                    jNumSelector3.setSelection(0, true);
-                }*/
-
             }
 
             @Override
@@ -290,11 +186,6 @@ public class GameSetup extends AppCompatActivity {
         jNumSelector2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (firsts[1]) {
-                    firsts[1] = false;
-                    return;
-                }
-
                 // sets the corresponding jersey number to the number selected in the Spinner
                 jNumDisplay2.setText(jNumSelector2.getSelectedItem().toString());
 
@@ -344,9 +235,6 @@ public class GameSetup extends AppCompatActivity {
     }
 
 
-    public void onEnabled(int position) {
-
-    }
 
     /**
      * Method that uses the quiksort algorithm to sort jersey numbers so they are in ascending order for display
@@ -396,6 +284,10 @@ public class GameSetup extends AppCompatActivity {
         }
     }
 
+    public void addSeason() {
+
+    }
+
     public void onContinue(View v) { // user wants to continue to tracker
         // array of Players to store the five starting players
         Player[] startingLineup;
@@ -420,18 +312,21 @@ public class GameSetup extends AppCompatActivity {
             }
         }
 
+        Game g = new Game(currentTeam, opp);
+
+        // TODO starts timer to track minutes
+        // TODO add player stats when the game clock starts so minutes played are more accurate
+        for (int i = 0; i < 5; i++) {
+            startingLineup[i].addPlayerStat(System.currentTimeMillis());
+        }
+        Season s = new Season(currentTeam,2020, 2021);
+        StatsManager.addSeason(s);
+        StatsManager.setCurrentSeason(s);
+        StatsManager.getCurrentSeason().addGame(g);
         // create a new game with attributes of the user's team, and their inputted opponent
-        StatsManager.setCurrentGame(new Game(currentTeam, opp));
+        StatsManager.setCurrentGame(g);
         // set the Playing players in the game to the starting lineup to start (in the tracker)
         StatsManager.getCurrentGame().setPlaying(startingLineup);
-
-        // TODO add to when the game clock starts so minutes played are more accurate
-        /*// loops 5 times (five starting players)
-        for (int i = 0; i < 5; i++) {
-            // adds new stats to each player
-            long t = System.currentTimeMillis();
-            StatsManager.getCurrentGame().getTeam().getPlayers().get(i).addPlayerStat(t);
-        }*/
 
         // sets the current player as a default to the first player listed in the starting lineup
         StatsManager.setCurrentPlayer(startingLineup[0]);

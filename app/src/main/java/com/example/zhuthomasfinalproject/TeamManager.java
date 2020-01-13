@@ -85,8 +85,6 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
                     this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
                             Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-
-
         }
     }
 
@@ -155,6 +153,7 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
         playersCount = 0;
         TextView t = (TextView)spn_team.getChildAt(spn_team.getChildCount()-1);
         txt_newTeam.setText("");
+        spn_team.setSelection(spn_team.getAdapter().getCount()-1);
         spn_team.setSelection(spn_team.getAdapter().getCount()-1);
 
     }
