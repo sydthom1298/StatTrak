@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -102,21 +103,21 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
     private Team selectedTeam;
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id){
         Team t;
-        if(firstTime) {
+        if(firstTime){
             firstTime = false;
             return;
         }
         clearTable();
         t = (Team) parent.getItemAtPosition(pos);
-        if( t.getName().equals("Select team to edit")) {
+        if(t.getName().equals("Select team to edit")){
             playersCount = 0;
             txt_numPlayers.setText(Integer.toString(playersCount));
             enableButtons(false);
-        } else {
+        }else{
             enableButtons(true);
         }
         selectedTeam = t;
-        for( int i=0; i<t.getNumPlayers(); i++) {
+        for(int i = 0; i < t.getNumPlayers(); i++){
             TableRow r = new TableRow(this);
             EditText n,num,position;
             CheckBox chk;
@@ -213,9 +214,17 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
     public void onSaveChanges(View v){
         Player p;
         Team t;
+        String numString;
+        int num;
 
         t = selectedTeam;
-
+        if( tbl_players.getChildCount() <= 1 ) {
+            // error, no players.  Remove the Team
+            Toast.makeText(getApplicationContext(),"Error 0 players.  Team has been deleted",Toast.LENGTH_LONG).show();
+            StatsManager.removeTeam(team);
+            return;
+        }
+        // stars as 1 because 0 is the heading
         for(int i = 1; i < tbl_players.getChildCount(); i++){
             TableRow r = (TableRow)tbl_players.getChildAt(i);
 
@@ -224,25 +233,34 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
             EditText position = (EditText)r.getVirtualChildAt(2);
             CheckBox active = (CheckBox)r.getVirtualChildAt(3);
 
-            String numString;
-            int num;
+            if(name.getText().toString().equals("")) {
+                name.setError("Must have a valid name");
+                return;
+            }
+            if(number.getText().toString().equals("")) {
+                name.setError("Must have a valid number");
+                return;
+            }
+
+
             numString = number.getText().toString();
-            try {
+
+            try{
                 num = Integer.parseInt(numString);
-            } catch( Exception x) {
-                num = -1;
+            }catch(Exception x){
+                number.setError("Must have a valid number");
+                return;
             }
             p = t.findPlayer(name.getText().toString(), num);
 
-            if( p != null ) {
+            if(p != null){
                 p.setPosition(position.getText().toString());
                 p.setActive(active.isChecked());
-            } else {
+            }else{
                 p = new Player(name.getText().toString(), num);
                 p.setPosition(position.getText().toString());
                 p.setActive(active.isChecked());
                 t.addPlayer(p);
-
             }
 
 

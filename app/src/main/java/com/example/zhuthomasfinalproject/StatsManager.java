@@ -88,7 +88,9 @@ public final class StatsManager implements Serializable {
         teams.add(t);
     }
 
-
+    public static void removeTeam(Team t) {
+        teams.remove(t);
+    }
 
     public static Team findTeam( String name) {
         for(Team t: teams) {
