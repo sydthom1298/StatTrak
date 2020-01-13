@@ -2,9 +2,8 @@
 Jessica Zhu and Sydney Thomas
 January 12 2020
 Window that displays the options in the main menu, allowing the user to access each via buttons.
-Each button opens a new window (each ha its own activity class), this window is mainly used for navigation.
+Each button opens a new window (each has its own activity class), this window is mainly used for navigation.
  */
-
 package com.example.zhuthomasfinalproject;
 
 import android.Manifest;
@@ -19,6 +18,10 @@ import androidx.core.app.ActivityCompat;
 public class MainActivity extends AppCompatActivity {
 
     static String path;
+    private int season = 2020;
+
+    //private Season s = new Season(new Team(t),2020, 2021); //create new season object
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,13 +43,24 @@ public class MainActivity extends AppCompatActivity {
         StatsManager.setDirectory(path);
         StatsManager.initStatsManager();
 
+
+        /*
+        StatsManager.addSeason(s);
+        StatsManager.setCurrentSeason(s);*/
+
+
+        /*
+        if(StatsManager.getCurrentSeason().getEndYear() != season){
+            season = StatsManager.getCurrentSeason().getEndYear();
+        }*/
+
+
     }
 
 
     public void launchGameSetup(View v) {
         Intent i = new Intent(this, GameSetup.class);
         startActivity(i);
-
     }
 
     public void launchStatModeSelection(View v) {
