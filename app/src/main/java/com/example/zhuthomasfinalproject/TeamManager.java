@@ -247,7 +247,7 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
             }
 
 
-            StatsManager.toFile("StatsManagerData");
+            StatsManager.toFile();
 
         }
 

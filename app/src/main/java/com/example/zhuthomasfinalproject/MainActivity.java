@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         path = getFilesDir().getPath();
         StatsManager.setDirectory(path);
         StatsManager.initStatsManager();
+
     }
 
 

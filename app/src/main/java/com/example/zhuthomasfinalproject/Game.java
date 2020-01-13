@@ -1,15 +1,15 @@
 package com.example.zhuthomasfinalproject;
 
-import android.util.Printer;
+import android.os.Environment;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Date;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Serializable;
 import java.sql.Time;
-import java.util.List;
+import java.util.Date;
 
-public class Game {
+public class Game implements Serializable {
     private Team team; //team stats are being tracked for
     private String opponent; //opponent team is playing
     private long dateTime;
@@ -153,7 +153,6 @@ public class Game {
         }
     }
 
-
     /**
      * Method that creates String representation of class
      * @return - string representation
@@ -165,5 +164,43 @@ public class Game {
         str += "com.example.zhuthomasfinalproject.Team Name: " + team + "\nOpponent: " + opponent + "\nDate/Time " + d.toString() + " " + t.toString();
         //TODO add missing fields
         return str;
+    }
+
+    public void exportToCSV() {
+        File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+        String date = "Game " + StatsManager.getMonthFromTimestamp(dateTime) +
+                StatsManager.getDayFromTimestamp(dateTime) +
+                StatsManager.getYearFromTimestamp(dateTime);
+        File file = new File(dir, "Game " + date + " vs " + opponent);
+        System.out.println( "Export Game to " + dir.getAbsolutePath() + "/" +
+                "Game " + date + " vs " + opponent);
+        try (FileWriter fileWriter = new FileWriter(file)) {
+            // fileWriter.append("Writing to file!");
+            fileWriter.write( team.getName() + " vs " + opponent + "," +
+                    StatsManager.getDateTimeFromTimestamp(this.dateTime));
+
+            fileWriter.write( "Points:," + points + ",Team Fouls:,"+ teamFouls);
+            fileWriter.write("Name,Number,Position,Assists, Blocks, DefReb, Fouls, FtMakes," +
+                    "FtMisses,Minutes,OffReb,PlayTime,Points,Steals,3PtMake, 3PtMiss, 2PtMake, " +
+                    "2PtMiss,TtlReb,Turnover");
+            for(Player p: team.getPlayers()) {
+                PlayerStats s = p.getStat(this.dateTime);
+                if(s==null) {
+                    continue;
+                }
+                fileWriter.write(p.getName() + "," + p.getJerseyNum() + "," + p.getPosition() + "," +
+                        s.getAssists() + "," + s.getBlocks() + "," + s.getDefRebs() + "," +
+                        s.getFouls() + "," + s.getFtMakes() + "," + s.getFtMisses() + "," +
+                        s.getMinPlayed() + "," + s.getOffRebs() + "," +
+                        s.getPlayingTime() + "," + s.getPoints() + "," + s.getSteals() + "," +
+                        s.getThreePtMakes() + "," + s.getThreePtMisses() + "," +
+                        s.getTwoPtMakes() + "," + s.getTwoPtMisses() + "," + s.getTtlRebs() + "," +
+                        s.getTurnovers() );
+
+            }
+
+        } catch (IOException e) {
+            //Handle exception
+        }
     }
 }

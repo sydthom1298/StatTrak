@@ -6,27 +6,25 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public final class StatsManager implements Serializable {
+
     private static Player currentPlayer;
     private static Season currentSeason;
     private static Game currentGame;
     private static boolean test = true;
 
-    private static Player Playing[];
     private static ArrayList<Team> teams = new ArrayList<Team>(); //arrayList of Teams
+    private static ArrayList<Season> seasons = new ArrayList<Season>();
 
-
-
-    public StatsManager() {
-
-    }
 
     public static void initStatsManager() {
-        File file = new File(getDirectory() + "/StatsFile");
+        File file = new File(getDirectory() + "/StatsManager.teams");
         if(file.exists()) {
-            fromFile("StatsFile");
+            fromFile();
         }
     }
     public static Player getCurrentPlayer() {
@@ -70,27 +68,8 @@ public final class StatsManager implements Serializable {
         return newGame;
     }
 
-    public static void putPlayerInGame(int slot, Player p) {
-        Playing[slot].Bench(0);  //TODO pass in time
-        p.Play(0); //TODO pass in time
-        Playing[slot] = p;
-    }
-
-    public static void removePlayerFromGame(int slot) {
-        Playing[slot].Bench(0);  // TODO pass in time
-        Playing[slot] = null;
-    }
-
     public static void selectPlayer(String name, int number) {
         currentPlayer = currentGame.getTeam().findPlayer(name, number);
-    }
-
-    public static Player[] getPlaying() {
-        return Playing;
-    }
-
-    public static void setPlaying(Player[] p) {
-        Playing = p;
     }
 
     public static ArrayList<Team> getTeams() {
@@ -120,28 +99,40 @@ public final class StatsManager implements Serializable {
         return null;
     }
 
+    public static void addSeason(Season s) {
+        seasons.add(s);
+    }
 
-    public static void toFile( String fn) {
+    public static Season findSeason( int startYear, int endYear){
+        for(Season s: seasons) {
+            if( ( s.getStartYear() == startYear) &&
+                    ( s.getEndYear() == endYear )){
+                return s;
+            }
+        }
+        return null;
+    }
+
+    public static void toFile() {
         FileOutputStream fos;
 
-
         System.out.println("Output");
-
 
         try {
             File tempfile = new File(getDirectory());
             tempfile.mkdirs();
 
-            //String fn = getApplicationContext().getFilesDir()+"/person";
-            fos = new FileOutputStream(getDirectory() + "/StatsFile");
-            System.out.println("writing to file " + getDirectory() +"/StatsFile");
+            fos = new FileOutputStream(getDirectory() + "/StatsManager.teams");
+            System.out.println("writing to file " + getDirectory() +"/StatsManager.teams");
             ObjectOutputStream o = new ObjectOutputStream(fos);
-
             o.writeObject(teams);
+            o.close();
 
-
-
-
+            fos = new FileOutputStream(getDirectory() + "/StatsManager.seasons");
+            o = new ObjectOutputStream(fos);
+            System.out.println("writing to file " + getDirectory() +"/StatsManager.seasons");
+            o.writeObject(seasons);
+            o.close();
 
         } catch (Exception x){
             System.exit(-1);
@@ -158,21 +149,71 @@ public final class StatsManager implements Serializable {
         Directory = fileDir;
     }
 
-    public static void fromFile(String fn) {
+    public static void fromFile() {
         FileInputStream fis;
         try {
-
-
-            fis = new FileInputStream(getDirectory() + "/StatsFile");
+            fis = new FileInputStream(getDirectory() + "/StatsManager.teams");
             ObjectInputStream i = new ObjectInputStream(fis);
             teams = (ArrayList<Team>) i.readObject();
             System.out.println("Input + ");
-            // System.out.println(r.toString());
+            i.close();
+
+            fis = new FileInputStream(getDirectory() + "/StatsManager.seasons");
+            i = new ObjectInputStream(fis);
+            seasons = (ArrayList<Season>) i.readObject();
+            System.out.println("Input + ");
+            i.close();
+
         } catch( Exception x) {
             System.exit( -1 );
         }
 
     }
+    public static String getDateTimeFromTimestamp(long dateTime) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(dateTime);
+        String dt = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(dateTime);
 
+
+        System.out.println("Date Time: " + dt);
+        return dt;
+    }
+    public static String getTimeFromTimestamp(long dateTime) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(dateTime);
+        String time = new SimpleDateFormat("HH.mm.ss").format(dateTime);
+
+        System.out.println("Time: " + time);
+        return time;
+    }
+
+    public static String getDayFromTimestamp(long dateTime) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(dateTime);
+
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        System.out.println("Day: " + day);
+        return Integer.toString(day);
+    }
+
+    public static String getMonthFromTimestamp(long dateTime) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(dateTime);
+
+        int month = cal.get(Calendar.MONTH);
+
+        System.out.println("Month: " + month);
+        return Integer.toString(month);
+    }
+    public static String getYearFromTimestamp(long dateTime) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(dateTime);
+
+        int year = cal.get(Calendar.YEAR);
+
+        System.out.println("Year: " + year);
+        return Integer.toString(year);
+    }
 
 }

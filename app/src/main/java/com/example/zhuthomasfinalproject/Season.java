@@ -1,9 +1,10 @@
 package com.example.zhuthomasfinalproject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Season {
+public class Season implements Serializable {
     private ArrayList<Game> games;
     private Team roster;
     private int startYear;
@@ -59,6 +60,9 @@ public class Season {
             }
         }
         return null;
+    }
+    public void addGame(Game game){
+        games.add(game);
     }
 
     public String toString() {
