@@ -7,6 +7,408 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor">
 
+    <ScrollView
+        android:id="@+id/table_scroller"
+        android:layout_width="1200dp"
+        android:layout_height="390dp"
+        android:layout_marginTop="30dp"
+        android:layout_weight="1"
+        android:scrollbars="horizontal|vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/szn_team_selector">
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            android:nestedScrollingEnabled="true"
+            android:scrollbarAlwaysDrawHorizontalTrack="true"
+            android:scrollbars="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/btn_export_game_stats">
+
+            <TableLayout
+                android:id="@+id/game_stats_table"
+                android:layout_width="1200dp"
+                android:layout_height="412dp"
+                android:layout_marginTop="44dp"
+                android:background="@android:color/white"
+                app:layout_constraintBottom_toTopOf="@+id/btn_export_game_stats"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/summ_team_prompt"
+                app:layout_constraintVertical_bias="0.0">
+
+                <TableRow android:id="@+id/stat_summ_header">
+
+                    <TextView
+                        android:id="@+id/playerName"
+                        android:layout_width="250dp"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="@string/table_title_name"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/jerseyNum"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="@string/table_title_number"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/mins_played"
+                        android:layout_width="60dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_mins"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/pts"
+                        android:layout_width="60dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_pts"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/assists"
+                        android:layout_width="75dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_asts"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/rebs"
+                        android:layout_width="80dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_rebs"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/def_rebs"
+                        android:layout_width="75dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_def_rebs"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/off_rebs"
+                        android:layout_width="75dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_off_rebs"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/two_pt_makes"
+                        android:layout_width="45dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_twos"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/two_pt_attempts"
+                        android:layout_width="60dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_twoatts"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/fg_pct"
+                        android:layout_width="60dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_fgpct"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/three_pt_makes"
+                        android:layout_width="45dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_threes"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/three_pt_atts"
+                        android:layout_width="60dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_threeatts"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/three_pt_pct"
+                        android:layout_width="75dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_3ptpct"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/free_throws"
+                        android:layout_width="45dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_fts"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/ft_atts"
+                        android:layout_width="60dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_ftas"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/ft_pct"
+                        android:layout_width="60dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_ftpct"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/turnovers"
+                        android:layout_width="60dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_tos"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/stls"
+                        android:layout_width="60dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_stls"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/blocks"
+                        android:layout_width="60dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_blks"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/fouls"
+                        android:layout_width="100dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_fouls"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+                </TableRow>
+
+                <TableRow android:id="@+id/roster_row">
+
+                    <TextView
+                        android:id="@+id/player_name"
+                        android:layout_width="wrap_content"
+                        android:padding="3dip"
+                        android:text="Kyle Lowry"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="7"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_mins"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="30"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_pts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="20"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_asts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="6"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_tRebs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="10"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_dRebs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="7"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_oRebs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="3"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_twoPts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="10"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_twoPtAtts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="15"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_fgPct"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="67%"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_threePts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="0"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_threePtAtts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="4"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_threePtPct"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="0%"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_freeThrows"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="3"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_ftAtts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="3"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_ftPct"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="100%"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_turnovers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="3"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_steals"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="3"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_blocks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="2"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/player_fouls"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="4"
+                        android:textAlignment="viewStart"
+                        android:textSize="22sp" />
+                </TableRow>
+
+            </TableLayout>
+        </HorizontalScrollView>
+    </ScrollView>
+
     <ImageButton
         android:id="@+id/btn_help_szn_stats"
         android:layout_width="wrap_content"
@@ -22,16 +424,16 @@
         android:id="@+id/btn_export_szn_stats"
         android:layout_width="240dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_light"
         android:text="@string/btn_export_stats"
         android:textColor="@color/titles"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/table_scroller" />
 
     <Spinner
         android:id="@+id/szn_selector"
@@ -55,19 +457,6 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/szn_team_prompt"
         app:layout_constraintStart_toEndOf="@+id/szn_team_selector" />
 
-    <TextView
-        android:id="@+id/overall_title"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/raleway_medium"
-        android:text="@string/season_avgs_title"
-        android:textColor="@android:color/white"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/szn_stats" />
-
     <Spinner
         android:id="@+id/szn_team_selector"
         android:layout_width="284dp"
@@ -90,34 +479,6 @@
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/szn_stats_title" />
-
-    <TextView
-        android:id="@+id/szn_stats"
-        android:layout_width="wrap_content"
-        android:layout_height="64dp"
-        android:layout_marginTop="32dp"
-        android:background="@android:color/white"
-        android:scrollbars="vertical"
-        android:textColor="@color/titles"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/szn_team_prompt" />
-
-    <TextView
-        android:id="@+id/season_avgs"
-        android:layout_width="wrap_content"
-        android:layout_height="64dp"
-        android:background="@android:color/white"
-        android:scrollbars="vertical"
-        android:text="@string/temp_avgs"
-        android:textColor="@color/titles"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.162"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/overall_title" />
 
     <TextView
         android:id="@+id/szn_stats_title"

@@ -404,6 +404,11 @@ public class PlayerStats implements Serializable {
         playingTime = playingTime + t;
     }
 
+    public double calcFGPct() {
+        int fgAttempts = twoPtMakes + twoPtMisses;
+        return twoPtMakes / fgAttempts;
+    }
+
     /**
      * String representation of class
      * @return - string representation
