@@ -1,10 +1,10 @@
 package com.example.zhuthomasfinalproject;
 
 
-import java.time.LocalDateTime;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Player {
+public class Player implements Serializable {
     private int jerseyNum;
     private String name;
     private String position;
@@ -135,11 +135,11 @@ public class Player {
         PlayerStats s = new PlayerStats(t);
         currentStats = s;
     }
-    public void Play(LocalDateTime start){
+    public void Play(long start){
         //set start time (game clock)
         inGame = true;
     }
-    public void Bench(LocalDateTime end){
+    public void Bench(long end){
         //set end time (game clock)
         inGame = false;
     }

@@ -1,5 +1,7 @@
 package com.example.zhuthomasfinalproject;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 public class TeamManager extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private Spinner spn_team; //team tracking stats for
@@ -57,27 +60,34 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
         btn_newPlayer = (Button)findViewById(R.id.btn_new_player);
         tbl_players = (TableLayout)findViewById(R.id.roster_table);
         tbl_row = (TableRow)findViewById(R.id.roster_row);
-        tbl_header = (TableRow)findViewById(R.id.stat_summ_header);
+        tbl_header = (TableRow)findViewById(R.id.roster_header);
 
         //clearTable();
-
-        StatsManager.addTeam(new Team("Select team to edit")); //TODO: remove this
+        if( StatsManager.getTeams().size() == 0) {
+            StatsManager.addTeam(new Team("Select team to edit"));
+        }
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<Team> adapter = new ArrayAdapter<Team>(this,
                 R.layout.support_simple_spinner_dropdown_item, StatsManager.getTeams());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-/*
-        ArrayList<String>array = new ArrayList<String>();
-        array.add("abc");
-        array.add("def");
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.support_simple_spinner_dropdown_item, array);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-*/
+
         spn_team.setAdapter(adapter);
         spn_team.setOnItemSelectedListener(this);
         enableButtons(false);
+
+
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+
+
+        }
     }
 
 
@@ -210,12 +220,10 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
         for(int i = 1; i < tbl_players.getChildCount(); i++){
             TableRow r = (TableRow)tbl_players.getChildAt(i);
 
-
             EditText name = (EditText)r.getVirtualChildAt(0);
             EditText number = (EditText)r.getVirtualChildAt(1);
             EditText position = (EditText)r.getVirtualChildAt(2);
             CheckBox active = (CheckBox)r.getVirtualChildAt(3);
-
 
             String numString;
             int num;
@@ -239,7 +247,7 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
             }
 
 
-
+            StatsManager.toFile("StatsManagerData");
 
         }
 

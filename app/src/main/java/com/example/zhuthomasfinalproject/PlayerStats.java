@@ -1,9 +1,10 @@
 package com.example.zhuthomasfinalproject;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 
-public class PlayerStats {
+public class PlayerStats implements Serializable {
     private int minPlayed; //minutes played by current player
     private int twoPtMakes; //two point shot made by player
     private int twoPtMisses; //two point shot attempted by player

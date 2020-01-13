@@ -1,7 +1,8 @@
 package com.example.zhuthomasfinalproject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-public class Team {
+public class Team implements Serializable {
     private String name;
     private ArrayList<Player> players;
     private ArrayList<Season> seasons;
