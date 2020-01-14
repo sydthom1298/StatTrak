@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.zhuthomasfinalproject">
 
-    <uses-permission android:name = "android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name = "android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,9 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GameSetup"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".GameSetup" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Splash"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,7 +49,8 @@
                 <category android:name="android.intent.category.ALTERNATIVE" />
             </intent-filter>
         </activity>
-        <activity android:name=".SeasonStatsSummary"
+        <activity
+            android:name=".SeasonStatsSummary"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -56,7 +58,8 @@
                 <category android:name="android.intent.category.ALTERNATIVE" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameStatsSummary"
+        <activity
+            android:name=".GameStatsSummary"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -64,7 +67,8 @@
                 <category android:name="android.intent.category.ALTERNATIVE" />
             </intent-filter>
         </activity>
-        <activity android:name=".Instructions"
+        <activity
+            android:name=".Instructions"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -72,7 +76,8 @@
                 <category android:name="android.intent.category.ALTERNATIVE" />
             </intent-filter>
         </activity>
-        <activity android:name=".Credits"
+        <activity
+            android:name=".Credits"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -80,6 +85,7 @@
                 <category android:name="android.intent.category.ALTERNATIVE" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
