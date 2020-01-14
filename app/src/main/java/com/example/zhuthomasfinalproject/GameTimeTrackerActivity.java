@@ -327,10 +327,12 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
             g.subtractPoints(3); //game points
             s.subtractPoints(3); //player points
             s.subtractThreePtMakes(); //3 pt makes count
+            txt_points.setText(Integer.toString(g.getPoints()));
         }else if(undoCmd.getCmd() == UndoCommand.MAKE_FT){
             g.subtractPoints(1); //game points
             s.subtractPoints(1); //player points
             s.subtractFtMakes(); //free throw makes count
+            txt_points.setText(Integer.toString(g.getPoints()));
         }else if(undoCmd.getCmd() == UndoCommand.MISS_2PT){
             g.addPoints(2); //game points
             s.addPoints(2); //player points
@@ -339,8 +341,20 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
             g.addPoints(3); //game points
             s.addPoints(3); //player points
             s.addThreePtMisses(); //3 pt miss count
+        }else if(undoCmd.getCmd() == UndoCommand.MISS_FT){
+            g.addPoints(1); //game points
+            s.addPoints(1); //player points
+            s.addFtMisses(); //free throw misses
+        }else if(undoCmd.getCmd() == UndoCommand.FOUL){
+            g.subtractTeamFouls(); //game fouls
+            s.subtractFouls(); //player fouls
+            txt_fouls.setText(Integer.toString(g.getTeamFouls()));
+        }else if(undoCmd.getCmd() == UndoCommand.OFFR){
+
+        }else if(undoCmd.getCmd() == UndoCommand.DEFR){
+
         }
-        // TODO FINISH ALL Commands
+        // TODO FINISH ALL Commands (add offensive and defensive rebounds
         // StatsManager.getCurrentGame().exportToCSV();
 
     }
