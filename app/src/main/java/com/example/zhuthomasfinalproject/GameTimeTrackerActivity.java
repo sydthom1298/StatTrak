@@ -5,6 +5,7 @@
  * This code is associated with game_time_tracker.xml
  */
 package com.example.zhuthomasfinalproject;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import java.util.ArrayList;
+import java.util.Stack;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -44,6 +46,9 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     String minutesText = ""; //time in minutes String
     String secondsText = ""; //time in seconds String
     private Button btn_Undo;
+    private Stack undoStack;
+
+
 
     /**
      * called when GameTimeTrackerActivity window starts up
@@ -110,6 +115,8 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         timeDecrement = 1000;
         startTime = START_TIME;
         currentTime = startTime;
+
+        undoStack = new Stack<UndoCommand>();
     }
 
     /**
@@ -124,6 +131,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         txt_points.setText(Integer.toString(StatsManager.getCurrentGame().getPoints()));
         //update the status display
         txt_playDesc.setText("# " + StatsManager.getCurrentPlayer().getJerseyNum() + " scored 2 points");
+        undoStack.push( new UndoCommand(UndoCommand.MAKE_2PT, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -132,6 +140,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onTwoPtMisses(View v) {
         StatsManager.getCurrentPlayer().getCurrentStats().addTwoPtMisses();
+        undoStack.push( new UndoCommand(UndoCommand.MISS_2PT, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -147,6 +156,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         txt_points.setText(Integer.toString(StatsManager.getCurrentGame().getPoints()));
         //update the status display
         txt_playDesc.setText("# " + StatsManager.getCurrentPlayer().getJerseyNum() + " scored 3 points");
+        undoStack.push( new UndoCommand(UndoCommand.MAKE_3PT, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -155,6 +165,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onThreePtMisses(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addThreePtMisses();
+        undoStack.push( new UndoCommand(UndoCommand.MISS_2PT, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -169,6 +180,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         txt_points.setText(Integer.toString(StatsManager.getCurrentGame().getPoints()));
         //update the status display
         txt_playDesc.setText("# " + StatsManager.getCurrentPlayer().getJerseyNum() + " scored 1 point");
+        undoStack.push( new UndoCommand(UndoCommand.MAKE_FT, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -177,6 +189,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onFtMisses(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addFtMisses();
+        undoStack.push( new UndoCommand(UndoCommand.MISS_FT, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -185,6 +198,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onAssists(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addAssists();
+        undoStack.push( new UndoCommand(UndoCommand.ASSIST, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -193,6 +207,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onOffRebs(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addOffRebs();
+        undoStack.push( new UndoCommand(UndoCommand.OFFR, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -201,6 +216,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onDefRebs(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addDefRebs();
+        undoStack.push( new UndoCommand(UndoCommand.DEFR, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -209,6 +225,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onSteals(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addSteals();
+        undoStack.push( new UndoCommand(UndoCommand.STL, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -217,6 +234,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onTurnovers(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addTurnovers();
+        undoStack.push( new UndoCommand(UndoCommand.TO, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -225,6 +243,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onBlocks(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addBlocks();
+        undoStack.push( new UndoCommand(UndoCommand.BLK, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -235,7 +254,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         StatsManager.getCurrentPlayer().getCurrentStats().addFouls();
         StatsManager.getCurrentGame().addTeamFouls();
         txt_fouls.setText(Integer.toString(StatsManager.getCurrentGame().getTeamFouls()));
-
+        undoStack.push( new UndoCommand(UndoCommand.FOUL, StatsManager.getCurrentPlayer()));
         // TEST
         System.out.println(StatsManager.getCurrentPlayer().getCurrentStats().toString());
     }
@@ -255,6 +274,8 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         }else if(current.equals("q4")){
             //txt_quarter.setText("q1");
         }
+        undoStack.empty(); // empty at the end of each quarter (no more undo)
+        StatsManager.toFile(); // save each quarter
     }
 
     /**
@@ -278,7 +299,28 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     }
 
     public void onUndo(View v){
-        StatsManager.getCurrentGame().exportToCSV();
+        UndoCommand undoCmd;
+        Game g;
+        PlayerStats s;
+
+        if( undoStack.size() == 0 ) {
+            return;
+        }
+        undoCmd = (UndoCommand)undoStack.pop();
+
+        g = StatsManager.getCurrentGame();
+        s = undoCmd.getPlayer().getCurrentStats();
+        if( undoCmd.getCmd() == UndoCommand.ASSIST ) {
+            s.subtractAssists();
+        } else if( undoCmd.getCmd() == UndoCommand.MAKE_2PT ) {
+            g.subtractPoints(2); // game points
+            s.subtractPoints(2); // player points
+            s.subtractTwoPtMakes();  // 2 pt makes count
+            txt_points.setText(Integer.toString(g.getPoints()));
+        }
+        // TODO FINISH ALL Commands
+        // StatsManager.getCurrentGame().exportToCSV();
+
     }
 
     /**
