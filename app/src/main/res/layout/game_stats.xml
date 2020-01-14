@@ -152,7 +152,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_name"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/jerseyNum"
@@ -161,7 +161,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_number"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/mins_played"
@@ -169,7 +169,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_mins"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/pts"
@@ -177,7 +177,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_pts"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/assists"
@@ -185,7 +185,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_asts"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/rebs"
@@ -193,7 +193,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_rebs"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/def_rebs"
@@ -201,7 +201,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_def_rebs"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/off_rebs"
@@ -209,7 +209,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_off_rebs"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/two_pt_makes"
@@ -217,7 +217,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_twos"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/two_pt_attempts"
@@ -225,7 +225,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_twoatts"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/fg_pct"
@@ -233,7 +233,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_fgpct"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/three_pt_makes"
@@ -241,7 +241,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_threes"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/three_pt_atts"
@@ -249,7 +249,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_threeatts"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/three_pt_pct"
@@ -257,7 +257,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_3ptpct"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/free_throws"
@@ -265,7 +265,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_fts"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/ft_atts"
@@ -273,7 +273,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_ftas"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/ft_pct"
@@ -281,7 +281,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_ftpct"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/turnovers"
@@ -289,7 +289,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_tos"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/stls"
@@ -297,7 +297,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_stls"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/blocks"
@@ -305,7 +305,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_blks"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/fouls"
@@ -313,7 +313,7 @@
                         android:padding="3dip"
                         android:text="@string/table_title_fouls"
                         android:textAlignment="viewStart"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
                 </TableRow>
 
                 <TableRow android:id="@+id/stat_row">
