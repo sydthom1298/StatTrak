@@ -7,20 +7,19 @@ When the user chooses to continue, all attributes selected are saved and applied
  */
 package com.example.zhuthomasfinalproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.ArrayAdapter;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class GameSetup extends AppCompatActivity implements Serializable {
     // master arraylist of possible jersey numbers for the selected team
@@ -322,9 +321,11 @@ public class GameSetup extends AppCompatActivity implements Serializable {
 
         // TODO starts timer to track minutes
         // TODO add player stats when the game clock starts so minutes played are more accurate
-        for (int i = 0; i < 5; i++) {
+     /*   for (int i = 0; i < 5; i++) {
             startingLineup[i].addPlayerStat(System.currentTimeMillis());
         }
+
+      */
         Season s = new Season(currentTeam,2020, 2021);
         StatsManager.addSeason(s);
         StatsManager.setCurrentSeason(s);

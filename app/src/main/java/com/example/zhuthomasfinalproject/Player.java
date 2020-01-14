@@ -21,7 +21,7 @@ public class Player implements Serializable {
         jerseyNum = 0;
         name = "";
         inGame = false;
-        ArrayList<PlayerStats> stats = new ArrayList<PlayerStats>();
+        stats = new ArrayList<PlayerStats>();
 
     }
 
@@ -133,6 +133,10 @@ public class Player implements Serializable {
     }
     public void addPlayerStat(long t){
         PlayerStats s = new PlayerStats(t);
+        if(stats == null) {
+            stats = new ArrayList<PlayerStats>();
+        }
+        stats.add(s);
         currentStats = s;
     }
     public void Play(long start){

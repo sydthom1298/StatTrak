@@ -13,7 +13,7 @@ public class Team implements Serializable {
     public Team(){
         name = "";
         players = new ArrayList<Player>();
-        seasons = new ArrayList<>();
+        seasons = new ArrayList<Season>();
     }
 
 

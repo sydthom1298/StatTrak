@@ -177,12 +177,12 @@ public class Game implements Serializable {
         try (FileWriter fileWriter = new FileWriter(file)) {
             // fileWriter.append("Writing to file!");
             fileWriter.write( team.getName() + " vs " + opponent + "," +
-                    StatsManager.getDateTimeFromTimestamp(this.dateTime));
+                    StatsManager.getDateTimeFromTimestamp(this.dateTime) +"\n");
 
-            fileWriter.write( "Points:," + points + ",Team Fouls:,"+ teamFouls);
+            fileWriter.write( "Points:," + points + ",Team Fouls:,"+ teamFouls + "\n");
             fileWriter.write("Name,Number,Position,Assists, Blocks, DefReb, Fouls, FtMakes," +
                     "FtMisses,Minutes,OffReb,PlayTime,Points,Steals,3PtMake, 3PtMiss, 2PtMake, " +
-                    "2PtMiss,TtlReb,Turnover");
+                    "2PtMiss,TtlReb,Turnover\n");
             for(Player p: team.getPlayers()) {
                 PlayerStats s = p.getStat(this.dateTime);
                 if(s==null) {
@@ -195,7 +195,7 @@ public class Game implements Serializable {
                         s.getPlayingTime() + "," + s.getPoints() + "," + s.getSteals() + "," +
                         s.getThreePtMakes() + "," + s.getThreePtMisses() + "," +
                         s.getTwoPtMakes() + "," + s.getTwoPtMisses() + "," + s.getTtlRebs() + "," +
-                        s.getTurnovers() );
+                        s.getTurnovers() + "\n" );
 
             }
 
