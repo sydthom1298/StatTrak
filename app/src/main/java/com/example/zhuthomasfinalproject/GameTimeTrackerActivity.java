@@ -350,11 +350,11 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
             s.subtractFouls(); //player fouls
             txt_fouls.setText(Integer.toString(g.getTeamFouls()));
         }else if(undoCmd.getCmd() == UndoCommand.OFFR){
-
+            s.subtractOffRebs();
         }else if(undoCmd.getCmd() == UndoCommand.DEFR){
-
+            s.subtractDefRebs();
         }
-        // TODO FINISH ALL Commands (add offensive and defensive rebounds
+        // TODO FINISH ALL Commands
         // StatsManager.getCurrentGame().exportToCSV();
 
     }
