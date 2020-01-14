@@ -37,7 +37,7 @@ public class UndoCommand {
         return player;
     }
 
-    public void setPlayer(Player player) {
+    public void setPlayer(Player p) {
         this.player = player;
     }
 }

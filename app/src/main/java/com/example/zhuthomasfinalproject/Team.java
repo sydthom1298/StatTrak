@@ -1,4 +1,12 @@
+/**
+ * Sydney Thomas
+ * January 14, 2020
+ *
+ */
 package com.example.zhuthomasfinalproject;
+
+import com.example.zhuthomasfinalproject.Player;
+import com.example.zhuthomasfinalproject.Season;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,5 +1,9 @@
+/**
+ * Sydney Thomas
+ * January 14, 2020
+ * Class that creates and edits Teams
+ */
 package com.example.zhuthomasfinalproject;
-
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -14,34 +18,31 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 public class TeamManager extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
-    private Spinner spn_team; //team tracking stats for
-    private TextView txt_numPlayers; //number of players on team
-    private TextView txt_numActivePlayers; //number of active players on team
-    private TextView txt_newTeam;
-    private Button btn_addNewTeam;
-    private Button btn_saveTeam;
-    private Button btn_newPlayer;
-    private int num[]; //array of players jersey number of team
-    private Team team;
-    private TableLayout tbl_players;
-    private TableRow tbl_header;
-    private TableRow tbl_row;
-    private int playersCount;
-    private int activePlayersCount;
-
+    private Spinner spn_team; //spinner control to choose a team
+    private TextView txt_numPlayers; //control that shows the number of players on team
+    private TextView txt_numActivePlayers; //control that shows the number of active players on team
+    private TextView txt_newTeam; //control for user to enter team name
+    private Button btn_saveTeam; //button used to save information about a team
+    private Button btn_newPlayer; //button used to add a new player
+    private Team team; //team currently creating
+    private TableLayout tbl_players; //table layout to show the player list
+    private TableRow tbl_header; //titles of the table layout
+    private TableRow tbl_row; //row for a player in tbl_players
+    private int playersCount; //how many players you currently have on the team
+    private boolean firstTime = true; //ignore first selected event for table
+    private Team selectedTeam; //team selected from spinner
     /**
      * called when TeamManager window starts up
      * @param savedInstanceState - used by the system
      */
     @Override
     protected void onCreate(Bundle savedInstanceState){
+        int permission;
         //set up screen from xml
         super.onCreate(savedInstanceState);
         setContentView(R.layout.team_manager);
@@ -51,36 +52,35 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
         txt_numPlayers = (TextView)findViewById(R.id.num_players);
         txt_numActivePlayers = (TextView)findViewById(R.id.act_players);
         txt_newTeam = (TextView)findViewById(R.id.txt_new_team_name);
-        txt_numPlayers.setText("0");
-        txt_numActivePlayers.setText("0");
-        ArrayList<Team> teamList;
-
-
-        btn_addNewTeam = (Button)findViewById(R.id.btn_add_new_team);
         btn_saveTeam = (Button)findViewById(R.id.btn_save);
         btn_newPlayer = (Button)findViewById(R.id.btn_new_player);
         tbl_players = (TableLayout)findViewById(R.id.roster_table);
         tbl_row = (TableRow)findViewById(R.id.roster_row);
         tbl_header = (TableRow)findViewById(R.id.roster_header);
+        //initialize player count to 0
+        txt_numPlayers.setText("0");
+        txt_numActivePlayers.setText("0");
+        //ArrayList of teams for spinner
+        ArrayList<Team> teamList;
 
-        if( StatsManager.getTeams().size() == 0) {
+        //prompt in spinner
+        if(StatsManager.getTeams().size() == 0){
             StatsManager.addTeam(new Team("Select team to edit"));
         }
-        // Create an ArrayAdapter using the string array and a default spinner layout
+        //Create an ArrayAdapter using the String array and a default spinner layout
         ArrayAdapter<Team> adapter = new ArrayAdapter<Team>(this,
                 R.layout.support_simple_spinner_dropdown_item, StatsManager.getTeams());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         spn_team.setAdapter(adapter);
         spn_team.setOnItemSelectedListener(this);
         enableButtons(false);
 
 
-        // Check if we have write permission
-        int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        //Check if we have write permission
+        permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            // We don't have permission so prompt the user
+        if(permission != PackageManager.PERMISSION_GRANTED){
+            //We don't have permission so prompt the user
             ActivityCompat.requestPermissions(
                     this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -88,18 +88,30 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
         }
     }
 
-
+    /**
+     * method that clears the table of players
+     */
     private void clearTable() {
         tbl_players.removeAllViews();
         tbl_players.addView(tbl_header);
     }
+
+    /**
+     * method that enables the newPlayer and saveTeam buttons
+     * @param enable - true if enabled and false if disabled
+     */
     private void enableButtons(boolean enable) {
         btn_newPlayer.setEnabled(enable);
-
         btn_saveTeam.setEnabled(enable);
     }
-    private boolean firstTime = true;
-    private Team selectedTeam;
+
+    /**
+     * user has selected an item from the spinner
+     * @param parent - table
+     * @param view - comes with event
+     * @param pos - row of the selected item in table
+     * @param id - comes with event
+     */
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id){
         Team t;
         if(firstTime){
@@ -217,13 +229,13 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
         int num;
 
         t = selectedTeam;
-        if( tbl_players.getChildCount() <= 1 ) {
-            // error, no players.  Remove the Team
+        if(tbl_players.getChildCount() <= 1){
+            //error, no players.  Remove the Team
             Toast.makeText(getApplicationContext(),"Error 0 players.  Team has been deleted",Toast.LENGTH_LONG).show();
             StatsManager.removeTeam(team);
             return;
         }
-        // stars as 1 because 0 is the heading
+        //stars as 1 because 0 is the heading
         for(int i = 1; i < tbl_players.getChildCount(); i++){
             TableRow r = (TableRow)tbl_players.getChildAt(i);
 
@@ -261,15 +273,7 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
                 p.setActive(active.isChecked());
                 t.addPlayer(p);
             }
-
-
             StatsManager.toFile();
-
         }
-
-
-
     }
-
-
 }
