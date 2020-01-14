@@ -167,8 +167,8 @@ public class Game implements Serializable {
     }
 
     public void exportToCSV() {
-        File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
-        String date = "Game " + StatsManager.getMonthFromTimestamp(dateTime) +
+        File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        String date = StatsManager.getMonthFromTimestamp(dateTime) +
                 StatsManager.getDayFromTimestamp(dateTime) +
                 StatsManager.getYearFromTimestamp(dateTime);
         File file = new File(dir, "Game " + date + " vs " + opponent);

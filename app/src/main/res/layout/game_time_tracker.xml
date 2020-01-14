@@ -175,6 +175,7 @@
         android:layout_marginEnd="100dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_medium"
+        android:onClick="onUndo"
         android:text="@string/btn_undo"
         android:textColor="@color/grayText"
         android:textSize="32sp"

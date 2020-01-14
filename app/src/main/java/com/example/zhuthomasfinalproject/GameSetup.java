@@ -299,6 +299,12 @@ public class GameSetup extends AppCompatActivity implements Serializable {
         // initialize the array of Players
         startingLineup = new Player[5];
 
+        Game g = new Game(currentTeam, opp);  //needed before loop to create playerStat
+        for(Player p:currentTeam.getPlayers()){
+            p.addPlayerStat(g.getGameDateTime()); //create player stat with game time
+        }
+
+
         // loop 5 times (through each number selection spinner)
         for(int i = 0; i < 5; i++) {
             // loop through every player on the chosen team's roster
@@ -312,7 +318,7 @@ public class GameSetup extends AppCompatActivity implements Serializable {
             }
         }
 
-        Game g = new Game(currentTeam, opp);
+
 
         // TODO starts timer to track minutes
         // TODO add player stats when the game clock starts so minutes played are more accurate

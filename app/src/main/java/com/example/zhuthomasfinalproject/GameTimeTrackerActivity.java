@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -42,6 +43,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     String clockDisplayText = ""; //combined minutes and seconds
     String minutesText = ""; //time in minutes String
     String secondsText = ""; //time in seconds String
+    private Button btn_Undo;
 
     /**
      * called when GameTimeTrackerActivity window starts up
@@ -67,6 +69,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         lst_players = (ListView)findViewById(R.id.list_players); //list view for player substitution
         lst_item_text = (TextView)findViewById(R.id.list_item_text); //text view for each item in list view
         txt_playDesc = (TextView)findViewById(R.id.play_desc); //status display
+        btn_Undo = (Button)findViewById(R.id.btn_undo);
         //initializes data on GameTimeTracker window
         txt_points.setText("0");
         txt_quarter.setText("q1");
@@ -274,6 +277,10 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         handlePlayerButtons(4);
     }
 
+    public void onUndo(View v){
+        StatsManager.getCurrentGame().exportToCSV();
+    }
+
     /**
      * method that either sets the current player on the first time you tap the player and then if you
      * tap the player again it brings up a list of players to substitute and complete the substitution
@@ -319,6 +326,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         //reset team fouls
         StatsManager.getCurrentGame().setTeamFouls(0);
         txt_fouls.setText(Integer.toString(0));
+        StatsManager.toFile();
 
     }
 
@@ -474,6 +482,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         seconds = (currentTime - (minutes * 1000*60))/1000;
         return seconds;
     }
+
 
     /**
      * method that checks if the clock is running
