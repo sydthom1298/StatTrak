@@ -310,13 +310,35 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
 
         g = StatsManager.getCurrentGame();
         s = undoCmd.getPlayer().getCurrentStats();
-        if( undoCmd.getCmd() == UndoCommand.ASSIST ) {
+        if(undoCmd.getCmd() == UndoCommand.ASSIST){
             s.subtractAssists();
-        } else if( undoCmd.getCmd() == UndoCommand.MAKE_2PT ) {
-            g.subtractPoints(2); // game points
-            s.subtractPoints(2); // player points
-            s.subtractTwoPtMakes();  // 2 pt makes count
+        }else if(undoCmd.getCmd() == UndoCommand.MAKE_2PT){
+            g.subtractPoints(2); //game points
+            s.subtractPoints(2); //player points
+            s.subtractTwoPtMakes();  //2 pt makes count
             txt_points.setText(Integer.toString(g.getPoints()));
+        }else if(undoCmd.getCmd() == UndoCommand.BLK){
+            s.subtractBlocks();
+        }else if(undoCmd.getCmd() == UndoCommand.STL){
+            s.subtractSteals();
+        }else if(undoCmd.getCmd() == UndoCommand.TO){
+            s.subtractTurnovers();
+        }else if(undoCmd.getCmd() == UndoCommand.MAKE_3PT){
+            g.subtractPoints(3); //game points
+            s.subtractPoints(3); //player points
+            s.subtractThreePtMakes(); //3 pt makes count
+        }else if(undoCmd.getCmd() == UndoCommand.MAKE_FT){
+            g.subtractPoints(1); //game points
+            s.subtractPoints(1); //player points
+            s.subtractFtMakes(); //free throw makes count
+        }else if(undoCmd.getCmd() == UndoCommand.MISS_2PT){
+            g.addPoints(2); //game points
+            s.addPoints(2); //player points
+            s.addTwoPtMisses(); //2 pt miss count
+        }else if(undoCmd.getCmd() == UndoCommand.MISS_3PT){
+            g.addPoints(3); //game points
+            s.addPoints(3); //player points
+            s.addThreePtMisses(); //3 pt miss count
         }
         // TODO FINISH ALL Commands
         // StatsManager.getCurrentGame().exportToCSV();
