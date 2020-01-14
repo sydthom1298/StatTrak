@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="90dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="40dp"
         android:background="@android:color/transparent"
         android:fontFamily="@font/raleway_semibold"
@@ -21,6 +21,7 @@
         android:textColor="@android:color/white"
         android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,7 +46,7 @@
         android:fontFamily="@font/raleway_medium"
         android:text="@string/team_prompt"
         android:textColor="@android:color/white"
-        android:textSize="30sp"
+        android:textSize="26sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/management_instructions" />
 
@@ -53,7 +54,7 @@
         android:id="@+id/instruct_or"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="40dp"
         android:fontFamily="@font/raleway_semibold"
         android:text="@string/or"
         android:textColor="@android:color/white"
@@ -65,12 +66,14 @@
         android:id="@+id/new_team_name_prompt"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/new_team_name_prompt"
         android:textColor="@android:color/white"
-        android:textSize="30sp"
+        android:textSize="26sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/instruct_or"
+        app:layout_constraintEnd_toStartOf="@+id/txt_new_team_name"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/instruct_or" />
 
     <TextView
@@ -149,11 +152,9 @@
         android:hint="@string/new_team_hint"
         android:inputType="textPersonName"
         android:textColor="@color/titles"
-        android:textSize="28sp"
+        android:textSize="22sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/new_team_name_prompt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/new_team_name_prompt" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btn_add_new_team"
@@ -183,11 +184,13 @@
         android:onClick="onSaveChanges"
         android:text="@string/btn_save"
         android:textColor="@color/titles"
-        android:textSize="28sp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.284"
+        app:layout_constraintHorizontal_bias="0.28"
         app:layout_constraintStart_toEndOf="@+id/table_scroller"
-        app:layout_constraintTop_toBottomOf="@+id/act_players" />
+        app:layout_constraintTop_toBottomOf="@+id/act_players"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btn_new_player"
@@ -200,7 +203,7 @@
         android:onClick="onNewPlayer"
         android:text="@string/add_new_player"
         android:textColor="@color/titles"
-        android:textSize="28sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.28"
         app:layout_constraintStart_toEndOf="@+id/table_scroller"
