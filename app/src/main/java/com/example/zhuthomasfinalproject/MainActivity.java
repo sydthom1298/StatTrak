@@ -18,9 +18,7 @@ import androidx.core.app.ActivityCompat;
 public class MainActivity extends AppCompatActivity {
 
     static String path;
-    private int season = 2020;
 
-    //private Season s = new Season(new Team(t),2020, 2021); //create new season object
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,18 +40,6 @@ public class MainActivity extends AppCompatActivity {
         path = getFilesDir().getPath();
         StatsManager.setDirectory(path);
         StatsManager.initStatsManager();
-
-
-        /*
-        StatsManager.addSeason(s);
-        StatsManager.setCurrentSeason(s);*/
-
-
-        /*
-        if(StatsManager.getCurrentSeason().getEndYear() != season){
-            season = StatsManager.getCurrentSeason().getEndYear();
-        }*/
-
 
     }
 

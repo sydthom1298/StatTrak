@@ -63,7 +63,6 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
         tbl_row = (TableRow)findViewById(R.id.roster_row);
         tbl_header = (TableRow)findViewById(R.id.roster_header);
 
-        //clearTable();
         if( StatsManager.getTeams().size() == 0) {
             StatsManager.addTeam(new Team("Select team to edit"));
         }

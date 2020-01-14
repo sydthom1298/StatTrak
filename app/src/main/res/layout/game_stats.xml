@@ -19,10 +19,24 @@
         app:srcCompat="@android:drawable/ic_menu_help" />
 
     <Button
+        android:id="@+id/btn_view_game_stats"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:background="@android:color/white"
+        android:fontFamily="@font/raleway_light"
+        android:text="@string/view_stats"
+        android:onClick="onViewStats"
+        android:textColor="@color/titles"
+        android:textSize="24sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/summ_team_prompt"
+        app:layout_constraintStart_toEndOf="@+id/game_selector" />
+
+    <Button
         android:id="@+id/btn_export_game_stats"
         android:layout_width="240dp"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_light"
         android:text="@string/btn_export_stats"
@@ -36,17 +50,17 @@
         android:id="@+id/game_selector"
         android:layout_width="284dp"
         android:layout_height="46dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="36dp"
         android:background="@android:color/white"
         android:entries="@array/team_games"
-        app:layout_constraintBaseline_toBaselineOf="@+id/game_prompt"
+        app:layout_constraintBaseline_toBaselineOf="@+id/summ_team_selector"
         app:layout_constraintStart_toEndOf="@+id/game_prompt" />
 
     <TextView
         android:id="@+id/game_prompt"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginStart="192dp"
+        android:layout_marginStart="100dp"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/game_prompt"
         android:textColor="@android:color/white"
@@ -68,7 +82,7 @@
         android:id="@+id/summ_team_prompt"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginStart="140dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/team_prompt"
@@ -95,15 +109,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:id="@+id/table_scroller"
+        android:id="@+id/game_table_scroller"
         android:layout_width="1200dp"
         android:layout_height="390dp"
-        android:layout_marginTop="30dp"
         android:layout_weight="1"
         android:scrollbars="horizontal|vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/summ_team_prompt">
+        app:layout_constraintTop_toBottomOf="@+id/game_selector">
 
         <HorizontalScrollView
             android:id="@+id/horizontalView"
@@ -128,7 +141,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/summ_team_prompt"
                 app:layout_constraintVertical_bias="0.0">
 
-                <TableRow android:id="@+id/stat_summ_header">
+                <TableRow android:id="@+id/game_stat_summ_header">
 
                     <TextView
                         android:id="@+id/playerName"
@@ -214,7 +227,7 @@
 
                     <TextView
                         android:id="@+id/fg_pct"
-                        android:layout_width="60dp"
+                        android:layout_width="75dp"
                         android:padding="3dip"
                         android:text="@string/table_title_fgpct"
                         android:textAlignment="viewStart"
@@ -262,7 +275,7 @@
 
                     <TextView
                         android:id="@+id/ft_pct"
-                        android:layout_width="60dp"
+                        android:layout_width="75dp"
                         android:padding="3dip"
                         android:text="@string/table_title_ftpct"
                         android:textAlignment="viewStart"
@@ -301,7 +314,7 @@
                         android:textSize="22sp" />
                 </TableRow>
 
-                <TableRow android:id="@+id/roster_row">
+                <TableRow android:id="@+id/stat_row">
 
                     <TextView
                         android:id="@+id/player_name"
@@ -495,4 +508,5 @@
             </TableLayout>
         </HorizontalScrollView>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
