@@ -115,5 +115,6 @@
     \n32\t\t\t17\t\t9\t\t\t\t2\t\t\t\t3\t\t\t\t0</string>
     // replace with an array later
     <string name="season_avgs_title">Overall:</string>
+    <string name="view_stats">VIEW STATS</string>
 
 </resources>

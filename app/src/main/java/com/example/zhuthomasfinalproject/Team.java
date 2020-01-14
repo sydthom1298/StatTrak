@@ -111,8 +111,8 @@ public class Team implements Serializable {
         seasons = s;
     }
 
-    public void addSeason() {
-        seasons.add(new Season());
+    public void addSeason(Season s) {
+        seasons.add(s);
     }
 
     /**

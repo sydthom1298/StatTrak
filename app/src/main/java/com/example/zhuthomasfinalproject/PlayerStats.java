@@ -404,10 +404,32 @@ public class PlayerStats implements Serializable {
         playingTime = playingTime + t;
     }
 
-    public double calcFGPct() {
-        int fgAttempts = twoPtMakes + twoPtMisses;
-        return twoPtMakes / fgAttempts;
+    public int getFGAttempts() {
+        return twoPtMakes + twoPtMisses;
     }
+
+    public double getFGPct() {
+        return (double) twoPtMakes / (double) this.getFGAttempts();
+    }
+
+    public int get3Attempts() {
+        return threePtMakes + threePtMisses;
+    }
+
+    public double get3Pct() {
+        return (double) threePtMakes / (double) this.get3Attempts();
+    }
+
+    public int getFTAttempts() {
+        return ftMakes + ftMisses;
+    }
+
+    public double getFTPct() {
+        return (double) ftMakes / (double) this.getFTAttempts();
+    }
+
+
+
 
     /**
      * String representation of class

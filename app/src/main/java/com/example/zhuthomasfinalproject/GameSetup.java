@@ -21,6 +21,7 @@ import android.widget.TextView;
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class GameSetup extends AppCompatActivity implements Serializable {
     // master arraylist of possible jersey numbers for the selected team
@@ -57,8 +58,13 @@ public class GameSetup extends AppCompatActivity implements Serializable {
     // Array of Spinners to more efficiently set (all display same values)
     private Spinner[] numSelectors;
 
+    private int season = 2020;
+
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        // TODO consider putting in a try/catch to prevent errors from team sizes being too small
+
         // setup screen from xml
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setup);
@@ -234,8 +240,6 @@ public class GameSetup extends AppCompatActivity implements Serializable {
         });
     }
 
-
-
     /**
      * Method that uses the quiksort algorithm to sort jersey numbers so they are in ascending order for display
      * @param nums - an Integer ArrayList of jersey numbers
@@ -284,10 +288,6 @@ public class GameSetup extends AppCompatActivity implements Serializable {
         }
     }
 
-    public void addSeason() {
-
-    }
-
     public void onContinue(View v) { // user wants to continue to tracker
         // array of Players to store the five starting players
         Player[] startingLineup;
@@ -318,15 +318,27 @@ public class GameSetup extends AppCompatActivity implements Serializable {
             }
         }
 
-
-
         // TODO starts timer to track minutes
         // TODO add player stats when the game clock starts so minutes played are more accurate
         for (int i = 0; i < 5; i++) {
             startingLineup[i].addPlayerStat(System.currentTimeMillis());
         }
-        Season s = new Season(currentTeam,2020, 2021);
+
+
+        Season s;
+        if (currentTeam.getSeason(season) == null) { // if the current team doesn't have any seasons, make a new one
+            s = new Season(currentTeam, season, season + 1);
+        } else {
+            s = currentTeam.getSeason(season);
+        }
+
+        if(Calendar.getInstance().get(Calendar.YEAR) > season){
+            season++;
+            s = new Season(currentTeam, season, season + 1);
+        }
+        currentTeam.addSeason(s);
         StatsManager.addSeason(s);
+
         StatsManager.setCurrentSeason(s);
         StatsManager.getCurrentSeason().addGame(g);
         // create a new game with attributes of the user's team, and their inputted opponent
@@ -340,6 +352,10 @@ public class GameSetup extends AppCompatActivity implements Serializable {
         launchGameTracker(v); // launch the tracker
     }
 
+    /**
+     * Method that launches the game tracker window
+     * @param v
+     */
     public void launchGameTracker(View v) {
         Intent i = new Intent(this, GameTimeTrackerActivity.class);
         startActivity(i);

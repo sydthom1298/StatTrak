@@ -253,7 +253,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         }else if(current.equals("q3")){
             txt_quarter.setText("q4");
         }else if(current.equals("q4")){
-            txt_quarter.setText("q1");
+            //txt_quarter.setText("q1");
         }
     }
 

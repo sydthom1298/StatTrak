@@ -115,6 +115,10 @@ public final class StatsManager implements Serializable {
         return null;
     }
 
+    public static ArrayList<Season> getSeasons() {
+        return seasons;
+    }
+
     public static void toFile() {
         FileOutputStream fos;
 

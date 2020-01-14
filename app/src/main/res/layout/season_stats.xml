@@ -8,18 +8,18 @@
     android:background="@color/backgroundColor">
 
     <ScrollView
-        android:id="@+id/table_scroller"
+        android:id="@+id/szn_table_scroller"
         android:layout_width="1200dp"
         android:layout_height="390dp"
-        android:layout_marginTop="30dp"
         android:layout_weight="1"
         android:scrollbars="horizontal|vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/szn_team_selector">
+        app:layout_constraintTop_toBottomOf="@+id/szn_selector">
 
         <HorizontalScrollView
-            android:id="@+id/horizontalView"
+            android:id="@+id/horizontalView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
@@ -29,7 +29,7 @@
             app:layout_constraintBottom_toTopOf="@+id/btn_export_game_stats">
 
             <TableLayout
-                android:id="@+id/game_stats_table"
+                android:id="@+id/szn_stats_table"
                 android:layout_width="1200dp"
                 android:layout_height="412dp"
                 android:layout_marginTop="44dp"
@@ -41,7 +41,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/summ_team_prompt"
                 app:layout_constraintVertical_bias="0.0">
 
-                <TableRow android:id="@+id/stat_summ_header">
+                <TableRow android:id="@+id/szn_stat_summ_header">
 
                     <TextView
                         android:id="@+id/playerName"
@@ -127,7 +127,7 @@
 
                     <TextView
                         android:id="@+id/fg_pct"
-                        android:layout_width="60dp"
+                        android:layout_width="75dp"
                         android:padding="3dip"
                         android:text="@string/table_title_fgpct"
                         android:textAlignment="viewStart"
@@ -175,7 +175,7 @@
 
                     <TextView
                         android:id="@+id/ft_pct"
-                        android:layout_width="60dp"
+                        android:layout_width="75dp"
                         android:padding="3dip"
                         android:text="@string/table_title_ftpct"
                         android:textAlignment="viewStart"
@@ -214,7 +214,7 @@
                         android:textSize="22sp" />
                 </TableRow>
 
-                <TableRow android:id="@+id/roster_row">
+                <TableRow android:id="@+id/stat_row">
 
                     <TextView
                         android:id="@+id/player_name"
@@ -424,7 +424,7 @@
         android:id="@+id/btn_export_szn_stats"
         android:layout_width="240dp"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_light"
         android:text="@string/btn_export_stats"
