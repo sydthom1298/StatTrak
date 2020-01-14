@@ -214,7 +214,7 @@
                         android:textSize="22sp" />
                 </TableRow>
 
-                <TableRow android:id="@+id/stat_row">
+                <TableRow android:id="@+id/szn_stat_row">
 
                     <TextView
                         android:id="@+id/player_name"
@@ -424,7 +424,7 @@
         android:id="@+id/btn_export_szn_stats"
         android:layout_width="240dp"
         android:layout_height="60dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_light"
         android:text="@string/btn_export_stats"
@@ -433,7 +433,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/table_scroller" />
+        app:layout_constraintTop_toBottomOf="@+id/szn_table_scroller" />
 
     <Spinner
         android:id="@+id/szn_selector"
@@ -449,7 +449,7 @@
         android:id="@+id/szn_prompt"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginStart="172dp"
+        android:layout_marginStart="100dp"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/season_prompt"
         android:textColor="@android:color/white"
@@ -471,7 +471,7 @@
         android:id="@+id/szn_team_prompt"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginStart="140dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/team_prompt"
@@ -496,4 +496,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_view_szn_stats"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:background="@android:color/white"
+        android:fontFamily="@font/raleway_light"
+        android:onClick="onViewStats"
+        android:text="@string/view_stats"
+        android:textColor="@color/titles"
+        android:textSize="24sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/szn_team_prompt"
+        app:layout_constraintStart_toEndOf="@+id/szn_selector" />
 </androidx.constraintlayout.widget.ConstraintLayout>

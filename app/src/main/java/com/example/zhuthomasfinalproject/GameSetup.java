@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -68,6 +69,8 @@ public class GameSetup extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setup);
 
+        Button btnContinue = findViewById(R.id.setup_cont_btn);
+
         // initialize the team input widget
         teamSelector = findViewById(R.id.team_input);
 
@@ -97,12 +100,13 @@ public class GameSetup extends AppCompatActivity implements Serializable {
 
         userTeams = new ArrayList<>();
 
-        //TODO - read data file on user teams, load as teams into array, then display team names in text box
         if (StatsManager.getTeams().size() >= 2) {
             for (int i = 1; i < StatsManager.getTeams().size(); i++) {
+                btnContinue.setEnabled(true);
                 userTeams.add(StatsManager.getTeams().get(i));
             }
         } else {
+            btnContinue.setEnabled(false);
             userTeams.add(new Team("You must create a new team in MANAGE TEAMS"));
         }
 
@@ -301,8 +305,8 @@ public class GameSetup extends AppCompatActivity implements Serializable {
         Game g = new Game(currentTeam, opp);  //needed before loop to create playerStat
         for(Player p:currentTeam.getPlayers()){
             p.addPlayerStat(g.getGameDateTime()); //create player stat with game time
+            p.getCurrentStats().setOpp(opp);
         }
-
 
         // loop 5 times (through each number selection spinner)
         for(int i = 0; i < 5; i++) {
@@ -317,17 +321,11 @@ public class GameSetup extends AppCompatActivity implements Serializable {
             }
         }
 
-        // TODO starts timer to track minutes
-        // TODO add player stats when the game clock starts so minutes played are more accurate
-     /*   for (int i = 0; i < 5; i++) {
-            startingLineup[i].addPlayerStat(System.currentTimeMillis());
-        }
-
-      */
 
         Season s;
         if (currentTeam.getSeason(season) == null) { // if the current team doesn't have any seasons, make a new one
             s = new Season(currentTeam, season, season + 1);
+            StatsManager.addSeason(s);
         } else {
             s = currentTeam.getSeason(season);
         }
@@ -335,9 +333,10 @@ public class GameSetup extends AppCompatActivity implements Serializable {
         if(Calendar.getInstance().get(Calendar.YEAR) > season){
             season++;
             s = new Season(currentTeam, season, season + 1);
+            StatsManager.addSeason(s);
         }
+
         currentTeam.addSeason(s);
-        StatsManager.addSeason(s);
 
         StatsManager.setCurrentSeason(s);
         StatsManager.getCurrentSeason().addGame(g);
@@ -348,6 +347,9 @@ public class GameSetup extends AppCompatActivity implements Serializable {
 
         // sets the current player as a default to the first player listed in the starting lineup
         StatsManager.setCurrentPlayer(startingLineup[0]);
+
+        // save to StatsManager
+        StatsManager.toFile();
 
         launchGameTracker(v); // launch the tracker
     }
