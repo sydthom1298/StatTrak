@@ -17,7 +17,7 @@
         android:onClick="onTurnovers"
         android:text="@string/btn_turnovers"
         android:textColor="@color/grayText"
-        android:textSize="28sp"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_off_reb"
         app:layout_constraintStart_toEndOf="@+id/btn_off_reb" />
 
@@ -32,7 +32,7 @@
         android:onClick="onThreePtMakes"
         android:text="@string/btn_three_pt_makes"
         android:textColor="#5A5A5A"
-        android:textSize="32sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_two_pt_make"
@@ -49,7 +49,7 @@
         android:onClick="onTwoPtMakes"
         android:text="@string/btn_two_pt_makes"
         android:textColor="#5A5A5A"
-        android:textSize="32sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_ft_make" />
 
@@ -64,7 +64,7 @@
         android:onClick="onFtMakes"
         android:text="@string/btn_ft_makes"
         android:textColor="#5A5A5A"
-        android:textSize="32sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/play_desc" />
 
@@ -78,7 +78,7 @@
         android:onClick="onFtMisses"
         android:text="@string/btn_ft_misses"
         android:textColor="#5A5A5A"
-        android:textSize="32sp"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_ft_make"
         app:layout_constraintStart_toEndOf="@+id/btn_ft_make" />
 
@@ -92,7 +92,7 @@
         android:onClick="onTwoPtMisses"
         android:text="@string/btn_two_pt_misses"
         android:textColor="#5A5A5A"
-        android:textSize="32sp"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_two_pt_make"
         app:layout_constraintStart_toEndOf="@+id/btn_two_pt_make" />
 
@@ -106,7 +106,7 @@
         android:onClick="onThreePtMisses"
         android:text="@string/btn_three_pt_misses"
         android:textColor="#5A5A5A"
-        android:textSize="32sp"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_three_point_make"
         app:layout_constraintStart_toEndOf="@+id/btn_three_point_make" />
 
@@ -120,7 +120,7 @@
         android:onClick="onDefRebs"
         android:text="@string/btn_def_rebs"
         android:textColor="#5A5A5A"
-        android:textSize="32sp"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_three_pt_miss"
         app:layout_constraintStart_toEndOf="@+id/btn_three_pt_miss" />
 
@@ -134,7 +134,7 @@
         android:onClick="onOffRebs"
         android:text="@string/btn_off_rebs"
         android:textColor="#5A5A5A"
-        android:textSize="32sp"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_two_pt_miss"
         app:layout_constraintStart_toEndOf="@+id/btn_two_pt_miss" />
 
@@ -148,7 +148,7 @@
         android:onClick="onAssists"
         android:text="@string/btn_assists"
         android:textColor="#5A5A5A"
-        android:textSize="32sp"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_ft_miss"
         app:layout_constraintStart_toEndOf="@+id/btn_ft_miss" />
 
@@ -162,7 +162,7 @@
         android:onClick="onSteals"
         android:text="@string/btn_steals"
         android:textColor="@color/grayText"
-        android:textSize="32sp"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_assist"
         app:layout_constraintStart_toEndOf="@+id/btn_assist" />
 
@@ -178,7 +178,7 @@
         android:onClick="onUndo"
         android:text="@string/btn_undo"
         android:textColor="@color/grayText"
-        android:textSize="32sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.687"
@@ -191,16 +191,16 @@
         android:layout_width="200dp"
         android:layout_height="100dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="100dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_medium"
         android:onClick="onFouls"
         android:text="@string/btn_fouls"
         android:textColor="@color/grayText"
-        android:textSize="32sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="0.611"
         app:layout_constraintStart_toEndOf="@+id/btn_steal"
         app:layout_constraintTop_toBottomOf="@+id/quarter" />
 
@@ -214,7 +214,7 @@
         android:onClick="onBlocks"
         android:text="@string/btn_blocks"
         android:textColor="@color/grayText"
-        android:textSize="32sp"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_def_reb"
         app:layout_constraintStart_toEndOf="@+id/btn_def_reb" />
 
@@ -230,7 +230,7 @@
         android:text="@string/recent_play_desc"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="40sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/timer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -240,6 +240,7 @@
         android:layout_width="82dp"
         android:layout_height="62dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="84dp"
         android:layout_marginEnd="32dp"
         android:background="@color/titles"
         android:fontFamily="@font/raleway_semibold"
@@ -248,15 +249,15 @@
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="40sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/timer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.004"
-        app:layout_constraintStart_toEndOf="@+id/timer" />
+        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintStart_toEndOf="@+id/timer"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/timer"
-        android:layout_width="280dp"
-        android:layout_height="140dp"
+        android:layout_width="312dp"
+        android:layout_height="134dp"
         android:layout_marginStart="408dp"
         android:layout_marginTop="32dp"
         android:background="@color/titles"
@@ -265,7 +266,7 @@
         android:text="@string/timer"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="100sp"
+        android:textSize="80sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -273,7 +274,7 @@
         android:id="@+id/team_points"
         android:layout_width="136dp"
         android:layout_height="86dp"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="36dp"
         android:background="@color/titles"
         android:fontFamily="@font/graduate"
         android:text="@string/team_pts"
@@ -303,18 +304,19 @@
     <Button
         android:id="@+id/btn_next"
         android:layout_width="155dp"
-        android:layout_height="47dp"
+        android:layout_height="87dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="54dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_light"
         android:onClick="onNextQuarter"
         android:text="@string/btn_next"
         android:textColor="@color/titles"
-        android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btn_player5"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.605"
-        app:layout_constraintStart_toEndOf="@+id/btn_player5" />
+        app:layout_constraintStart_toEndOf="@+id/btn_player5"
+        app:layout_constraintTop_toBottomOf="@+id/btn_undo" />
 
     <ToggleButton
         android:id="@+id/btn_player1"
@@ -411,8 +413,8 @@
         android:id="@+id/btn_help_tracker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:contentDescription="@string/btn_help_desc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -422,12 +424,12 @@
         android:id="@+id/lbl_team_points"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="872dp"
+        android:layout_marginStart="924dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/team_pts_label"
         android:textColor="@android:color/white"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/team_points"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -442,10 +444,10 @@
         android:fontFamily="@font/raleway_medium"
         android:text="@string/team_fouls_label"
         android:textColor="@android:color/white"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/lbl_team_points"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintHorizontal_bias="0.166"
         app:layout_constraintStart_toEndOf="@+id/lbl_team_points" />
 
     <ListView
@@ -453,7 +455,6 @@
         android:layout_width="368dp"
         android:layout_height="472dp"
         android:layout_above="@+id/tracker_back"
-        android:layout_marginStart="30dp"
         android:background="#4CAF50"
         android:backgroundTint="#4CAF50"
         android:backgroundTintMode="src_over"

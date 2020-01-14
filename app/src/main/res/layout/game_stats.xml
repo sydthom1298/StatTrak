@@ -25,26 +25,28 @@
         android:layout_marginStart="40dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_light"
-        android:text="@string/view_stats"
         android:onClick="onViewStats"
+        android:text="@string/view_stats"
         android:textColor="@color/titles"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/summ_team_prompt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toEndOf="@+id/game_selector" />
 
     <Button
         android:id="@+id/btn_export_game_stats"
-        android:layout_width="240dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="269dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_light"
         android:text="@string/btn_export_stats"
         android:textColor="@color/titles"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/table_scroller" />
+        app:layout_constraintTop_toBottomOf="@+id/game_table_scroller" />
 
     <Spinner
         android:id="@+id/game_selector"

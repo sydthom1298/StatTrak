@@ -9,7 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,26 +21,46 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class SeasonStatsSummary extends AppCompatActivity /*implements AdapterView.OnItemSelectedListener*/{
+public class SeasonStatsSummary extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private ArrayAdapter<String> teamAdapter;
     private ArrayAdapter<String> sznAdapter;
     private ArrayList<Team> userTeams;
     private ArrayList<String> sUserTeams;
-    private ArrayList<String> seasons;
+    private ArrayList<Season> seasons;
+    private ArrayList<String> sSeasons;
 
     private Spinner teamSelector;
+    private Spinner sznSelector;
+    private TableLayout tblStats;
+    private TableRow row;
+    private TableRow header;
+    private Team currentTeam;
+    private String sCurrentTeam;
+    private Button btnViewStats;
 
     protected void onCreate(final Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.season_stats);
 
         teamSelector = findViewById(R.id.szn_team_selector);
+        header = findViewById(R.id.szn_stat_summ_header);
+        row = findViewById(R.id.szn_stat_row);
+        btnViewStats = findViewById(R.id.btn_view_szn_stats);
+        sznSelector = findViewById(R.id.szn_selector);
+
         // initialize a new arraylist to store existing, saved teams
         userTeams = new ArrayList<>();
         sUserTeams = new ArrayList<>();
         seasons = new ArrayList<>();
 
-        userTeams = StatsManager.getTeams();
+        userTeams = new ArrayList<>();
+        if (StatsManager.getTeams().size() >= 2) {
+            for (int i = 1; i < StatsManager.getTeams().size(); i++) {
+                userTeams.add(StatsManager.getTeams().get(i));
+            }
+        } else {
+            userTeams.add(new Team("You must create a new team in MANAGE TEAMS"));
+        }
 
         // loops through saved teams, saves team names as Strings in an ArrayList
         for(int i = 0; i < userTeams.size(); i++) {
@@ -45,14 +68,14 @@ public class SeasonStatsSummary extends AppCompatActivity /*implements AdapterVi
         }
 
         teamAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sUserTeams);
+        teamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         teamSelector.setAdapter(teamAdapter);
-
-        //teamSelector.setOnItemSelectedListener(this);
+        teamSelector.setOnItemSelectedListener(this);
 
     }
 
-    /*public void onItemSelected(AdapterView<?> parent, View view, int pos, long id){
-        clearTable();
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id){
+        //clearTable();
         btnViewStats.setEnabled(true);
         sCurrentTeam = teamSelector.getSelectedItem().toString();
 
@@ -63,32 +86,16 @@ public class SeasonStatsSummary extends AppCompatActivity /*implements AdapterVi
                 currentTeam = userTeams.get(i);
             }
         }
+
+        sSeasons = new ArrayList<>();
         seasons = currentTeam.getSeasons();
-        games = new ArrayList<>();
-        sGames = new ArrayList<>();
         for (int i = 0; i < seasons.size(); i++) {
-            games = seasons.get(i).getGames();
-            for (int j = 0; j < games.size(); j++) {
-                Date d = new Date(games.get(j).getGameDateTime());
-                String sDate;
-                SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy");
-                sDate = dateFormat.format(d);
-                sGames.add("" + sDate + " vs. " + games.get(j).getOpponent());
-            }
+            sSeasons.add(seasons.get(i).toString());
         }
 
-        int numGames;
-        games = new ArrayList<>();
-        for (int i = 0; i < seasons.size(); i++) {
-            numGames = seasons.get(i).getGames().size();
-            for (int j = 0; j < numGames; j++) {
-                games.add(seasons.get(i).getGames().get(j));
-            }
-        }
-
-        gameAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, sGames);
-        gameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        gameSelector.setAdapter(gameAdapter);
+        sznAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, sSeasons);
+        sznAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sznSelector.setAdapter(sznAdapter);
     }
 
     public void onNothingSelected(AdapterView<?> parent){
@@ -109,5 +116,5 @@ public class SeasonStatsSummary extends AppCompatActivity /*implements AdapterVi
         txt.setTypeface(orig.getTypeface());
         txt.setTextSize(orig.getTextSize());
         return txt;
-    }*/
+    }
 }

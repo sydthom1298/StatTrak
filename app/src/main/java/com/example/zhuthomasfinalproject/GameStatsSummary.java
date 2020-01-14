@@ -70,27 +70,6 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
             userTeams.add(new Team("You must create a new team in MANAGE TEAMS"));
         }
 
-        /*PlayerStats p = new PlayerStats();
-        p.setAssists(2);
-        p.setBlocks(3);
-        p.setDefRebs(4);
-        p.setFouls(3);
-        p.setFtMakes(5);
-        p.setFtMisses(5);
-        p.setMinPlayed(20);
-        p.setOffRebs(4);
-        p.setSteals(2);
-        p.setThreePtMakes(0);
-        p.setThreePtMisses(3);
-        p.setTwoPtMakes(2);
-        p.setTwoPtMisses(1);
-        p.setTurnovers(4);
-        p.setFtMisses(0);
-        p.setFtMakes(4);
-        userTeams.get(0).getPlayers().get(0).setCurrentStats(p);
-        ArrayList<PlayerStats> arr = new ArrayList<>();
-        arr.add(p);
-        userTeams.get(0).getPlayers().get(0).setStats(arr);*/
         sUserTeams = new String[userTeams.size()];
         for (int i = 0; i < userTeams.size(); i++) {
             sUserTeams[i] = userTeams.get(i).getName();
@@ -155,7 +134,6 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
                 games.add(seasons.get(i).getGames().get(j));
             }
         }
-
         gameAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, sGames);
         gameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gameSelector.setAdapter(gameAdapter);
@@ -190,7 +168,7 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
                 statDate.setTime(sDate);
                 gameDate.setTime(gDate);
 
-                if (statDate.get(Calendar.DAY_OF_YEAR) == gameDate.get(Calendar.DAY_OF_YEAR)) {
+                if (statDate.get(Calendar.DAY_OF_YEAR) == gameDate.get(Calendar.DAY_OF_YEAR) && temp.getOpp().equals(currentGame.getOpponent())) {
                     roster.get(i).setCurrentStats(temp);
                 }
 
@@ -290,8 +268,6 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
 
             btnViewStats.setEnabled(false);
         }
-
-
     }
 
     private void clearTable() {

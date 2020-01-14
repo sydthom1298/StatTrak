@@ -23,6 +23,7 @@ public class PlayerStats implements Serializable {
     private int fouls; //number of fouls
     private int points; //points
     private long playingTime; // playing time in milliseconds
+    private String opp;
 
     /**
      * default constructor that constructs a com.example.zhuthomasfinalproject.PlayerStats class and initializes attributes
@@ -44,6 +45,7 @@ public class PlayerStats implements Serializable {
         blocks = 0;
         gameDateTime = System.currentTimeMillis();
         playingTime = 0;
+        opp = "";
     }
 
     /**
@@ -53,6 +55,14 @@ public class PlayerStats implements Serializable {
     public PlayerStats(long gDT){
         this();
         gameDateTime = gDT;
+    }
+
+    public String getOpp(){
+        return opp;
+    }
+
+    public void setOpp(String o) {
+        opp = o;
     }
 
     public long getGameDateTime() {
