@@ -12,21 +12,21 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.ArrayList;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 public class TeamManager extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private Spinner spn_team; //spinner control to choose a team
     private TextView txt_numPlayers; //control that shows the number of players on team
-    private TextView txt_numActivePlayers; //control that shows the number of active players on team
     private TextView txt_newTeam; //control for user to enter team name
     private Button btn_saveTeam; //button used to save information about a team
     private Button btn_newPlayer; //button used to add a new player
@@ -51,7 +51,6 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
         //get a control object from the xml id of the control
         spn_team = (Spinner)findViewById(R.id.manage_team_selector);
         txt_numPlayers = (TextView)findViewById(R.id.num_players);
-        txt_numActivePlayers = (TextView)findViewById(R.id.act_players);
         txt_newTeam = (TextView)findViewById(R.id.txt_new_team_name);
         btn_saveTeam = (Button)findViewById(R.id.btn_save);
         btn_newPlayer = (Button)findViewById(R.id.btn_new_player);
@@ -60,7 +59,6 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
         tbl_header = (TableRow)findViewById(R.id.roster_header);
         //initialize player count to 0
         txt_numPlayers.setText("0");
-        txt_numActivePlayers.setText("0");
         //ArrayList of teams for spinner
         ArrayList<Team> teamList;
 
@@ -118,7 +116,6 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
         EditText n; //name control
         EditText num; //number control
         EditText position; //position control
-        CheckBox chk; //active checkbox
         TableRow r; //table row
         Player p;
 
@@ -149,19 +146,16 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
             n = newName();
             num = newNumber();
             position = newPos();
-            chk = newCheck();
             //add controls to table row
             r.addView(n);
             r.addView(num);
             r.addView(position);
-            r.addView(chk);
             //get player from team object
             p = t.getPlayers().get(i);
             //set data from player to controls for table row
             n.setText(p.getName());
             num.setText(Integer.toString(p.getJerseyNum()));
             position.setText(p.getPosition());
-            chk.setEnabled(p.isActive());
             //add table row to table
             tbl_players.addView(r,tbl_row.getLayoutParams());
             //updates player count
@@ -248,16 +242,6 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
     }
 
     /**
-     * method that generates a new active player check box
-     * @return - new check box control
-     */
-    CheckBox newCheck() {
-        CheckBox c;
-        c = new CheckBox(this);
-        c.setLayoutParams(tbl_row.getVirtualChildAt(3).getLayoutParams());
-        return c;
-    }
-    /**
      * method to create new player when the new player button is pressed
      * @param v - current window
      */
@@ -266,18 +250,15 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
         EditText n;
         EditText num;
         EditText pos;
-        CheckBox chk;
         r = new TableRow(this); //create new table row
         //create new control for table row
         n = newName();
         num = newNumber();
         pos = newPos();
-        chk = newCheck();
         //add controls to table row
         r.addView(n);
         r.addView(num);
         r.addView(pos);
-        r.addView(chk);
         //add table row to table
         tbl_players.addView(r,tbl_row.getLayoutParams());
         //update player count on screen
@@ -298,7 +279,6 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
         EditText name; //name control
         EditText number; //number control
         EditText position; //position control
-        CheckBox active; //active checkbox control
         TableRow r; //row in table
 
 
@@ -319,7 +299,6 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
             name = (EditText)r.getVirtualChildAt(0);
             number = (EditText)r.getVirtualChildAt(1);
             position = (EditText)r.getVirtualChildAt(2);
-            active = (CheckBox)r.getVirtualChildAt(3);
             //requires name
             if(name.getText().toString().equals("")) {
                 name.setError("Must have a valid name");
@@ -345,12 +324,10 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
             if(p != null){
                 //update existing player
                 p.setPosition(position.getText().toString());
-                p.setActive(active.isChecked());
             }else{ //player doesn't exist
                 //create new player
                 p = new Player(name.getText().toString(), num);
                 p.setPosition(position.getText().toString());
-                p.setActive(active.isChecked());
                 t.addPlayer(p);
             }
             //saves everything including teams

@@ -11,7 +11,6 @@ public class Player implements Serializable {
     private int jerseyNum; //players number
     private String name; //name of player
     private String position; //position of player
-    private boolean active; //whether or not the player is active in game
     private ArrayList<PlayerStats> stats; //list of players stats for player
     private boolean inGame; //indicator to tell if player is playing in the game
     private PlayerStats currentStats; //currently selected stats
@@ -115,22 +114,6 @@ public class Player implements Serializable {
      */
     public void setPosition(String p) {
         position = p;
-    }
-
-    /**
-     * accessor that gets if the player is active
-     * @return - if player is active or not
-     */
-    public boolean isActive() {
-        return active;
-    }
-
-    /**
-     * mutator that sets if the player is active
-     * @param a - true if active false if not
-     */
-    public void setActive(boolean a) {
-        active = a;
     }
 
     /**
