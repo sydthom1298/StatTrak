@@ -5,6 +5,7 @@
  * This code is associated with game_time_tracker.xml
  */
 package com.example.zhuthomasfinalproject;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,11 +13,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
+
 import java.util.ArrayList;
 import java.util.Stack;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import androidx.appcompat.app.AppCompatActivity;
 public class GameTimeTrackerActivity extends AppCompatActivity {
     final int START_TIME = 8000*60; //length of a quarter (8 minutes)
@@ -525,7 +529,10 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void pauseClock() {
         long elapsed;
-
+        //pause before timer initialized
+        if(task ==null) {
+            return;
+        }
         task.cancel();
         clockRunning = false;
         System.out.println("Paused");

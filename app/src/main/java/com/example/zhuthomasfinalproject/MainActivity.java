@@ -5,12 +5,13 @@ Window that displays the options in the main menu, allowing the user to access e
 Each button opens a new window (each has its own activity class), this window is mainly used for navigation.
  */
 package com.example.zhuthomasfinalproject;
+
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
-
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -47,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Error initializing StatsManager from data files. " +
                     "Files have been reset", Toast.LENGTH_LONG).show();
         }
-
     }
 
     /**
