@@ -94,9 +94,13 @@
     <string name="table_title_rebs">TREBS</string>
     <string name="table_title_def_rebs">DREB</string>
     <string name="table_title_off_rebs">OREB</string>
+    <string name="table_title_fg">FG</string>
+    <string name="table_title_fgatts">FGA</string>
+    <string name="table_title_fgpct">FG%</string>
     <string name="table_title_twos">2P</string>
     <string name="table_title_twoatts">2PA</string>
-    <string name="table_title_fgpct">FG%</string>
+    <string name="table_title_twopct">2P%</string>
+    <string name="table_title_eFGPct">eFG%</string>
     <string name="table_title_threes">3P</string>
     <string name="table_title_threeatts">3PA</string>
     <string name="table_title_3ptpct">FG3%</string>
@@ -109,10 +113,12 @@
     <string name="table_title_fouls">FOULS</string>
 
 
-    <string name="season_stats_title">Season Statistics</string>
+
+    <string name="season_stats_title">Season Statistics (per game)</string>
     <string name="season_prompt">Season:</string>
     <string name="temp_avgs">Min\t\tPts\t\tAsts\t\tStls\t\tTOs\t\tBlk
     \n32\t\t\t17\t\t9\t\t\t\t2\t\t\t\t3\t\t\t\t0</string>
+    <string name="table_title_games">GAMES</string>
     // replace with an array later
     <string name="season_avgs_title">Overall:</string>
     <string name="view_stats">VIEW STATS</string>

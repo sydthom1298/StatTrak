@@ -323,20 +323,18 @@ public class GameSetup extends AppCompatActivity implements Serializable {
 
 
         Season s;
-        if (currentTeam.getSeason(season) == null) { // if the current team doesn't have any seasons, make a new one
-            s = new Season(currentTeam, season, season + 1);
-            StatsManager.addSeason(s);
-        } else {
-            s = currentTeam.getSeason(season);
-        }
-
-        if(Calendar.getInstance().get(Calendar.YEAR) > season){
+        if(Calendar.getInstance().get(Calendar.YEAR) > season){ // first check if a season has passed already
             season++;
             s = new Season(currentTeam, season, season + 1);
             StatsManager.addSeason(s);
+            currentTeam.addSeason(s);
+        } else if (currentTeam.getSeason(season) == null) { // if the current team doesn't have any seasons, make a new one
+            s = new Season(currentTeam, season, season + 1);
+            StatsManager.addSeason(s);
+            currentTeam.addSeason(s);
+        } else {
+            s = currentTeam.getSeason(season);
         }
-
-        currentTeam.addSeason(s);
 
         StatsManager.setCurrentSeason(s);
         StatsManager.getCurrentSeason().addGame(g);
