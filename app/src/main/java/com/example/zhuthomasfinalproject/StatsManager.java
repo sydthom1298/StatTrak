@@ -4,6 +4,7 @@
  * Class that holds all the data from the program including player stats, games, seasons
  */
 package com.example.zhuthomasfinalproject;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -24,17 +25,21 @@ public final class StatsManager implements Serializable {
     private static ArrayList<Season> seasons = new ArrayList<Season>(); //ArrayList of Season
 
     private static String directory = ""; //name of directory used to store data
+
     /**
      * method that does all initialization for StatsManager because there is no
      * constructor in a final class
+     * @return - true for success, false for error
      */
-    public static void initStatsManager() {
+    public static boolean initStatsManager() {
+        boolean status = true;
         File file = new File(getDirectory() + "/StatsManager.teams");
         /* check to see if data file exists - if it does it reads in the file to initialize StatsManager
         with previously saved data*/
         if(file.exists()) {
-            fromFile();
+            status = fromFile();
         }
+        return status;
     }
 
     /**
@@ -248,27 +253,47 @@ public final class StatsManager implements Serializable {
     }
 
     /**
+     * delete app data file with specified name after making a backup
+     * @param fn - filename to deleted.
+     */
+    private static void deleteFile(String fn) {
+        File file1 = new File(getDirectory(), fn);
+        File file2 = new File(getDirectory(), "saved." + fn);
+        if( file2.exists()) {
+            file2.delete();
+        }
+        file1.renameTo(file2);
+    }
+    /**
      * method that reads and deserializes all the information for StatsManager from the file
      */
-    public static void fromFile() {
+    public static  boolean fromFile() {
         FileInputStream fis;
         ObjectInputStream i;
-        try{
+
+        try {
             //reads and deserializes the data for teams
             fis = new FileInputStream(getDirectory() + "/StatsManager.teams");
             i = new ObjectInputStream(fis);
             teams = (ArrayList<Team>) i.readObject();
             i.close();
+        } catch(Exception x){
+            deleteFile("StatsManager.teams");
+            deleteFile("StatsManager.seasons");
+            return false;
+        }
+        try {
             //reads and deserializes the data for seasons
             fis = new FileInputStream(getDirectory() + "/StatsManager.seasons");
             i = new ObjectInputStream(fis);
             seasons = (ArrayList<Season>) i.readObject();
             i.close();
-
-        }catch(Exception x){
-            System.exit( -1 );
+        } catch(Exception x) {
+            deleteFile("StatsManager.seasons");
+            deleteFile("StatsManager.teams");
+            return(false);
         }
-
+        return(true);
     }
 
     /**

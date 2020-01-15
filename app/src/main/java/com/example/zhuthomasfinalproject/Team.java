@@ -160,7 +160,6 @@ public class Team implements Serializable {
     public String toString(){
         String str = "";
         str += name;
-        //TODO add missing fields
         return str;
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ZhuThomasFinalProject</string>
+    <string name="app_name">StatTrak</string>
     <string name="menu_title">StatTrak</string>
     <string name="menu_btn_track_game">Track a New Game</string>
     <string name="menu_btn_view_stats">View Statistics</string>
