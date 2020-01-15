@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     String secondsText = ""; //time in seconds String
     private Button btn_Undo;
     private Stack undoStack;
-
+    private boolean gameOver = false;
 
 
     /**
@@ -116,6 +117,10 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         startTime = START_TIME;
         currentTime = startTime;
 
+        //reset gameOver flag
+        gameOver = false;
+
+        // initialize undoStack
         undoStack = new Stack<UndoCommand>();
     }
 
@@ -265,6 +270,10 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onQuarter(View v) {
         String current = txt_quarter.getText().toString();
+        if(gameOver) {
+            Toast.makeText(getApplicationContext(),"Game has ended.  Push 'back' to continue",
+                    Toast.LENGTH_LONG).show();
+        }
         if(current.equals("q1")) {
             txt_quarter.setText("q2");
         }else if(current.equals("q2")){
@@ -272,7 +281,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         }else if(current.equals("q3")){
             txt_quarter.setText("q4");
         }else if(current.equals("q4")){
-            //txt_quarter.setText("q1");
+            txt_quarter.setText("q1");  //necessary to correct quarter during game
         }
         undoStack.empty(); // empty at the end of each quarter (no more undo)
         StatsManager.toFile(); // save each quarter
@@ -392,6 +401,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      * @param v - current window
      */
     public void onNextQuarter(View v) {
+        pauseClock();
         onQuarter(v);
         txt_timer.setText("08:00");
         //reset clock so it resets to 8 minutes on every new quarter
@@ -455,6 +465,9 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
                     if((seconds == 0L) && (minutes == 0L)) {
                         pauseClock();
                         resetClock();
+                        if(txt_quarter.getText().equals("q4")) {
+                            gameOver = true;
+                        }
                         return;
                     }
                     //update currentTime (decrease by 1 second)
