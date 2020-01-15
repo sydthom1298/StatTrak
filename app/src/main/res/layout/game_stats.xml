@@ -254,7 +254,7 @@
 
                     <TextView
                         android:id="@+id/two_pt_pct"
-                        android:layout_width="60dp"
+                        android:layout_width="70dp"
                         android:padding="3dip"
                         android:text="@string/table_title_twopct"
                         android:textAlignment="viewStart"

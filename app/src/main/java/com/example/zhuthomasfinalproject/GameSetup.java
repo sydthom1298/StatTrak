@@ -1,5 +1,5 @@
-/*
-Jessica Zhu
+/**
+Jessica Zhu and Sydney Thomas
 January 6 2019
 Window that extends the Activity Class
 Allows user to set up the attributes of a new game to track.
@@ -24,7 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Calendar;
 
 public class GameSetup extends AppCompatActivity implements Serializable {
-    // master arraylist of possible jersey numbers for the selected team
+    // arraylist of possible jersey numbers for the selected team
     private ArrayList<Integer> jerseyNums;
     // list of saved teams that the user can choose from
     private ArrayList<Team> userTeams;
@@ -58,6 +58,7 @@ public class GameSetup extends AppCompatActivity implements Serializable {
     // Array of Spinners to more efficiently set (all display same values)
     private Spinner[] numSelectors;
 
+    // integer that represents the current year (changes if year is changed)
     private int season = 2020;
 
 
@@ -97,62 +98,61 @@ public class GameSetup extends AppCompatActivity implements Serializable {
         // initialize array of jersey number spinners to hold the five spinners on the form
         numSelectors = new Spinner[]{jNumSelector1, jNumSelector2, jNumSelector3, jNumSelector4, jNumSelector5};
 
-
+        // initialize arraylist of teams
         userTeams = new ArrayList<>();
 
-        if (StatsManager.getTeams().size() >= 2) {
+        // make sure there's more than the first default team (prompt) saved
+        if (StatsManager.getTeams().size() >= 2) { // 2+ teams
+            btnContinue.setEnabled(true); // enable the Continue button if the user has saved teams
+            // loop through the teams in the StatsManager
             for (int i = 1; i < StatsManager.getTeams().size(); i++) {
-                btnContinue.setEnabled(true);
+                // add every team in the StatsManager to the arraylist of teams
                 userTeams.add(StatsManager.getTeams().get(i));
             }
-        } else {
-            btnContinue.setEnabled(false);
+        } else { // 1 or 0 teams
+            btnContinue.setEnabled(false); // no saved teams, disable the user's ability to continue
+            // prompt the user to return to MANAGE TEAMS in order to proceed
             userTeams.add(new Team("You must create a new team in MANAGE TEAMS"));
         }
 
         // loops through saved teams, saves team names as Strings in an ArrayList
         for(int i = 0; i < userTeams.size(); i++) {
+            // add all the teams from the arrayList of teams as Strings (just the Team names)
             sUserTeams.add(i, userTeams.get(i).getName());
         }
 
 
         // ArrayAdapter for the list of team names (to be displayed in team selection Spinner)
         ArrayAdapter<String> teamAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sUserTeams);
-        teamSelector.setAdapter(teamAdapter);
+        // set the items in the Adapter to a consistent format
+        teamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        teamSelector.setAdapter(teamAdapter); // set Spinner to this adapter, to display teams
 
-        // checks to see if the state of the team selector Spinner has changed
+        // checks to see if the state of the Team Selector Spinner has changed
         teamSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             /**
              * runs when the item selected has changed
             */
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String sCurrentTeam = teamSelector.getSelectedItem().toString(); // get the team name selected in the
+                String sCurrentTeam = teamSelector.getSelectedItem().toString(); // get the team name selected in the team Selector as a String
                 jerseyNums = new ArrayList<>(); // initialize jersey number arraylist
 
+                // finds the team corresponding with the Team Name obtained from the Spinner in the Stats Manager
+                // stores as the currently selected team
                 currentTeam = StatsManager.findTeam(sCurrentTeam);
 
-                //loop through the arraylist of teams available (saved)
-                for (int i = 0; i < userTeams.size(); i++) {
-                    // check if the name selected in the team selection spinner matches the Team at i in the arraylist
-                    if (sCurrentTeam.equals(userTeams.get(i).getName())) {
-                        // if the String and team name match, set the currently selected team to the Team at i in the arrayList
-                        currentTeam = userTeams.get(i);
+                if (currentTeam != null) { // check if there are no teams
+                    // if there is a team selected
+                    // loop for the number of players on the currently selected team
+                    for (int i = 0; i < currentTeam.getNumPlayers(); i++ ) {
+                        // add the jersey number of each player on that team to an arrayList of Integers
+                        jerseyNums.add(i, currentTeam.getPlayers().get(i).getJerseyNum());
                     }
                 }
 
-                System.out.println(currentTeam);
-
-                // loop for the number of players on the currently selected team
-                for (int i = 0; i < currentTeam.getNumPlayers(); i++ ) {
-                    // add the jersey number of each player on that team to an arrayList of Integers
-                    jerseyNums.add(i, currentTeam.getPlayers().get(i).getJerseyNum());
-                }
-
-
 
                 // sort the numbers in order for better display
-                // TODO consider sorting at a different stage to prevent redundance (i.e. in ManageTeams)
                 sortJerseyNums(jerseyNums, 0, jerseyNums.size() - 1);
 
                 // initializes an ArrayAdapter for the jersey numbers
@@ -167,6 +167,9 @@ public class GameSetup extends AppCompatActivity implements Serializable {
                 }
             }
             @Override
+            /**
+             * required to override in Interface (occurs when nothing is selected)
+             */
             public void onNothingSelected(AdapterView<?> parentView) {
             }
         });
@@ -175,6 +178,7 @@ public class GameSetup extends AppCompatActivity implements Serializable {
         // TODO error-check jersey numbers (i.e. each number can only be selected one time)
 
         // listeners for state change for each of the jersey number selector spinners
+        // this listener is for the first spinner, comments repeat for the other 4
         jNumSelector1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             /**
@@ -186,8 +190,10 @@ public class GameSetup extends AppCompatActivity implements Serializable {
             }
 
             @Override
+            /**
+             * required to override in Interface (occurs when nothing is selected)
+             */
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
@@ -201,6 +207,9 @@ public class GameSetup extends AppCompatActivity implements Serializable {
             }
 
             @Override
+            /**
+             * required to override in Interface (occurs when nothing is selected)
+             */
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
@@ -291,9 +300,15 @@ public class GameSetup extends AppCompatActivity implements Serializable {
         }
     }
 
-    public void onContinue(View v) { // user wants to continue to tracker
+    /**
+     * Method that executes when the continue button is selected
+     * @param v - the current window
+     */
+    public void onContinue(View v) {
         // array of Players to store the five starting players
         Player[] startingLineup;
+        // Season object that stores the season that this current game is being played in
+        Season s;
         // objects to represent the input for the user's team and the opponent's team
         oppTeam = findViewById(R.id.opp_input);
         // stores the value of that text input as a String
@@ -302,10 +317,13 @@ public class GameSetup extends AppCompatActivity implements Serializable {
         // initialize the array of Players
         startingLineup = new Player[5];
 
-        Game g = new Game(currentTeam, opp);  //needed before loop to create playerStat
-        for(Player p:currentTeam.getPlayers()){
+        // needed before loop to create playerStats (must initialize game time)
+        // declare and instantiate a Game object with attributes of the current time,
+        // the current team and the opposing team's name
+        Game g = new Game(currentTeam, opp);
+
+        for(Player p:currentTeam.getPlayers()){ // loops through the players on the current team
             p.addPlayerStat(g.getGameDateTime()); //create player stat with game time
-            p.getCurrentStats().setOpp(opp);
         }
 
         // loop 5 times (through each number selection spinner)
@@ -321,24 +339,29 @@ public class GameSetup extends AppCompatActivity implements Serializable {
             }
         }
 
-
-        Season s;
-        if(Calendar.getInstance().get(Calendar.YEAR) > season){ // first check if a season has passed already
-            season++;
+        if(Calendar.getInstance().get(Calendar.YEAR) > season){ // first check if a season (year) has passed already
+            season++; // if so, increase the value of the season variable
+            // then instantiate a new season for this team, starting from the new year, ending a year from now
             s = new Season(currentTeam, season, season + 1);
+            // add that new season to the StatsManager
+            StatsManager.addSeason(s);
+            // add that season to the current team's list of seasons
+            currentTeam.addSeason(s);
+        } else if (currentTeam.getSeason(season) == null) { // if the current team doesn't have any season for this year, make a new one
+            // instantiate a new season using the current year, ending a year from now
+            s = new Season(currentTeam, season, season + 1);
+            // add the season to the StatsManager and the current team's list
             StatsManager.addSeason(s);
             currentTeam.addSeason(s);
-        } else if (currentTeam.getSeason(season) == null) { // if the current team doesn't have any seasons, make a new one
-            s = new Season(currentTeam, season, season + 1);
-            StatsManager.addSeason(s);
-            currentTeam.addSeason(s);
-        } else {
+        } else { // otherwise, year has not passed and the team has a season for this year
+            // set the season to the existing season
             s = currentTeam.getSeason(season);
         }
-
+        // set the current season in the Stats Manager to the season object
         StatsManager.setCurrentSeason(s);
+        // add the game instantiated with the current Team/opponent to the season
         StatsManager.getCurrentSeason().addGame(g);
-        // create a new game with attributes of the user's team, and their inputted opponent
+        // set the current game to that game as well
         StatsManager.setCurrentGame(g);
         // set the Playing players in the game to the starting lineup to start (in the tracker)
         StatsManager.getCurrentGame().setPlaying(startingLineup);
@@ -346,15 +369,15 @@ public class GameSetup extends AppCompatActivity implements Serializable {
         // sets the current player as a default to the first player listed in the starting lineup
         StatsManager.setCurrentPlayer(startingLineup[0]);
 
-        // save to StatsManager
+        // save to StatsManager (write to file)
         StatsManager.toFile();
 
         launchGameTracker(v); // launch the tracker
     }
 
     /**
-     * Method that launches the game tracker window
-     * @param v
+     * method that launches the game tracker window
+     * @param v - this window
      */
     public void launchGameTracker(View v) {
         Intent i = new Intent(this, GameTimeTrackerActivity.class);

@@ -5,6 +5,7 @@
  */
 package com.example.zhuthomasfinalproject;
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
@@ -355,5 +356,14 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
             //saves everything including teams
             StatsManager.toFile();
         }
+    }
+
+    /**
+     * Method that launches the instructions window when the Help button is clicked
+     * @param v - the current window
+     */
+    public void launchInstructions(View v) {
+        Intent i = new Intent(this, Instructions.class);
+        startActivity(i);
     }
 }

@@ -1,5 +1,5 @@
-/*
-Jessica Zhu
+/**
+Jessica Zhu and Sydney Thomas
 January 12 2020
 Window of the application that allows the user to view the instructions in operating our application.
 User can flip through sections of instructions that resemble a user manual, minus the pictures

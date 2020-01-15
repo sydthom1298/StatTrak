@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
+    <ImageButton
+        android:id="@+id/btn_help_manager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="@string/btn_help_desc"
+        android:onClick="launchInstructions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_help" />
+
     <TextView
         android:id="@+id/manager_title"
         android:layout_width="0dp"

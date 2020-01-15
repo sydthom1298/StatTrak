@@ -1,5 +1,5 @@
-/*
-Jessica Zhu
+/**
+Jessica Zhu and Sydney Thomas
 January 12 2020
 Window that displays the credits for the application.
  */

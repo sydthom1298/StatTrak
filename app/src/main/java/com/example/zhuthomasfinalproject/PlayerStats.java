@@ -1,5 +1,5 @@
 /**
- * Sydney Thomas
+ * Sydney Thomas and Jessica Zhu
  * January 14, 2019
  * Player statistics class that stores the stats for players game performance
  * Each player will have a PlayerStats for each game that they play in
@@ -27,7 +27,6 @@ public class PlayerStats implements Serializable {
     private int fouls; //number of fouls
     private int points; //points
     private long playingTime; // playing time in milliseconds
-    private String opp; //opponent name
 
     /**
      * default constructor that constructs a com.example.zhuthomasfinalproject.PlayerStats class and initializes attributes
@@ -48,7 +47,6 @@ public class PlayerStats implements Serializable {
         blocks = 0;
         gameDateTime = System.currentTimeMillis();
         playingTime = 0;
-        opp = "";
     }
 
     /**
@@ -58,14 +56,6 @@ public class PlayerStats implements Serializable {
     public PlayerStats(long gDT){
         this();
         gameDateTime = gDT;
-    }
-
-    public String getOpp(){
-        return opp;
-    }
-
-    public void setOpp(String o) {
-        opp = o;
     }
 
 
@@ -571,18 +561,33 @@ public class PlayerStats implements Serializable {
         return 0.0;
     }
 
+    /**
+     * method that calculates made field goals (combination of two and three pointers)
+     * @return - field goals
+     */
     public int getFGs() {
         return twoPtMakes + threePtMakes;
     }
 
+    /**
+     * method that calculates field goal attempts (combination of two point and three point attempts)
+     * @return - field goal attempts
+     */
     public int getFGAttempts() {
         return this.getTwoPtAttempts() + this.get3Attempts();
     }
 
+    /**
+     * method that calculates field goal percentage (made field goals / attempted field goals)
+     * @return - field goal percent
+     */
     public double getFGPct() {
-        if (this.getFGAttempts() > 0) {
+        if (this.getFGAttempts() > 0) { // check if there will be a divide by 0 error (no field goals attempted)
+            // player has attempted at least one FG
             return (double) this.getFGs() / (double) this.getFGAttempts();
         }
+        // no attempts
+        // return 0
         return 0.0;
 
     }
@@ -600,9 +605,13 @@ public class PlayerStats implements Serializable {
      * @return - three point percentage
      */
     public double get3Pct() {
-        if (this.get3Attempts() > 0) {
+        if (this.get3Attempts() > 0) { // check for divide by 0 error (no attempted three pointers)
+            // attempt was made
+            // return calculated percentage
             return (double) threePtMakes / (double) this.get3Attempts();
         }
+        // no attempts
+        // return 0
         return 0.0;
     }
 
@@ -619,9 +628,13 @@ public class PlayerStats implements Serializable {
      * @return - free throw percentage
      */
     public double getFTPct() {
-        if (this.getFTAttempts() > 0) {
+        if (this.getFTAttempts() > 0) { // check if no FT attempts were made
+            // at least one attempt made
+            // return calculated percentage
             return (double) ftMakes / (double) this.getFTAttempts();
         }
+        // no attempts
+        // return 0
         return 0.0;
     }
 
@@ -634,9 +647,13 @@ public class PlayerStats implements Serializable {
      * @return the Player's effective field goal percentage
      */
     public double getEFGPct() {
-        if (this.getFGAttempts() > 0) {
+        if (this.getFGAttempts() > 0) { // check if no FG attempts were made
+            // at least one attempt made
+            // return calculation value
             return (twoPtMakes + threePtMakes + 0.5 * threePtMakes) / (double) this.getFGAttempts();
         }
+        // no attempts
+        // return 0
         return 0.0;
     }
 

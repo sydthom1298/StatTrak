@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // setup screen from XML
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
 

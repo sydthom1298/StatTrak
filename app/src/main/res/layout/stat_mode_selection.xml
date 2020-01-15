@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
+    <ImageButton
+        android:id="@+id/btn_help_mode_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="@string/btn_help_desc"
+        android:onClick="launchInstructions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_help" />
+
     <TextView
         android:id="@+id/stat_select_title"
         android:layout_width="0dp"
@@ -32,7 +44,7 @@
         android:layout_marginTop="80dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_semibold"
-        android:onClick="onGameSelection"
+        android:onClick="launchGameSummary"
         android:text="@string/game_mode_btn"
         android:textColor="@color/titles"
         android:textSize="40sp"
@@ -48,7 +60,7 @@
         android:layout_marginTop="80dp"
         android:background="@android:color/white"
         android:fontFamily="@font/raleway_semibold"
-        android:onClick="onSeasonSelection"
+        android:onClick="launchSeasonSummary"
         android:text="@string/team_mode_btn"
         android:textColor="@color/titles"
         android:textSize="40sp"
