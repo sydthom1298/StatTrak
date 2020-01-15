@@ -1,18 +1,20 @@
+/**
+ * Sydney Thomas
+ * January 15, 2020
+ * Class to encapsulate a player
+ */
 package com.example.zhuthomasfinalproject;
-
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Player implements Serializable {
-    private int jerseyNum;
-    private String name;
-    private String position;
-    private boolean active;
+    private int jerseyNum; //players number
+    private String name; //name of player
+    private String position; //position of player
+    private boolean active; //whether or not the player is active in game
     private ArrayList<PlayerStats> stats; //list of players stats for player
     private boolean inGame; //indicator to tell if player is playing in the game
-
-    private PlayerStats currentStats;
+    private PlayerStats currentStats; //currently selected stats
 
     /**
      * default constructor that contructs a player class and initializes attributes
@@ -52,7 +54,7 @@ public class Player implements Serializable {
     }
 
     /**
-     * accessor that gest the current stats of the player
+     * accessor that gets the current stats of the player
      * @return - player stats
      */
     public PlayerStats getCurrentStats() {
@@ -99,30 +101,59 @@ public class Player implements Serializable {
         name = n;
     }
 
+    /**
+     * accessor that gets the position of the player
+     * @return - position of player
+     */
     public String getPosition() {
         return position;
     }
 
+    /**
+     * mutator that sets the position
+     * @param p - position of player to set
+     */
     public void setPosition(String p) {
         position = p;
     }
 
+    /**
+     * accessor that gets if the player is active
+     * @return - if player is active or not
+     */
     public boolean isActive() {
         return active;
     }
 
+    /**
+     * mutator that sets if the player is active
+     * @param a - true if active false if not
+     */
     public void setActive(boolean a) {
         active = a;
     }
 
+    /**
+     * accessor that gets all the player stats
+     * @return - player stats
+     */
     public ArrayList<PlayerStats> getStats() {
         return stats;
     }
 
+    /**
+     * mutator that sets all the player stats
+     * @param s - player stats to set
+     */
     public void setStats(ArrayList<PlayerStats> s) {
         stats = s;
     }
 
+    /**
+     * method that searches for player stats on a given date and time
+     * @param t - date and time in milliseconds
+     * @return - players stats if true or null if false
+     */
     public PlayerStats getStat(long t) {
         for(PlayerStats s: stats){
             if(s.getGameDateTime() == t){
@@ -131,6 +162,11 @@ public class Player implements Serializable {
         }
         return null;
     }
+
+    /**
+     * method that creates a new player stat and adds it to the list
+     * @param t - specified date and time that the player stat is for
+     */
     public void addPlayerStat(long t){
         PlayerStats s = new PlayerStats(t);
         if(stats == null) {
@@ -139,16 +175,12 @@ public class Player implements Serializable {
         stats.add(s);
         currentStats = s;
     }
-    public void Play(long start){
-        //set start time (game clock)
-        inGame = true;
-    }
-    public void Bench(long end){
-        //set end time (game clock)
-        inGame = false;
-    }
-    //used to fill the players in the playerlist
-    public java.lang.String toString(){
+    /**
+     * String representation of class
+     * used to fill the players in the playerList
+     * @return - String representation
+     */
+    public String toString(){
         String str = "Name: " + name + "\nPlayer Number: " + jerseyNum;
         return str;
     }

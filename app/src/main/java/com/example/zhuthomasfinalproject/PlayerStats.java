@@ -1,5 +1,10 @@
+/**
+ * Sydney Thomas
+ * January 14, 2019
+ * Player statistics class that stores the stats for players game performance
+ * Each player will have a PlayerStats for each game that they play in
+ */
 package com.example.zhuthomasfinalproject;
-
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
@@ -15,7 +20,6 @@ public class PlayerStats implements Serializable {
     private int ftMisses; //free throws attempted by player
     private int defRebs; //defensive rebounds
     private int offRebs; //offensive rebounds
-    private int ttlRebs; //total rebounds
     private int turnovers; //total turnovers
     private int steals; //total steals
     private int blocks; //total blocks
@@ -23,7 +27,7 @@ public class PlayerStats implements Serializable {
     private int fouls; //number of fouls
     private int points; //points
     private long playingTime; // playing time in milliseconds
-    private String opp;
+    private String opp; //opponent name
 
     /**
      * default constructor that constructs a com.example.zhuthomasfinalproject.PlayerStats class and initializes attributes
@@ -39,7 +43,6 @@ public class PlayerStats implements Serializable {
         ftMisses = 0;
         defRebs = 0;
         offRebs = 0;
-        ttlRebs = 0;
         turnovers = 0;
         steals = 0;
         blocks = 0;
@@ -65,13 +68,23 @@ public class PlayerStats implements Serializable {
         opp = o;
     }
 
+
+    /**
+     * accessor that gets the the timestamp for the game
+     * @return - timestamp for the game
+     */
     public long getGameDateTime() {
         return gameDateTime;
     }
 
+    /**
+     * mutator that sets the timestamp for the game
+     * @param gDT - timestamp to set game
+     */
     public void setGameDateTime(long gDT) {
         gameDateTime = gDT;
     }
+
 
     /**
      * accessor that gets the number of minutes the player has played
@@ -97,16 +110,23 @@ public class PlayerStats implements Serializable {
         return twoPtMakes;
     }
 
+    /**
+     * method that adds one to the two points makes stat
+     */
     public void addTwoPtMakes(){
         twoPtMakes++;
     }
+
+    /**
+     * method that subtracts one from the two point makes stat
+     */
     public void subtractTwoPtMakes(){
         twoPtMakes--;
     }
 
     /**
      * mutator that sets two pointers made by current player
-     * @param twoPM - two pointers to set two pointers made to
+     * @param twoPM - two pointers to set
      */
     public void setTwoPtMakes(int twoPM) {
         twoPtMakes = twoPM;
@@ -120,16 +140,23 @@ public class PlayerStats implements Serializable {
         return twoPtMisses;
     }
 
+    /**
+     * method that adds one to two point misses stat
+     */
     public void addTwoPtMisses(){
         twoPtMisses++;
     }
+
+    /**
+     * method that subtract one from two point misses stat
+     */
     public void subtractTwoPtMisses(){
         twoPtMisses--;
     }
 
     /**
      * mutator that sets the number of two pointers missed by current player
-     * @param twoPM - two pointers missed by current player to set two point misses to
+     * @param twoPM - two pointers missed by current player to set
      */
     public void setTwoPtMisses(int twoPM) {
         twoPtMisses = twoPM;
@@ -143,58 +170,81 @@ public class PlayerStats implements Serializable {
         return threePtMakes;
     }
 
+    /**
+     * method that adds one to the three point makes stat
+     */
     public void addThreePtMakes(){
         threePtMakes++;
     }
+
+    /**
+     * method that subtracts one from the three point makes stat
+     */
     public void subtractThreePtMakes(){
         threePtMakes--;
     }
     /**
      * mutator that sets the number of three pointers made by current player
-     * @param threePM - three pointers made by current player to set three pointers made to
+     * @param threePM - three pointers made by current player to set
      */
     public void setThreePtMakes(int threePM) {
         threePtMakes = threePM;
     }
 
     /**
-     * accessor that gets the number of three pointers attempted by current player
-     * @return - number of three pointers attempted
+     * accessor that gets the number of three pointers missed by current player
+     * @return - number of three pointers missed
      */
     public int getThreePtMisses() {
         return threePtMisses;
     }
+
+    /**
+     * method that adds one to the three point misses stat
+     */
     public void addThreePtMisses(){
         threePtMisses++;
     }
+
+    /**
+     * method that subtracts one from the three point misses stat
+     */
     public void subtractThreePtMisses(){
         threePtMisses--;
     }
     /**
      * mutator that sets the number of three pointers missed by the current player
-     * @param threePM - three pointers missed by current player to set three pointers missed to
+     * @param threePM - three pointers missed by current player to set
      */
     public void setThreePtMisses(int threePM) {
         threePtMisses = threePM;
     }
 
     /**
-     * accessor that gets the number of assists by the current player
+     * accessor that gets the number of assists
      * @return - number of assists
      */
     public int getAssists() {
         return assists;
     }
+
+    /**
+     * method that adds one to the assist stat
+     */
     public void addAssists(){
         assists++;
     }
+
+    /**
+     * method that subtracts one from the assist stat
+     */
     public void subtractAssists(){
         assists--;
     }
 
     /**
-     * mutator that sets the number of assists by the current player
-     * @param a - number of assits by current player to set number of assists to
+     * mutator that sets the number of assists
+     * @param a - number of assists to set
      */
     public void setAssists(int a) {
         assists = a;
@@ -207,16 +257,24 @@ public class PlayerStats implements Serializable {
     public int getFtMakes() {
         return ftMakes;
     }
+
+    /**
+     * method that adds one to the free throw makes stat
+     */
     public void addFtMakes(){
         ftMakes++;
     }
+
+    /**
+     * method that subtracts one from the free throw makes stat
+     */
     public void subtractFtMakes(){
         ftMakes--;
     }
 
     /**
-     * mutator that sets the number of free throws made by current player
-     * @param ftM - free throws made by current player to set free throws made to
+     * mutator that sets the number of free throws made
+     * @param ftM - free throws made to set
      */
     public void setFtMakes(int ftM) {
         ftMakes = ftM;
@@ -229,16 +287,24 @@ public class PlayerStats implements Serializable {
     public int getFtMisses() {
         return ftMisses;
     }
+
+    /**
+     * method that adds one to the free throw missed stat
+     */
     public void addFtMisses(){
         ftMisses++;
     }
+
+    /**
+     * method that subtracts one from the free throw missed stat
+     */
     public void subtractFtMisses(){
         ftMisses--;
     }
 
     /**
-     * mutator that sets the number of free throws missed by current player
-     * @param ftM - free throws missed by current player to set free throws missed to
+     * mutator that sets the number of free throws missed
+     * @param ftM - free throws missed to set
      */
     public void setFtMisses(int ftM) {
         ftMisses = ftM;
@@ -251,16 +317,24 @@ public class PlayerStats implements Serializable {
     public int getDefRebs() {
         return defRebs;
     }
+
+    /**
+     * method that adds one to the defensive rebound stat
+     */
     public void addDefRebs(){
         defRebs++;
     }
+
+    /**
+     * method that subtracts one from the defensive rebound stat
+     */
     public void subtractDefRebs(){
         defRebs--;
     }
 
     /**
-     * mutator that sets the number of defensive rebounds by current player
-     * @param dR - defensive rebounds by current player to set defensive rebounds to
+     * mutator that sets the number of defensive rebounds
+     * @param dR - defensive rebounds to set
      */
     public void setDefRebs(int dR) {
         defRebs = dR;
@@ -273,41 +347,34 @@ public class PlayerStats implements Serializable {
     public int getOffRebs() {
         return offRebs;
     }
+    /**
+     * method that adds one to the offensive rebound stat
+     */
     public void addOffRebs(){
         offRebs++;
     }
+
+    /**
+     * method that subtracts one from the offensive rebound stat
+     */
     public void subtractOffRebs(){
         offRebs--;
     }
 
     /**
-     * mutator that sets the number of offensive rebounds by current player
-     * @param oR - offensive rebounds by current player to set offensive rebounds to
+     * mutator that sets the number of offensive rebounds
+     * @param oR - offensive rebounds to set
      */
     public void setOffRebs(int oR) {
         offRebs = oR;
     }
 
     /**
-     * accessor that gets the total number of rebounds by current player
-     * @return - total number of rebounds
+     * accessor that gets the total number of rebounds
+     * @return - total number of rebounds (offensive + defensive)
      */
     public int getTtlRebs() {
-        return ttlRebs;
-    }
-    public void addTtlRebs(){
-        ttlRebs++;
-    }
-    public void subtractTtlRebs(){
-        ttlRebs--;
-    }
-
-    /**
-     * mutator that sets the total number of rebounds by current player
-     * @param ttlR - total rebounds by current player to set total rebounds to
-     */
-    public void setTtlRebs(int ttlR) {
-        ttlRebs = ttlR;
+        return offRebs + defRebs;
     }
 
     /**
@@ -317,37 +384,53 @@ public class PlayerStats implements Serializable {
     public int getTurnovers() {
         return turnovers;
     }
+
+    /**
+     * method that adds one to the turnover stat
+     */
     public void addTurnovers(){
         turnovers++;
     }
+
+    /**
+     * method that subtracts one from the turnover stat
+     */
     public void subtractTurnovers(){
         turnovers--;
     }
     /**
-     * mutator that sets the number of turnovers by current player
-     * @param t - turnovers by current player to set turnovers to
+     * mutator that sets the number of turnovers
+     * @param t - number of turnovers to set
      */
     public void setTurnovers(int t) {
         turnovers = t;
     }
 
     /**
-     * accessor that gets the number of steals by current player
-     * @return - number of steals by current player
+     * accessor that gets the number of steals
+     * @return - number of steals
      */
     public int getSteals() {
         return steals;
     }
+
+    /**
+     * method that adds one to the steals stat
+     */
     public void addSteals(){
         steals++;
     }
+
+    /**
+     * method that subtracts one from the steals stat
+     */
     public void subtractSteals(){
         steals--;
     }
 
     /**
-     * mutator that sets the number of steals by current player
-     * @param s - steals by current player to set steals to
+     * mutator that sets the number of steals
+     * @param s - number of steals to set
      */
     public void setSteals(int s) {
         steals = s;
@@ -360,64 +443,127 @@ public class PlayerStats implements Serializable {
     public int getBlocks() {
         return blocks;
     }
+
+    /**
+     * method that adds one to the blocks stat
+     */
     public void addBlocks(){
         blocks++;
     }
+
+    /**
+     * method that subtracts one from the blocks stat
+     */
     public void subtractBlocks(){
         blocks--;
     }
 
     /**
-     * mutator that sets the number of blocks by current player
-     * @param b - blocks by current player to set blocks to
+     * mutator that sets the number of blocks
+     * @param b - number of blocks to set
      */
     public void setBlocks(int b) {
         blocks = b;
     }
 
+    /**
+     * accessor that gets the number of fouls on player
+     * @return - number of fouls on player
+     */
     public int getFouls() {
         return fouls;
     }
+
+    /**
+     * method that adds one to the personal fouls stat
+     */
     public void addFouls(){
         fouls++;
     }
+
+    /**
+     * method that subtracts one from the personal fouls stat
+     */
     public void subtractFouls(){
         fouls--;
     }
+
+    /**
+     * mutator that sets the number of personal fouls
+     * @param f - number of personal fouls to set
+     */
     public void setFouls(int f) {
         fouls = f;
     }
 
+    /**
+     * accessor that gets the number of points by the player
+     * @return - number of points by player
+     */
     public int getPoints() {
         return points;
     }
 
+    /**
+     * mutator that sets the number of points by player
+     * @param p - number of points by player to set
+     */
     public void setPoints(int p) {
         points = p;
     }
+
+    /**
+     * method that adds specified value to the points for the player
+     * @param ptsToAdd - value to add to points
+     */
     public void addPoints(int ptsToAdd) {
         points += ptsToAdd;
     }
+
+    /**
+     * method that subtracts specified value from points for the player
+     * @param ptsToSub - value to subtract from points
+     */
     public void subtractPoints(int ptsToSub) {
         points -= ptsToSub;
     }
 
+    /**
+     * accessor that gets playing time in milliseconds
+     * @return - playing time in milliseconds
+     */
     public long getPlayingTime() {
         return playingTime;
     }
 
+    /**
+     * mutator that sets playing time in milliseconds
+     * @param t - playing time in milliseconds to set
+     */
     public void setPlayingTime(long t) {
         playingTime = t;
     }
 
+    /**
+     * method that adds specified value to playing time
+     * @param t - specified value
+     */
     public void addPlayingTime(long t) {
         playingTime = playingTime + t;
     }
 
+    /**
+     * method that calculates the two point attempts
+     * @return - two point attempts
+     */
     public int getTwoPtAttempts() {
         return twoPtMakes + twoPtMisses;
     }
 
+    /**
+     * method that calculates the two point percentage
+     * @return - two point percentage
+     */
     public double getTwoPtPct() {
         if (this.getTwoPtAttempts() > 0) {
             return (double) twoPtMakes / (double) this.getTwoPtAttempts();
@@ -441,10 +587,18 @@ public class PlayerStats implements Serializable {
 
     }
 
+    /**
+     * method that calculates total three point attempts
+     * @return - total three point attempts
+     */
     public int get3Attempts() {
         return threePtMakes + threePtMisses;
     }
 
+    /**
+     * method that calculates the three point percentage
+     * @return - three point percentage
+     */
     public double get3Pct() {
         if (this.get3Attempts() > 0) {
             return (double) threePtMakes / (double) this.get3Attempts();
@@ -452,10 +606,18 @@ public class PlayerStats implements Serializable {
         return 0.0;
     }
 
+    /**
+     * method that calculates total free throw attempts
+     * @return - total free throw attempts
+     */
     public int getFTAttempts() {
         return ftMakes + ftMisses;
     }
 
+    /**
+     * method that calculates free throw percentage
+     * @return - free throw percentage
+     */
     public double getFTPct() {
         if (this.getFTAttempts() > 0) {
             return (double) ftMakes / (double) this.getFTAttempts();
@@ -490,9 +652,8 @@ public class PlayerStats implements Serializable {
                 twoPtMisses + " Three Pointers Made: " + threePtMakes + " Three Pointers Missed: " + threePtMisses +
                 " Assist: " + assists + " Free Throws Made: " + ftMakes + " Free Throws Missed: " + ftMisses +
                 "\nDefensive Rebounds: " + defRebs + " Offensive Rebounds: " + offRebs + " Total Rebounds: " +
-                ttlRebs + " Turnovers: " + turnovers + " Steals: " + steals + " Blocks: " + blocks +
+                offRebs+defRebs + " Turnovers: " + turnovers + " Steals: " + steals + " Blocks: " + blocks +
                 " Fouls: " + fouls +  " Date/Time " +  d.toString() + " " + t.toString();
-        //TODO add missing fields
         return str;
     }
 }
