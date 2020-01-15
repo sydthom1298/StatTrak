@@ -62,15 +62,25 @@
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/mins_played"
+                        android:id="@+id/games_played"
+                        android:layout_width="70dp"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="@string/table_title_games"
+                        android:textAlignment="viewStart"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/minutes_per_game"
                         android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:padding="3dip"
                         android:text="@string/table_title_mins"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/pts"
+                        android:id="@+id/points_per_game"
                         android:layout_width="60dp"
                         android:padding="3dip"
                         android:text="@string/table_title_pts"
@@ -78,136 +88,184 @@
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/assists"
+                        android:id="@+id/assists_per_game"
                         android:layout_width="75dp"
+                        android:layout_height="match_parent"
                         android:padding="3dip"
                         android:text="@string/table_title_asts"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/rebs"
+                        android:id="@+id/rebs_per_game"
                         android:layout_width="80dp"
+                        android:layout_height="match_parent"
                         android:padding="3dip"
                         android:text="@string/table_title_rebs"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/def_rebs"
+                        android:id="@+id/def_rebs_per_game"
                         android:layout_width="75dp"
+                        android:layout_height="match_parent"
                         android:padding="3dip"
                         android:text="@string/table_title_def_rebs"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/off_rebs"
+                        android:id="@+id/off_rebs_per_game"
                         android:layout_width="75dp"
+                        android:layout_height="match_parent"
                         android:padding="3dip"
                         android:text="@string/table_title_off_rebs"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/two_pt_makes"
+                        android:id="@+id/field_goals"
                         android:layout_width="45dp"
                         android:padding="3dip"
-                        android:text="@string/table_title_twos"
+                        android:text="@string/table_title_fg"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/two_pt_attempts"
+                        android:id="@+id/fg_attempts"
                         android:layout_width="60dp"
                         android:padding="3dip"
-                        android:text="@string/table_title_twoatts"
+                        android:text="@string/table_title_fgatts"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/fg_pct"
-                        android:layout_width="75dp"
+                        android:layout_width="70dp"
                         android:padding="3dip"
                         android:text="@string/table_title_fgpct"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/three_pt_makes"
+                        android:id="@+id/two_pt_makes_per_game"
                         android:layout_width="45dp"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="@string/table_title_twos"
+                        android:textAlignment="viewStart"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/two_pt_attempts_per_game"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="@string/table_title_twoatts"
+                        android:textAlignment="viewStart"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/two_pt_pct"
+                        android:layout_width="60dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_twopct"
+                        android:textAlignment="viewStart"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/efg_pct"
+                        android:layout_width="75dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_eFGPct"
+                        android:textAlignment="viewStart"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/three_pt_makes_per_game"
+                        android:layout_width="45dp"
+                        android:layout_height="match_parent"
                         android:padding="3dip"
                         android:text="@string/table_title_threes"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/three_pt_atts"
+                        android:id="@+id/three_pt_atts_per_game"
                         android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:padding="3dip"
                         android:text="@string/table_title_threeatts"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/three_pt_pct"
+                        android:id="@+id/three_pt_pct_avg"
                         android:layout_width="75dp"
+                        android:layout_height="match_parent"
                         android:padding="3dip"
                         android:text="@string/table_title_3ptpct"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/free_throws"
+                        android:id="@+id/free_throws_per_game"
                         android:layout_width="45dp"
+                        android:layout_height="match_parent"
                         android:padding="3dip"
                         android:text="@string/table_title_fts"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/ft_atts"
+                        android:id="@+id/ft_atts_per_game"
                         android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:padding="3dip"
                         android:text="@string/table_title_ftas"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/ft_pct"
+                        android:id="@+id/ft_pct_avg"
                         android:layout_width="75dp"
+                        android:layout_height="match_parent"
                         android:padding="3dip"
                         android:text="@string/table_title_ftpct"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/turnovers"
+                        android:id="@+id/turnovers_per_game"
                         android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:padding="3dip"
                         android:text="@string/table_title_tos"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/stls"
+                        android:id="@+id/stls_per_game"
                         android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:padding="3dip"
                         android:text="@string/table_title_stls"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/blocks"
+                        android:id="@+id/blocks_per_game"
                         android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:padding="3dip"
                         android:text="@string/table_title_blks"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/fouls"
+                        android:id="@+id/fouls_per_game"
                         android:layout_width="100dp"
+                        android:layout_height="match_parent"
                         android:padding="3dip"
                         android:text="@string/table_title_fouls"
                         android:textAlignment="viewStart"
@@ -416,6 +474,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:contentDescription="@string/btn_help_desc"
+        android:onClick="launchInstructions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_help" />

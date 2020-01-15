@@ -414,12 +414,31 @@ public class PlayerStats implements Serializable {
         playingTime = playingTime + t;
     }
 
-    public int getFGAttempts() {
+    public int getTwoPtAttempts() {
         return twoPtMakes + twoPtMisses;
     }
 
+    public double getTwoPtPct() {
+        if (this.getTwoPtAttempts() > 0) {
+            return (double) twoPtMakes / (double) this.getTwoPtAttempts();
+        }
+        return 0.0;
+    }
+
+    public int getFGs() {
+        return twoPtMakes + threePtMakes;
+    }
+
+    public int getFGAttempts() {
+        return this.getTwoPtAttempts() + this.get3Attempts();
+    }
+
     public double getFGPct() {
-        return (double) twoPtMakes / (double) this.getFGAttempts();
+        if (this.getFGAttempts() > 0) {
+            return (double) this.getFGs() / (double) this.getFGAttempts();
+        }
+        return 0.0;
+
     }
 
     public int get3Attempts() {
@@ -427,7 +446,10 @@ public class PlayerStats implements Serializable {
     }
 
     public double get3Pct() {
-        return (double) threePtMakes / (double) this.get3Attempts();
+        if (this.get3Attempts() > 0) {
+            return (double) threePtMakes / (double) this.get3Attempts();
+        }
+        return 0.0;
     }
 
     public int getFTAttempts() {
@@ -435,11 +457,26 @@ public class PlayerStats implements Serializable {
     }
 
     public double getFTPct() {
-        return (double) ftMakes / (double) this.getFTAttempts();
+        if (this.getFTAttempts() > 0) {
+            return (double) ftMakes / (double) this.getFTAttempts();
+        }
+        return 0.0;
     }
 
-
-
+    /**
+     * Effective Field Goal Percentage; the formula is (FG + 0.5 * 3P) / FGA.
+     * This statistic adjusts for the fact that a 3-point field goal is worth one more point than a 2-point field goal.
+     * For example, suppose Player A goes 4 for 10 with 2 threes, while Player B goes 5 for 10 with 0 threes.
+     * Each player would have 10 points from field goals, and thus would have the same effective field goal percentage (50%)
+     * (from Basketball Reference)
+     * @return the Player's effective field goal percentage
+     */
+    public double getEFGPct() {
+        if (this.getFGAttempts() > 0) {
+            return (twoPtMakes + threePtMakes + 0.5 * threePtMakes) / (double) this.getFGAttempts();
+        }
+        return 0.0;
+    }
 
     /**
      * String representation of class

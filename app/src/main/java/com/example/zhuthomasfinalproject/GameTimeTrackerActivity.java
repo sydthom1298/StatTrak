@@ -276,6 +276,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         }
         undoStack.empty(); // empty at the end of each quarter (no more undo)
         StatsManager.toFile(); // save each quarter
+
     }
 
     /**

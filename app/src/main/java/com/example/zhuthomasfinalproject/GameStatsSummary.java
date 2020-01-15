@@ -7,6 +7,7 @@ These stats can also be written to data files for later use
  */
 package com.example.zhuthomasfinalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
@@ -156,7 +157,7 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
         PlayerStats temp;
 
         // checks which playerstats matches the selected game
-        for (int i = 0; i < 1/*roster.size()*/; i++) {
+        for (int i = 0; i < 1/*roster.size() TODO - replace with roster size when testing*/; i++) {
             for (int j = 0; j < roster.get(i).getStats().size(); j++) {
                 temp = roster.get(i).getStats().get(j);
 
@@ -168,18 +169,18 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
                 statDate.setTime(sDate);
                 gameDate.setTime(gDate);
 
-                if (statDate.get(Calendar.DAY_OF_YEAR) == gameDate.get(Calendar.DAY_OF_YEAR) && temp.getOpp().equals(currentGame.getOpponent())) {
+                if (statDate.get(Calendar.DAY_OF_YEAR) == gameDate.get(Calendar.DAY_OF_YEAR) && statDate.get(Calendar.YEAR) == gameDate.get(Calendar.YEAR) && temp.getOpp().equals(currentGame.getOpponent())) {
                     roster.get(i).setCurrentStats(temp);
                 }
-
             }
         }
 
-        for (int i = 0; i < 1 /*TODO replace with roster size when game time tracker is integrated*/; i++) {
+        for (int i = 0; i < roster.size(); i++) {
             TableRow r = new TableRow(this);
             Player thisPlayer = roster.get(i);
             PlayerStats currentStats = thisPlayer.getCurrentStats();
-            TextView name, num, mins, pts, assts, tRebs, dRebs, oRebs, twoPts, twoPtAtts, fgPct, threePts, threePtAtts, threePtPct, fts, ftAttempts, ftPct, tOvers, stls, blks, fouls;
+            TextView name, num, mins, pts, assts, tRebs, dRebs, oRebs, fg, fgAtts, fgPct, twoPts, twoPtAtts, twoPtPct, eFGPct,
+                    threePts, threePtAtts, threePtPct, fts, ftAttempts, ftPct, tOvers, stls, blks, fouls;
 
             name = newStat(0);
             name.setText(thisPlayer.getName());
@@ -189,7 +190,7 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
             r.addView(num);
 
             mins = newStat(2);
-            mins.setText(Integer.toString(currentStats.getMinPlayed()));
+            mins.setText(Integer.toString((int) (currentStats.getPlayingTime() / 60000)));
             r.addView(mins);
 
             pts = newStat(3);
@@ -212,62 +213,78 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
             oRebs.setText(Integer.toString(currentStats.getOffRebs()));
             r.addView(oRebs);
 
-            twoPts = newStat(8);
-            twoPts.setText(Integer.toString(currentStats.getTwoPtMakes()));
-            r.addView(twoPts);
+            fg = newStat(8);
+            fg.setText(Integer.toString(currentStats.getFGs()));
+            r.addView(fg);
 
-            twoPtAtts = newStat(9);
-            twoPtAtts.setText(Integer.toString(currentStats.getFGAttempts()));
-            r.addView(twoPtAtts);
+            fgAtts = newStat(9);
+            fgAtts.setText(Integer.toString(currentStats.getFGAttempts()));
+            r.addView(fgAtts);
 
             fgPct = newStat(10);
             fgPct.setText(pct.format(currentStats.getFGPct()));
             r.addView(fgPct);
 
-            threePts = newStat(11);
+            twoPts = newStat(11);
+            twoPts.setText(Integer.toString(currentStats.getTwoPtMakes()));
+            r.addView(twoPts);
+
+            twoPtAtts = newStat(12);
+            twoPtAtts.setText(Integer.toString(currentStats.getTwoPtAttempts()));
+            r.addView(twoPtAtts);
+
+            twoPtPct = newStat(13);
+            twoPtPct.setText(pct.format(currentStats.getTwoPtPct()));
+            r.addView(twoPtPct);
+
+            eFGPct = newStat(14);
+            eFGPct.setText(pct.format(currentStats.getEFGPct()));
+            r.addView(eFGPct);
+
+            threePts = newStat(15);
             threePts.setText(Integer.toString(currentStats.getThreePtMakes()));
             r.addView(threePts);
 
-            threePtAtts = newStat(12);
+            threePtAtts = newStat(16);
             threePtAtts.setText(Integer.toString(currentStats.get3Attempts()));
             r.addView(threePtAtts);
 
-            threePtPct = newStat(13);
+            threePtPct = newStat(17);
             threePtPct.setText(pct.format(currentStats.get3Pct()));
             r.addView(threePtPct);
 
-            fts = newStat(14);
+            fts = newStat(18);
             fts.setText(Integer.toString(currentStats.getFtMakes()));
             r.addView(fts);
 
-            ftAttempts = newStat(15);
+            ftAttempts = newStat(19);
             ftAttempts.setText(Integer.toString(currentStats.getFTAttempts()));
             r.addView(ftAttempts);
 
-            ftPct = newStat(16);
+            ftPct = newStat(20);
             ftPct.setText(pct.format(currentStats.getFTPct()));
             r.addView(ftPct);
 
-            tOvers = newStat(17);
+            tOvers = newStat(21);
             tOvers.setText(Integer.toString(currentStats.getTurnovers()));
             r.addView(tOvers);
 
-            stls = newStat(18);
+            stls = newStat(22);
             stls.setText(Integer.toString(currentStats.getSteals()));
             r.addView(stls);
 
-            blks = newStat(19);
+            blks = newStat(23);
             blks.setText(Integer.toString(currentStats.getBlocks()));
             r.addView(blks);
 
-            fouls = newStat(20);
+            fouls = newStat(24);
             fouls.setText(Integer.toString(currentStats.getFouls()));
             r.addView(fouls);
 
             tblStats.addView(r, row.getLayoutParams());
-
-            btnViewStats.setEnabled(false);
         }
+
+        btnViewStats.setEnabled(false);
     }
 
     private void clearTable() {
@@ -286,5 +303,9 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
         return txt;
     }
 
+    public void launchInstructions(View v) {
+        Intent i = new Intent(this, Instructions.class);
+        startActivity(i);
+    }
 
 }
