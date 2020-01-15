@@ -27,10 +27,10 @@ import java.util.Date;
 import java.text.DecimalFormat;
 
 public class GameStatsSummary extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
-    // ArrayList of Teams to store existing, saved teams
-    private ArrayList<Team> userTeams;
     // Team object to store the currently selected Team
     private Team currentTeam;
+    // Game object to store currently selected Game
+    private Game currentGame;
     // Spinner to store the value of the Team selection spinner
     private Spinner teamSelector;
     // ArrayList of Games to store the games that the Team has played
@@ -64,7 +64,8 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
         teamSelector = findViewById(R.id.summ_team_selector); // Spinner for team selection
 
         // instantiate ArrayList of userTeams
-        userTeams = new ArrayList<>();
+        // ArrayList of Teams to store existing, saved teams
+        ArrayList<Team> userTeams = new ArrayList<>();
 
         // check to make sure there are existing saved teams
         if (StatsManager.getTeams().size() >= 2) { // saved teams exist
@@ -220,8 +221,6 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
         // gets the selected game as a String
         String sCurrentGame = gameSelector.getSelectedItem().toString();
 
-        // Game object to store the currently selected Game
-        Game currentGame;
         // PlayerStats object to temporarily store a Player's set of stats for a given game
         PlayerStats temp;
 
@@ -372,6 +371,14 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
         Intent i = new Intent(this, Instructions.class);
         Instructions.setIndex(4); // info about game stats on 4th slide
         startActivity(i);
+    }
+
+    /**
+     * Exports user's game stats to comma separated data file
+     * @param v the current Window
+     */
+    public void onExportStats(View v) {
+        currentGame.exportToCSV();
     }
 
 }

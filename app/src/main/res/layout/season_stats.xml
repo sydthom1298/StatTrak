@@ -479,21 +479,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_help" />
 
-    <Button
-        android:id="@+id/btn_export_szn_stats"
-        android:layout_width="269dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/white"
-        android:fontFamily="@font/raleway_light"
-        android:text="@string/btn_export_stats"
-        android:textColor="@color/titles"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/szn_table_scroller" />
-
     <Spinner
         android:id="@+id/szn_selector"
         android:layout_width="284dp"

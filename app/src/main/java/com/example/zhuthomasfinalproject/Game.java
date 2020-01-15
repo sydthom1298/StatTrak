@@ -204,9 +204,9 @@ public class Game implements Serializable {
                     StatsManager.getDateTimeFromTimestamp(this.dateTime) +"\n");
             //writes headings for player stats
             fileWriter.write( "Points:," + points + ",Team Fouls:,"+ teamFouls + "\n");
-            fileWriter.write("Name,Number,Position,Assists, Blocks, DefReb, Fouls, FtMakes," +
-                    "FtMisses,Minutes,OffReb,PlayTime,Points,Steals,3PtMake, 3PtMiss, 2PtMake, " +
-                    "2PtMiss,TtlReb,Turnover\n");
+            fileWriter.write("Name, Number, Position, Assists, Blocks, DefRebs, FieldGoals, FGAttempts, FGPct, eFGPct " +
+                    "Fouls, FtMakes, FtAttempts, Minutes, OffRebs, PlayTime, Points, Steals, 3PtMakes, 3PtAttempts, " +
+                    "2PtMakes, 2PtAttempts, TtlRebs, Turnovers\n");
             //gets Player object for each player on the team and outputs PlayerStats for this game
             for(Player p: team.getPlayers()) {
                 PlayerStats s = p.getStat(this.dateTime);
@@ -214,12 +214,13 @@ public class Game implements Serializable {
                     continue;
                 }
                 fileWriter.write(p.getName() + "," + p.getJerseyNum() + "," + p.getPosition() + "," +
-                        s.getAssists() + "," + s.getBlocks() + "," + s.getDefRebs() + "," +
-                        s.getFouls() + "," + s.getFtMakes() + "," + s.getFtMisses() + "," +
+                        s.getAssists() + "," + s.getBlocks() + "," + s.getDefRebs() + "," + s.getFGs() +
+                        "," + s.getFGAttempts() + "," + s.getFGPct() + "," + s.getEFGPct() + "," +
+                        s.getFouls() + "," + s.getFtMakes() + "," + s.getFTAttempts() + "," +
                         s.getMinPlayed() + "," + s.getOffRebs() + "," +
                         s.getPlayingTime() + "," + s.getPoints() + "," + s.getSteals() + "," +
-                        s.getThreePtMakes() + "," + s.getThreePtMisses() + "," +
-                        s.getTwoPtMakes() + "," + s.getTwoPtMisses() + "," + s.getTtlRebs() + "," +
+                        s.getThreePtMakes() + "," + s.get3Attempts() + "," +
+                        s.getTwoPtMakes() + "," + s.getTwoPtAttempts() + "," + s.getTtlRebs() + "," +
                         s.getTurnovers() + "\n" );
 
             }
