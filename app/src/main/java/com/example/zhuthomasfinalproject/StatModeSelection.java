@@ -49,6 +49,7 @@ public class StatModeSelection extends AppCompatActivity {
      */
     public void launchInstructions(View v) {
         Intent k = new Intent(this, Instructions.class);
+        Instructions.setIndex(3); // info about mode selection is on 3rd slide
         startActivity(k);
     }
 }

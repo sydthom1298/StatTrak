@@ -383,4 +383,14 @@ public class GameSetup extends AppCompatActivity implements Serializable {
         Intent i = new Intent(this, GameTimeTrackerActivity.class);
         startActivity(i);
     }
+
+    /**
+     * Method that launches the instructions window when the Help button is clicked
+     * @param v - the current window
+     */
+    public void launchInstructions(View v) {
+        Intent i = new Intent(this, Instructions.class);
+        Instructions.setIndex(1); // information about setup on second slide
+        startActivity(i);
+    }
 }

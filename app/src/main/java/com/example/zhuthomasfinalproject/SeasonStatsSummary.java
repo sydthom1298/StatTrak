@@ -143,6 +143,10 @@ public class SeasonStatsSummary extends AppCompatActivity implements AdapterView
             sSeasons.add(seasons.get(i).toString());
         }
 
+        if (sSeasons.size() == 0) {
+            sSeasons.add("no games/seasons recorded");
+        }
+
         // declare and instantiate an array adapter for Season selection Spinner with the list of seasons as Strings
         ArrayAdapter<String> sznAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, sSeasons);
         // make the dropdown items have consistent formatting to other Spinners
@@ -176,6 +180,7 @@ public class SeasonStatsSummary extends AppCompatActivity implements AdapterView
         Player thisPlayer; // Player object to store the current Player (when looping)
         // get the index of the selected item in the Season spinner
         int currentSznIndex = sznSelector.getSelectedItemPosition();
+        String sCurrentSeason = sznSelector.getSelectedItem().toString();
         Season currentSeason; // stores the currently selected season
         ArrayList<Player> roster; // stores the roster of the currently selected team
 
@@ -188,8 +193,8 @@ public class SeasonStatsSummary extends AppCompatActivity implements AdapterView
         // each player has one ArrayList of PlayerStats
         ArrayList<ArrayList<PlayerStats>> playerStats;
 
-        if (currentSznIndex != -1) { // make sure that there are seasons for the current Team
-            // get the selected Season to view stats for in the Season spinner
+        if (!sCurrentSeason.equals("no games/seasons recorded")) { // make sure that there are seasons for the current Team
+            // get the selected Season to view stats for in the Season spinner (using index)
             currentSeason = currentTeam.getSeasons().get(currentSznIndex);
             // get the roster of the currently selected Team
             roster = currentTeam.getPlayers();
@@ -328,7 +333,7 @@ public class SeasonStatsSummary extends AppCompatActivity implements AdapterView
             btnViewStats.setEnabled(false);
         } else { // no seasons stored for the current team
             // prompt user to track a new game
-            Toast.makeText(this, "No seasons are saved to the " + currentTeam.getName() + ". Try tracking a new game to view their statistics", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "No seasons are saved to the " + currentTeam.getName() + ". Try tracking a new game to view their statistics.", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -367,6 +372,7 @@ public class SeasonStatsSummary extends AppCompatActivity implements AdapterView
      */
     public void launchInstructions(View v) {
         Intent i = new Intent(this, Instructions.class);
+        Instructions.setIndex(5); // info about season stats on 5th slide
         startActivity(i);
     }
 

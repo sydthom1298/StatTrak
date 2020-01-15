@@ -364,6 +364,7 @@ public class TeamManager extends AppCompatActivity implements AdapterView.OnItem
      */
     public void launchInstructions(View v) {
         Intent i = new Intent(this, Instructions.class);
+        Instructions.setIndex(6); // info about team manager on 7th slide
         startActivity(i);
     }
 }

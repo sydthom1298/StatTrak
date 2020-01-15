@@ -163,6 +163,12 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
                 sGames.add("" + sDate + " vs. " + games.get(j).getOpponent());
             }
         }
+
+        // if no games are recorded for the team, then add a display message to inform the user
+        if (sGames.size() == 0) {
+            sGames.add("no games recorded");
+        }
+
         // must store ALL the games now for other purposes, in the games array (not just from the last season)
         // variable to store the number of games played in a given seasons by the selected team
         int numGames;
@@ -211,6 +217,8 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
         ArrayList<Player> roster;
         // get the index of the game currently selected
         int indexOfGame = gameSelector.getSelectedItemPosition();
+        // gets the selected game as a String
+        String sCurrentGame = gameSelector.getSelectedItem().toString();
 
         // Game object to store the currently selected Game
         Game currentGame;
@@ -218,7 +226,7 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
         PlayerStats temp;
 
         // check to make sure there are games for the current team
-        if (indexOfGame != -1) { // games exist
+        if (!sCurrentGame.equals("no games recorded")) { // games exist
             // get the currently selected game in the Spinner
             currentGame = games.get(indexOfGame);
             // get the roster of the currently selected team
@@ -322,7 +330,7 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
             btnViewStats.setEnabled(false);
         } else { // no games for the selected team
             // prompt user to track a new game in order to view stats
-            Toast.makeText(this, "No games are saved for the " + currentTeam.getName() + ". Try tracking a new game to view their statistics", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "No games are saved for the " + currentTeam.getName() + ". Try tracking a new game to view their statistics.", Toast.LENGTH_LONG).show();
         }
 
     }
@@ -358,10 +366,11 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
 
     /**
      * method that launches the Instructions window
-     * @param v
+     * @param v - the current window
      */
     public void launchInstructions(View v) {
         Intent i = new Intent(this, Instructions.class);
+        Instructions.setIndex(4); // info about game stats on 4th slide
         startActivity(i);
     }
 

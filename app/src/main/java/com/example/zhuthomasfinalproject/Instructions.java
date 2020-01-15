@@ -24,7 +24,7 @@ public class Instructions extends AppCompatActivity {
     // array that stores each section of instructions
     private String[] sections;
     // stores the index of the section that the user is currently viewing
-    private int index;
+    private static int index;
 
     /**
      * Called when Instruction sets up
@@ -34,9 +34,6 @@ public class Instructions extends AppCompatActivity {
         // sets up screen based on XML
         super.onCreate(savedInstanceState);
         setContentView(R.layout.instructions);
-
-        // initialize index to 0 (first section of instructions)
-        index = 0;
 
         // instantiate object to store the text box that displays the instructions
         instructions = findViewById(R.id.instruct_text);
@@ -121,6 +118,16 @@ public class Instructions extends AppCompatActivity {
         // store the String information as an array of String segments
         // split the file based on the pattern "BREAK" which divides up sections in the file
         sections = text.split("BREAK");
+    }
+
+    /**
+     * Setter for the index of the Instructions slides
+     * Changes slide of instructions (used to make instruction start up slide correspond with entry window)
+     * e.g. in Game Setup, clicking on ? directs user to instructions on Game Setup
+     * @param i the new index of slides
+     */
+    public static void setIndex(int i) {
+        index = i;
     }
 
 }
