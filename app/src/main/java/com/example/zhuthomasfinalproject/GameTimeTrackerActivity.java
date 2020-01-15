@@ -5,7 +5,6 @@
  * This code is associated with game_time_tracker.xml
  */
 package com.example.zhuthomasfinalproject;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,14 +12,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
-
 import java.util.ArrayList;
 import java.util.Stack;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import androidx.appcompat.app.AppCompatActivity;
 public class GameTimeTrackerActivity extends AppCompatActivity {
     final int START_TIME = 8000*60; //length of a quarter (8 minutes)
@@ -46,9 +42,10 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     String clockDisplayText = ""; //combined minutes and seconds
     String minutesText = ""; //time in minutes String
     String secondsText = ""; //time in seconds String
-    private Button btn_Undo;
-    private Stack undoStack;
     private boolean gameOver = false;
+    private Button btn_Undo; //button to under the last statics(s) captured by the user
+    private Stack undoStack; //stack of commands completed by the user (in the current quarter). Used to undo
+
 
 
     /**
@@ -120,9 +117,13 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         //reset gameOver flag
         gameOver = false;
 
-        // initialize undoStack
+        //initialize the undostack to store previous commands (buttons pushed) from the user
         undoStack = new Stack<UndoCommand>();
     }
+
+
+    /* for each button handler below on<something>, a command is pushed onto the undoStack so the
+     command can be undone */
 
     /**
      * method to update the score and player stats when the two point make button is pressed
@@ -130,13 +131,17 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onTwoPtMakes(View v){
         PlayerStats s = StatsManager.getCurrentPlayer().getCurrentStats();
+        //add to player stats
         s.addTwoPtMakes();
+        //add to player points
         s.addPoints(2);
+        //add to game points
         StatsManager.getCurrentGame().addPoints(2);
+        //update screen
         txt_points.setText(Integer.toString(StatsManager.getCurrentGame().getPoints()));
         //update the status display
         txt_playDesc.setText("# " + StatsManager.getCurrentPlayer().getJerseyNum() + " scored 2 points");
-        undoStack.push( new UndoCommand(UndoCommand.MAKE_2PT, StatsManager.getCurrentPlayer()));
+        undoStack.push(new UndoCommand(UndoCommand.MAKE_2PT, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -145,7 +150,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onTwoPtMisses(View v) {
         StatsManager.getCurrentPlayer().getCurrentStats().addTwoPtMisses();
-        undoStack.push( new UndoCommand(UndoCommand.MISS_2PT, StatsManager.getCurrentPlayer()));
+        undoStack.push(new UndoCommand(UndoCommand.MISS_2PT, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -154,14 +159,17 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onThreePtMakes(View v){
         PlayerStats s = StatsManager.getCurrentPlayer().getCurrentStats();
+        //add to player stats
         s.addThreePtMakes();
+        //add to player points
         s.addPoints(3);
+        //add to game points
         StatsManager.getCurrentGame().addPoints(3);
-
+        //update screen
         txt_points.setText(Integer.toString(StatsManager.getCurrentGame().getPoints()));
         //update the status display
         txt_playDesc.setText("# " + StatsManager.getCurrentPlayer().getJerseyNum() + " scored 3 points");
-        undoStack.push( new UndoCommand(UndoCommand.MAKE_3PT, StatsManager.getCurrentPlayer()));
+        undoStack.push(new UndoCommand(UndoCommand.MAKE_3PT, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -170,7 +178,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onThreePtMisses(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addThreePtMisses();
-        undoStack.push( new UndoCommand(UndoCommand.MISS_2PT, StatsManager.getCurrentPlayer()));
+        undoStack.push(new UndoCommand(UndoCommand.MISS_3PT, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -179,13 +187,17 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onFtMakes(View v){
         PlayerStats s = StatsManager.getCurrentPlayer().getCurrentStats();
+        //add to player stats
         s.addFtMakes();
+        //add to player points
         s.addPoints(1);
+        //add to game points
         StatsManager.getCurrentGame().addPoints(1);
+        //update screen
         txt_points.setText(Integer.toString(StatsManager.getCurrentGame().getPoints()));
         //update the status display
         txt_playDesc.setText("# " + StatsManager.getCurrentPlayer().getJerseyNum() + " scored 1 point");
-        undoStack.push( new UndoCommand(UndoCommand.MAKE_FT, StatsManager.getCurrentPlayer()));
+        undoStack.push(new UndoCommand(UndoCommand.MAKE_FT, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -194,7 +206,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onFtMisses(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addFtMisses();
-        undoStack.push( new UndoCommand(UndoCommand.MISS_FT, StatsManager.getCurrentPlayer()));
+        undoStack.push(new UndoCommand(UndoCommand.MISS_FT, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -203,7 +215,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onAssists(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addAssists();
-        undoStack.push( new UndoCommand(UndoCommand.ASSIST, StatsManager.getCurrentPlayer()));
+        undoStack.push(new UndoCommand(UndoCommand.ASSIST, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -212,7 +224,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onOffRebs(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addOffRebs();
-        undoStack.push( new UndoCommand(UndoCommand.OFFR, StatsManager.getCurrentPlayer()));
+        undoStack.push(new UndoCommand(UndoCommand.OFFR, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -221,7 +233,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onDefRebs(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addDefRebs();
-        undoStack.push( new UndoCommand(UndoCommand.DEFR, StatsManager.getCurrentPlayer()));
+        undoStack.push(new UndoCommand(UndoCommand.DEFR, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -230,7 +242,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onSteals(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addSteals();
-        undoStack.push( new UndoCommand(UndoCommand.STL, StatsManager.getCurrentPlayer()));
+        undoStack.push(new UndoCommand(UndoCommand.STL, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -239,7 +251,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onTurnovers(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addTurnovers();
-        undoStack.push( new UndoCommand(UndoCommand.TO, StatsManager.getCurrentPlayer()));
+        undoStack.push(new UndoCommand(UndoCommand.TO, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -248,7 +260,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onBlocks(View v){
         StatsManager.getCurrentPlayer().getCurrentStats().addBlocks();
-        undoStack.push( new UndoCommand(UndoCommand.BLK, StatsManager.getCurrentPlayer()));
+        undoStack.push(new UndoCommand(UndoCommand.BLK, StatsManager.getCurrentPlayer()));
     }
 
     /**
@@ -256,24 +268,28 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      * @param v - current window
      */
     public void onFouls(View v){
+        //add to player fouls
         StatsManager.getCurrentPlayer().getCurrentStats().addFouls();
+        //add to team fouls
         StatsManager.getCurrentGame().addTeamFouls();
+        //update screen
         txt_fouls.setText(Integer.toString(StatsManager.getCurrentGame().getTeamFouls()));
-        undoStack.push( new UndoCommand(UndoCommand.FOUL, StatsManager.getCurrentPlayer()));
-        // TEST
-        System.out.println(StatsManager.getCurrentPlayer().getCurrentStats().toString());
+        //save undo command
+        undoStack.push(new UndoCommand(UndoCommand.FOUL, StatsManager.getCurrentPlayer()));
+
     }
 
     /**
-     * method that goes to the next quarter when you click on the quarter
+     * method that goes to the next quarter when you click on the quarter display
      * @param v - current window
      */
     public void onQuarter(View v) {
-        String current = txt_quarter.getText().toString();
+        String current;
         if(gameOver) {
             Toast.makeText(getApplicationContext(),"Game has ended.  Push 'back' to continue",
                     Toast.LENGTH_LONG).show();
         }
+        current = txt_quarter.getText().toString();
         if(current.equals("q1")) {
             txt_quarter.setText("q2");
         }else if(current.equals("q2")){
@@ -283,8 +299,10 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         }else if(current.equals("q4")){
             txt_quarter.setText("q1");  //necessary to correct quarter during game
         }
-        undoStack.empty(); // empty at the end of each quarter (no more undo)
-        StatsManager.toFile(); // save each quarter
+        //empty at the end of each quarter (no more undo)
+        undoStack.empty();
+        //save each quarter
+        StatsManager.toFile();
 
     }
 
@@ -308,59 +326,74 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         handlePlayerButtons(4);
     }
 
+    /**
+     * method that processes the undo button
+     * @param v - current window
+     */
     public void onUndo(View v){
-        UndoCommand undoCmd;
-        Game g;
-        PlayerStats s;
-
-        if( undoStack.size() == 0 ) {
+        UndoCommand undoCmd; //current command from stack
+        Game g; //game to undo game stats
+        PlayerStats s; //to retrieve player stats to undo
+        //if there is no commands to undo
+        if(undoStack.size() == 0){
             return;
         }
+        //pops top undo command off the stack
         undoCmd = (UndoCommand)undoStack.pop();
-
+        //get current game to undo in game stats
         g = StatsManager.getCurrentGame();
+        //get player stats for the player in the undo command
         s = undoCmd.getPlayer().getCurrentStats();
-        if(undoCmd.getCmd() == UndoCommand.ASSIST){
+
+        if(undoCmd.getCmd() == UndoCommand.ASSIST){ //undo an assist
             s.subtractAssists();
-        }else if(undoCmd.getCmd() == UndoCommand.MAKE_2PT){
-            g.subtractPoints(2); //game points
-            s.subtractPoints(2); //player points
-            s.subtractTwoPtMakes();  //2 pt makes count
+        }else if(undoCmd.getCmd() == UndoCommand.MAKE_2PT){ //undo a two point make
+            //game points
+            g.subtractPoints(2);
+            //player points
+            s.subtractPoints(2);
+            //3pt makes count
+            s.subtractTwoPtMakes();
             txt_points.setText(Integer.toString(g.getPoints()));
-        }else if(undoCmd.getCmd() == UndoCommand.BLK){
+        }else if(undoCmd.getCmd() == UndoCommand.BLK){ //undo a block
             s.subtractBlocks();
-        }else if(undoCmd.getCmd() == UndoCommand.STL){
+        }else if(undoCmd.getCmd() == UndoCommand.STL){ //undo a steal
             s.subtractSteals();
-        }else if(undoCmd.getCmd() == UndoCommand.TO){
+        }else if(undoCmd.getCmd() == UndoCommand.TO){ //undo a turnover
             s.subtractTurnovers();
-        }else if(undoCmd.getCmd() == UndoCommand.MAKE_3PT){
-            g.subtractPoints(3); //game points
-            s.subtractPoints(3); //player points
-            s.subtractThreePtMakes(); //3 pt makes count
+        }else if(undoCmd.getCmd() == UndoCommand.MAKE_3PT){ //undo a three point make
+            //game points
+            g.subtractPoints(3);
+            //player points
+            s.subtractPoints(3);
+            //3 pt makes count
+            s.subtractThreePtMakes();
             txt_points.setText(Integer.toString(g.getPoints()));
-        }else if(undoCmd.getCmd() == UndoCommand.MAKE_FT){
-            g.subtractPoints(1); //game points
-            s.subtractPoints(1); //player points
-            s.subtractFtMakes(); //free throw makes count
+        }else if(undoCmd.getCmd() == UndoCommand.MAKE_FT){ //undo a free throw make
+            //game points
+            g.subtractPoints(1);
+            //player points
+            s.subtractPoints(1);
+            //free throw makes count
+            s.subtractFtMakes();
             txt_points.setText(Integer.toString(g.getPoints()));
-        }else if(undoCmd.getCmd() == UndoCommand.MISS_2PT){
-            s.addTwoPtMisses(); //2 pt miss count
-        }else if(undoCmd.getCmd() == UndoCommand.MISS_3PT){
-            s.addThreePtMisses(); //3 pt miss count
-        }else if(undoCmd.getCmd() == UndoCommand.MISS_FT){
-            s.addFtMisses(); //free throw misses
-        }else if(undoCmd.getCmd() == UndoCommand.FOUL){
-            g.subtractTeamFouls(); //game fouls
-            s.subtractFouls(); //player fouls
+        }else if(undoCmd.getCmd() == UndoCommand.MISS_2PT){ //undo a two point miss
+            s.subtractTwoPtMisses();
+        }else if(undoCmd.getCmd() == UndoCommand.MISS_3PT){ //undo a three point miss
+            s.subtractThreePtMisses();
+        }else if(undoCmd.getCmd() == UndoCommand.MISS_FT){ //undo a free throw miss
+            s.subtractFtMisses();
+        }else if(undoCmd.getCmd() == UndoCommand.FOUL){ //undo a foul
+            //game fouls
+            g.subtractTeamFouls();
+            //player fouls
+            s.subtractFouls();
             txt_fouls.setText(Integer.toString(g.getTeamFouls()));
-        }else if(undoCmd.getCmd() == UndoCommand.OFFR){
+        }else if(undoCmd.getCmd() == UndoCommand.OFFR){ //undo an offensive rebound
             s.subtractOffRebs();
-        }else if(undoCmd.getCmd() == UndoCommand.DEFR){
+        }else if(undoCmd.getCmd() == UndoCommand.DEFR){ //undo a defensive rebound
             s.subtractDefRebs();
         }
-        // TODO FINISH ALL Commands
-        // StatsManager.getCurrentGame().exportToCSV();
-
     }
 
     /**
@@ -386,7 +419,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         playerButtons[index].setText(Integer.toString(StatsManager.getCurrentPlayer().getJerseyNum()));
 
         //set different colours for selected and not selected players
-        for(int i = 0; i < playerButtons.length; i++) {
+        for(int i = 0; i < playerButtons.length; i++){
             if(i == index){
                 playerButtons[i].setBackgroundColor(0xFF245300);
             }else{
@@ -409,8 +442,8 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         //reset team fouls
         StatsManager.getCurrentGame().setTeamFouls(0);
         txt_fouls.setText(Integer.toString(0));
+        //saves data to a file each quarter
         StatsManager.toFile();
-
     }
 
     /**
@@ -419,7 +452,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      * @param v - current window
      */
     public void onClock(View v) {
-        if(isClockRunning()) {
+        if(isClockRunning()){
             pauseClock();
         }else{
             startClock();
@@ -434,45 +467,44 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     private void createClockTask() {
         task = new TimerTask() {
             public void run() {
-
-                if(clockRunning) {
-                    //converts from milliseconds to minutes
-                    minutes = getMinutesRemaining();
-                    //put in a 0 first digit when only a single digit left in minutes
-                    if(minutes < 10) {
-                        minutesText = "0" + minutes;
-                    } else{
-                        minutesText = Long.toString(minutes);
-                    }
-                    seconds = getSecondsRemaining();
-                    //puts in a 0 first digit when only a single digit left in minutes
-                    if(seconds < 10) {
-                        secondsText = "0" + seconds;
-                    }else{
-                        secondsText = Long.toString(seconds);
-                    }
-                    //update the clock display with the minutes and seconds remaining
-                    //must use runOnUiThread or the gui update throws an exception
-                    clockDisplayText = minutesText + ":" + secondsText;
-                    runOnUiThread(new Runnable()  {
-                        public void run() {
-                            //stuff that updates the UI
-                            txt_timer.setText(clockDisplayText);
-                        }
-
-                    });
-                    //when time expires (ie. 0 minutes and 0 seconds left), stop the clock
-                    if((seconds == 0L) && (minutes == 0L)) {
-                        pauseClock();
-                        resetClock();
-                        if(txt_quarter.getText().equals("q4")) {
-                            gameOver = true;
-                        }
-                        return;
-                    }
-                    //update currentTime (decrease by 1 second)
-                    currentTime = currentTime - timeDecrement;
+            if(clockRunning){
+                //converts from milliseconds to minutes
+                minutes = getMinutesRemaining();
+                //put in a 0 first digit when only a single digit left in minutes
+                if(minutes < 10){
+                    minutesText = "0" + minutes;
+                }else{
+                    minutesText = Long.toString(minutes);
                 }
+                seconds = getSecondsRemaining();
+                //puts in a 0 first digit when only a single digit left in minutes
+                if(seconds < 10){
+                    secondsText = "0" + seconds;
+                }else{
+                    secondsText = Long.toString(seconds);
+                }
+                /*update the clock display with the minutes and seconds remaining
+                must use runOnUiThread or the gui update throws an exception*/
+                clockDisplayText = minutesText + ":" + secondsText;
+                runOnUiThread(new Runnable()  {
+                    public void run() {
+                        //stuff that updates the UI
+                        txt_timer.setText(clockDisplayText);
+                    }
+
+                });
+                //when time expires (ie. 0 minutes and 0 seconds left), stop the clock
+                if((seconds == 0L) && (minutes == 0L)){
+                    pauseClock();
+                    resetClock();
+                    if(txt_quarter.getText().equals("q4")) {
+                        gameOver = true;
+                    }
+                    return;
+                }
+                //update currentTime (decrease by 1 second)
+                currentTime = currentTime - timeDecrement;
+            }
             }
         };
     }
@@ -503,8 +535,6 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         StatsManager.getCurrentGame().addPlayingTime(elapsed);
         //resets startTime
         startTime = currentTime + timeDecrement;
-
-
     }
 
     /**
@@ -517,7 +547,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     }
 
     /**
-     * accessor that gets the start time (which is the time currently on the clock when the timer is started
+     * accessor that gets the start time (which is the time currently on the clock when the timer is started)
      * @return - start time
      */
     public long getStartTime() {
@@ -525,7 +555,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     }
 
     /**
-     * mutator that sets the start time (which is the time currently on the clock when the timer is started
+     * mutator that sets the start time (which is the time currently on the clock when the timer is started)
      * @param sT - new start time
      */
     public void setStartTime(long sT) {
@@ -569,7 +599,6 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         return seconds;
     }
 
-
     /**
      * method that checks if the clock is running
      * @return - if the clock is running or not
@@ -577,7 +606,6 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     public boolean isClockRunning() {
         return clockRunning;
     }
-
 
 }
 
