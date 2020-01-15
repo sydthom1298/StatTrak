@@ -155,24 +155,15 @@ public class SeasonStatsSummary extends AppCompatActivity implements AdapterView
 
             }
             playerStats.add(sznStats);
-
         }
 
         for (int i = 0; i < roster.size(); i++) {
             r = new TableRow(this);
 
-            TextView name, num, games, mins, pts, assts, tRebs, dRebs, oRebs, fg, fgAtts, fgPct, twoPts, twoPtAtts, twoPtPct, eFGPct,
-                    threePts, threePtAtts, threePtPct, fts, ftAttempts, ftPct, tOvers, stls, blks, fouls;
+            TextView name, num, games;
 
-            //TextView[] textBoxes = new TextView[24];
-            //double[] sums;
-
-            int sumPts = 0, sumAssts = 0, sumTRebs = 0, sumDRebs = 0, sumORebs = 0, sumFGs = 0, sumFGAtts = 0, sumTwoPts = 0,
-                    sumTwoPtAtts = 0, sumThreePts = 0, sumThreePtAtts = 0, sumFTs = 0,
-                    sumFTAtts = 0, sumTOvers = 0, sumStls = 0, sumBlks = 0, sumFouls = 0;
-
-            double sumFGPct = 0, sumTwoPtPct = 0, sumeFGPct = 0, sumThreePtPct = 0, sumFTPct = 0;
-            long sumMins = 0;
+            TextView[] textBoxes = new TextView[23];
+            double[] sums = new double[23];
 
             double perGame = 0;
 
@@ -180,38 +171,31 @@ public class SeasonStatsSummary extends AppCompatActivity implements AdapterView
             int gamesPlayed = playerStats.get(i).size();
             for (int j = 0; j < gamesPlayed; j++) { // loops for every game this player has played this season
                 temp = playerStats.get(i).get(j);
-                sumMins += temp.getPlayingTime();
-                sumPts += temp.getPoints();
-                sumAssts += temp.getAssists();
-                sumTRebs += temp.getTtlRebs();
-                sumDRebs += temp.getDefRebs();
-                sumORebs += temp.getOffRebs();
-                sumFGs += temp.getFGs();
-                sumFGAtts += temp.getFGAttempts();
-                sumFGPct += temp.getFGPct();
-                sumTwoPts += temp.getTwoPtMakes();
-                sumTwoPtAtts += temp.getTwoPtAttempts();
-                sumTwoPtPct += temp.getTwoPtPct();
-                sumeFGPct += temp.getEFGPct();
-                sumThreePts += temp.getThreePtMakes();
-                sumThreePtAtts += temp.get3Attempts();
-                sumThreePtPct += temp.get3Pct();
-                sumFTs += temp.getFtMakes();
-                sumFTAtts += temp.getFTAttempts();
-                sumFTPct += temp.getFTPct();
-                sumTOvers += temp.getTurnovers();
-                sumStls += temp.getSteals();
-                sumBlks += temp.getBlocks();
-                sumFouls += temp.getFouls();
+
+                sums[0] += temp.getPlayingTime();
+                sums[1] += temp.getPoints();
+                sums[2] += temp.getAssists();
+                sums[3] += temp.getTtlRebs();
+                sums[4] += temp.getDefRebs();
+                sums[5] += temp.getOffRebs();
+                sums[6] += temp.getFGs();
+                sums[7] += temp.getFGAttempts();
+                sums[8] += temp.getFGPct();
+                sums[9] += temp.getTwoPtMakes();
+                sums[10] += temp.getTwoPtAttempts();
+                sums[11] += temp.getTwoPtPct();
+                sums[12] += temp.getEFGPct();
+                sums[13] += temp.getThreePtMakes();
+                sums[14] += temp.get3Attempts();
+                sums[15] += temp.get3Pct();
+                sums[16] += temp.getFtMakes();
+                sums[17] += temp.getFTAttempts();
+                sums[18] += temp.getFTPct();
+                sums[19] += temp.getTurnovers();
+                sums[20] += temp.getSteals();
+                sums[21] += temp.getBlocks();
+                sums[22] += temp.getFouls();
             }
-
-            // TODO find a more efficient way of doing this (with arrays perhaps)
-            // e.g. array with all the sums, array with all the textViews
-
-
-            /*for (int j = 0; j < 24; j++) {
-
-            }*/
 
             name = newStat(0);
             name.setText(thisPlayer.getName());
@@ -224,121 +208,22 @@ public class SeasonStatsSummary extends AppCompatActivity implements AdapterView
             games.setText(Integer.toString(gamesPlayed));
             r.addView(games);
 
-            perGame = (double) sumMins / (double) gamesPlayed;
-            mins = newStat(3);
-            mins.setText(oneDec.format(perGame));
-            r.addView(mins);
+            String formattedStat;
+            for (int j = 0; j < 23; j++) {
+                perGame = (double) sums[j] / (double) gamesPlayed;
+                textBoxes[j] = newStat(j + 3);
 
-            perGame = (double) sumPts / (double) gamesPlayed;
-            pts = newStat(4);
-            pts.setText(oneDec.format(perGame));
-            r.addView(pts);
+                if (j == 8 || j == 11 || j == 12 || j == 15 || j == 18) {
+                    formattedStat = pct.format(perGame);
+                } else if (perGame == 0) {
+                    formattedStat = "0";
+                } else {
+                    formattedStat = oneDec.format(perGame);
+                }
 
-            perGame = (double) sumAssts / (double) gamesPlayed;
-            System.out.println(perGame);
-            assts = newStat(5);
-            assts.setText(oneDec.format(perGame));
-            r.addView(assts);
-
-            perGame = (double) sumTRebs / (double) gamesPlayed;
-            tRebs = newStat(6);
-            tRebs.setText(oneDec.format(perGame));
-            r.addView(tRebs);
-
-            perGame = (double) sumDRebs / (double) gamesPlayed;
-            dRebs = newStat(7);
-            dRebs.setText(oneDec.format(perGame));
-            r.addView(dRebs);
-
-            perGame = (double) sumORebs / (double) gamesPlayed;
-            oRebs = newStat(8);
-            oRebs.setText(oneDec.format(perGame));
-            r.addView(oRebs);
-
-            perGame = (double) sumFGs / (double) gamesPlayed;
-            fg = newStat(9);
-            fg.setText(oneDec.format(perGame));
-            r.addView(fg);
-
-            perGame = (double) sumFGAtts / (double) gamesPlayed;
-            fgAtts = newStat(10);
-            fgAtts.setText(oneDec.format(perGame));
-            r.addView(fgAtts);
-
-            perGame = sumFGPct / (double) gamesPlayed;
-            fgPct = newStat(11);
-            fgPct.setText(pct.format(perGame));
-            r.addView(fgPct);
-
-            perGame = (double) sumTwoPts / (double) gamesPlayed;
-            twoPts = newStat(12);
-            twoPts.setText(oneDec.format(perGame));
-            r.addView(twoPts);
-
-            perGame = (double) sumTwoPtAtts / (double) gamesPlayed;
-            twoPtAtts = newStat(13);
-            twoPtAtts.setText(oneDec.format(perGame));
-            r.addView(twoPtAtts);
-
-            perGame = sumTwoPtPct / (double) gamesPlayed;
-            twoPtPct = newStat(14);
-            twoPtPct.setText(pct.format(perGame));
-            r.addView(twoPtPct);
-
-            perGame = sumeFGPct / (double) gamesPlayed;
-            eFGPct = newStat(15);
-            eFGPct.setText(pct.format(perGame));
-            r.addView(eFGPct);
-
-            perGame = (double) sumThreePts / (double) gamesPlayed;
-            threePts = newStat(16);
-            threePts.setText(oneDec.format(perGame));
-            r.addView(threePts);
-
-            perGame = (double) sumThreePtAtts / (double) gamesPlayed;
-            threePtAtts = newStat(17);
-            threePtAtts.setText(oneDec.format(perGame));
-            r.addView(threePtAtts);
-
-            perGame = sumThreePtPct / (double) gamesPlayed;
-            threePtPct = newStat(18);
-            threePtPct.setText(pct.format(perGame));
-            r.addView(threePtPct);
-
-            perGame = (double) sumFTs / (double) gamesPlayed;
-            fts = newStat(19);
-            fts.setText(oneDec.format(perGame));
-            r.addView(fts);
-
-            perGame = (double) sumFTAtts / (double) gamesPlayed;
-            ftAttempts = newStat(20);
-            ftAttempts.setText(oneDec.format(perGame));
-            r.addView(ftAttempts);
-
-            perGame = sumFTPct / (double) gamesPlayed;
-            ftPct = newStat(21);
-            ftPct.setText(pct.format(perGame));
-            r.addView(ftPct);
-
-            perGame = (double) sumTOvers / (double) gamesPlayed;
-            tOvers = newStat(22);
-            tOvers.setText(oneDec.format(perGame));
-            r.addView(tOvers);
-
-            perGame = (double) sumStls / (double) gamesPlayed;
-            stls = newStat(23);
-            stls.setText(oneDec.format(perGame));
-            r.addView(stls);
-
-            perGame = (double) sumBlks / (double) gamesPlayed;
-            blks = newStat(24);
-            blks.setText(oneDec.format(perGame));
-            r.addView(blks);
-
-            perGame = (double) sumFouls / (double) gamesPlayed;
-            fouls = newStat(25);
-            fouls.setText(oneDec.format(perGame));
-            r.addView(fouls);
+                textBoxes[j].setText(formattedStat);
+                r.addView(textBoxes[j]);
+            }
 
             tblStats.addView(r, row.getLayoutParams());
         }

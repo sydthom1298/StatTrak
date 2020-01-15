@@ -157,20 +157,16 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
         PlayerStats temp;
 
         // checks which playerstats matches the selected game
-        for (int i = 0; i < 1/*roster.size() TODO - replace with roster size when testing*/; i++) {
+        for (int i = 0; i < roster.size(); i++) {
             for (int j = 0; j < roster.get(i).getStats().size(); j++) {
                 temp = roster.get(i).getStats().get(j);
 
-                Calendar statDate = Calendar.getInstance();
-                Date sDate = new Date(temp.getGameDateTime());
-                Calendar gameDate = Calendar.getInstance();
-                Date gDate = new Date(currentGame.getGameDateTime());
+                Date statDate = new Date(temp.getGameDateTime());
+                Date gameDate = new Date(currentGame.getGameDateTime());
 
-                statDate.setTime(sDate);
-                gameDate.setTime(gDate);
-
-                if (statDate.get(Calendar.DAY_OF_YEAR) == gameDate.get(Calendar.DAY_OF_YEAR) && statDate.get(Calendar.YEAR) == gameDate.get(Calendar.YEAR) && temp.getOpp().equals(currentGame.getOpponent())) {
+                if (statDate == gameDate) {
                     roster.get(i).setCurrentStats(temp);
+                    j = roster.get(i).getStats().size(); // stop looping, we found it!
                 }
             }
         }
