@@ -334,16 +334,10 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
             s.subtractFtMakes(); //free throw makes count
             txt_points.setText(Integer.toString(g.getPoints()));
         }else if(undoCmd.getCmd() == UndoCommand.MISS_2PT){
-            g.addPoints(2); //game points
-            s.addPoints(2); //player points
             s.addTwoPtMisses(); //2 pt miss count
         }else if(undoCmd.getCmd() == UndoCommand.MISS_3PT){
-            g.addPoints(3); //game points
-            s.addPoints(3); //player points
             s.addThreePtMisses(); //3 pt miss count
         }else if(undoCmd.getCmd() == UndoCommand.MISS_FT){
-            g.addPoints(1); //game points
-            s.addPoints(1); //player points
             s.addFtMisses(); //free throw misses
         }else if(undoCmd.getCmd() == UndoCommand.FOUL){
             g.subtractTeamFouls(); //game fouls

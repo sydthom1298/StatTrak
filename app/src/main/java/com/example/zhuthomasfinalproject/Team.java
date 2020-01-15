@@ -5,9 +5,6 @@
  */
 package com.example.zhuthomasfinalproject;
 
-import com.example.zhuthomasfinalproject.Player;
-import com.example.zhuthomasfinalproject.Season;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 public class Team implements Serializable {
@@ -16,7 +13,7 @@ public class Team implements Serializable {
     private ArrayList<Season> seasons;
 
     /**
-     * default constructor that constructs a team class and initializes attributes
+     * default constructor that constructs a team object and initializes attributes
      */
     public Team(){
         name = "";
@@ -26,7 +23,7 @@ public class Team implements Serializable {
 
 
     /**
-     * constructor that constructs a team class with parameters and initializes attributes
+     * constructor that constructs a team object with parameters and initializes attributes
      * @param n - name of team
      */
     public Team(String n){
@@ -35,7 +32,7 @@ public class Team implements Serializable {
     }
 
     /**
-     * constructor that constructs a team class with parameters and initializes attributes
+     * constructor that constructs a team object with parameters and initializes attributes
      * @param n - name of team
      * @param p - array list that stores all the players on the team
      */
