@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
+        android:onClick="launchInstructions"
         android:contentDescription="@string/btn_help_desc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -156,7 +157,7 @@
 
                     <TextView
                         android:id="@+id/jerseyNum"
-                        android:layout_width="150dp"
+                        android:layout_width="100dp"
                         android:layout_height="match_parent"
                         android:padding="3dip"
                         android:text="@string/table_title_number"
@@ -197,7 +198,7 @@
 
                     <TextView
                         android:id="@+id/def_rebs"
-                        android:layout_width="75dp"
+                        android:layout_width="60dp"
                         android:padding="3dip"
                         android:text="@string/table_title_def_rebs"
                         android:textAlignment="viewStart"
@@ -205,9 +206,33 @@
 
                     <TextView
                         android:id="@+id/off_rebs"
-                        android:layout_width="75dp"
+                        android:layout_width="60dp"
                         android:padding="3dip"
                         android:text="@string/table_title_off_rebs"
+                        android:textAlignment="viewStart"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/field_goals"
+                        android:layout_width="45dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_fg"
+                        android:textAlignment="viewStart"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/fg_attempts"
+                        android:layout_width="60dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_fgatts"
+                        android:textAlignment="viewStart"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/fg_pct"
+                        android:layout_width="70dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_fgpct"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
@@ -228,10 +253,18 @@
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/fg_pct"
+                        android:id="@+id/two_pt_pct"
+                        android:layout_width="60dp"
+                        android:padding="3dip"
+                        android:text="@string/table_title_twopct"
+                        android:textAlignment="viewStart"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/efg_pct"
                         android:layout_width="75dp"
                         android:padding="3dip"
-                        android:text="@string/table_title_fgpct"
+                        android:text="@string/table_title_eFGPct"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
