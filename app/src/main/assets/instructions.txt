@@ -1,0 +1,45 @@
+﻿Upon opening the StatTrak application, you will see a main menu, with four buttons marked with text, as well as a small button marked with a question mark. Below are short descriptions of each of their functions.
+
+- TRACK A NEW GAME: directs you to set up and begin tracking a new game (existing team records must be established - if you are a new user, go to MANAGE TEAMS) -- GO TO I
+-  VIEW STATISTICS: directs you to a window in which you can choose to view statistics for an individual game or for an entire team. From there, you can choose a team and season/game to view calculated statistics for. -- GO TO III
+- MANAGE TEAMS: directs you to an interface where you can manage the roster of any existing team or create a new team and input roster for that team to begin saving tracked games -- GO TO VI
+- CREDITS: directs you to a list of the creators of this application :)
+- ?: directs you to the instructions, which you have successfully navigated to (right here!) -- GO TO VII
+
+For general information and common mistakes made when tracking, GO TO VIII. Click the arrow buttons located on the left and right of this textbox to navigate through more detailed instructions on each function of StatTrak. BREAKI: GAME SETUP
+Upon selecting TRACK A NEW GAME, you will see a window entitled “Game Setup”. Here, you can customize options in order to track the statistics for a new game. The properties you can choose include:
+the team whose statistics you will be tracking for, which will be chosen from a list of pre-saved teams (*note that new teams must already be created via the MANAGE TEAMS window)
+the name of the opposing team
+the starting lineup of the team you will be tracking, to set up the tracker in the next window (do not worry if you make an error, as you can revise these players when the game begins)
+
+This information will be used to store the results of the game so they can later be accessed for viewing. After you have confirmed your selections, select CONTINUE to advance to the tracking window. BREAKII: GAME-TIME TRACKER
+After proceeding from set up, you will be directed to the Game Time Tracking Window. To begin tracking your game, ensure that your lineup, which is listed along the bottom edge of the screen is correct. The five players whose numbers you selected in the tracker should be listed. If you need to change your lineup before beginning the game, simply tap the player once to select the outgoing player, and tap the player again choose from your roster in the small display that appears. At any time during the game, you may substitute players in and out when necessary in the same manner.
+
+To begin tracking your game, start the game clock by tapping on the display, which should begin by reading “8:00”. At any time during the game, you can control starting and stopping the clock by tapping in the same manner. After starting the clock, you can track players’ statistics by selecting the player who was responsible for that play (which will highlight in green after it is selected), then clicking the button that corresponds with the play. 
+
+For example, if player #7 scores a three-pointer, you would select 7 and then click on the 3PT MAKE button. You will notice that for scoring plays, the player’s number and their scored points will appear in the green box in the upper left corner. You can see the team’s total points and fouls for the quarter in displays in the upper right.
+
+When the clock hits 0 for the quarter, you can proceed to the next quarter by choosing the NEXT QUARTER button located beside the lineup.
+
+At any point, should you make an error in recording a stat, you can choose to undo that selection by selecting to UNDO. BREAKIII: STAT MODE SELECTION
+When you choose to VIEW STATISTICS, you will first be directed to a mode selection screen with two buttons that have functions as follows:
+VIEW GAME STATS: in this mode, you can choose to view the statistics for a specific team and game -- proceed to IV
+VIEW TEAM STATS: in this mode, you can choose to view the statistics for a specific team in a specific season -- proceed to VBREAKIV: GAME STATISTICS
+After choosing to VIEW GAME STATS, you will be directed to a window with a table and two selectors, to choose a team and specific game. When you choose a specific team, the games tracked for the team will appear in the game selector. Once a game is selected, select the VIEW STATS button to view the statistics for the team’s roster in the table, allowing you to scroll and observe the statistics necessary.
+
+Should you want to export these values to a new file, simply select the EXPORT STATS button and they will be transferred to a comma separated data file, titled with the game’s date and opponent. This file can be saved in your files, as you can choose the location into which they can be saved.BREAKV: SEASON STATISTICS
+After choosing to VIEW TEAM STATS, you will be directed to a window with a table and two selectors, to choose a team and specific season. When you choose a specific team, the seasons for which games exist, that have been tracked for the team will appear in the season selector. Once a season is selected, select the VIEW STATS button and the statistics for the team’s roster will appear in the table, allowing you to scroll and observe the statistics necessary. These statistics are calculated using averages per game for each player. BREAKVI: TEAM MANAGER
+After selecting to MANAGE TEAMS, you will be directed to a window in which you can create and edit teams. 
+
+Firstly, you can access the information of saved teams and adjust their rosters by choosing from a list of existing teams in the team selector, located on the left. When a team is selected, its roster will appear in the table below, allowing you to edit attributes of the roster. You can add a new player, or change existing attributes (names, jersey numbers, positions) by clicking into any value in the table and replacing it with a new value. As you make changes, a counter will indicate the total number of players on your roster. After you have made any changes to your roster, save them to their corresponding team by selecting the button labelled SAVE CHANGES.
+
+Next, you can create new teams by typing in the name of your new team, and choosing CREATE NEW TEAM. From there, you can add new players (by selecting ADD NEW PLAYER), inputting their attributes and saving those, by selecting SAVE CHANGES. Once teams are created, games can then be tracked using those teams and statistics can be viewed for those teams games/season(s).BREAKVII: HELP/INSTRUCTIONS
+At most points of using StatTrak, you can access the instructions, by selecting the small button marked with a white question mark (?). Navigate through the instructions using the arrows located on the left and right of the central instruction panel.BREAKVIII: GENERAL FAQs
+Q: I tried to track a new game, but no teams are appearing in the selector. What do I do?
+A: You must first create teams for information to be saved to via the MANAGE TEAMS window (VI).
+
+Q: What do all those statistics headings mean?
+A: Go to https://www.basketball-reference.com/ to discover more information about the importance of each statistic, and what they mean, by hovering over each heading for this sample player.
+
+Q: Where do I find my exported data file?
+A: You can find exported game statistic files in your Downloads directory. 
