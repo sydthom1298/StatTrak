@@ -64,8 +64,6 @@ public class GameSetup extends AppCompatActivity implements Serializable {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
-        // TODO consider putting in a try/catch to prevent errors from team sizes being too small
-
         // setup screen from xml
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setup);
@@ -173,9 +171,6 @@ public class GameSetup extends AppCompatActivity implements Serializable {
             public void onNothingSelected(AdapterView<?> parentView) {
             }
         });
-
-
-        // TODO error-check jersey numbers (i.e. each number can only be selected one time)
 
         // listeners for state change for each of the jersey number selector spinners
         // this listener is for the first spinner, comments repeat for the other 4

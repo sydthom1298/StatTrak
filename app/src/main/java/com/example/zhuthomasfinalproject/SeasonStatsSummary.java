@@ -130,29 +130,38 @@ public class SeasonStatsSummary extends AppCompatActivity implements AdapterView
         // declare and initialize a String that holds the name of the currently selected team
         String sCurrentTeam = teamSelector.getSelectedItem().toString();
 
-        // use built in method in StatsManager to find the team among saved teams that corresponds with the selected name
-        currentTeam = StatsManager.findTeam(sCurrentTeam);
+        if (sCurrentTeam.equals("You must create a new team in MANAGE TEAMS")) { // check that there are teams to view stats for
+            // no teams
+            // tell the user to make one
+            Toast.makeText(this, "No teams have been created. Head to MANAGE TEAMS to create a new one!", Toast.LENGTH_LONG).show();
+            btnViewStats.setEnabled(false);
+        } else { // there are teams
+            // use built in method in StatsManager to find the team among saved teams that corresponds with the selected name
+            currentTeam = StatsManager.findTeam(sCurrentTeam);
 
-        // declare and instantiate an ArrayList to store the current team's seasons as Strings
-        ArrayList<String> sSeasons = new ArrayList<>();
-        // instantiate ArrayList of stored seasons with the current team's saved seasons
-        seasons = currentTeam.getSeasons();
-        // loop through the ArrayList of seasons
-        for (int i = 0; i < seasons.size(); i++) {
-            // store every season as a String in the String ArrayList
-            sSeasons.add(seasons.get(i).toString());
+            // declare and instantiate an ArrayList to store the current team's seasons as Strings
+            ArrayList<String> sSeasons = new ArrayList<>();
+            // instantiate ArrayList of stored seasons with the current team's saved seasons
+            seasons = currentTeam.getSeasons();
+            // loop through the ArrayList of seasons
+            for (int i = 0; i < seasons.size(); i++) {
+                // store every season as a String in the String ArrayList
+                sSeasons.add(seasons.get(i).toString());
+            }
+
+            if (sSeasons.size() == 0) {
+                sSeasons.add("no games/seasons recorded");
+            }
+
+            // declare and instantiate an array adapter for Season selection Spinner with the list of seasons as Strings
+            ArrayAdapter<String> sznAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, sSeasons);
+            // make the dropdown items have consistent formatting to other Spinners
+            sznAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            // set the Adapter of the Season spinner to the ArrayAdapter object above
+            sznSelector.setAdapter(sznAdapter);
         }
 
-        if (sSeasons.size() == 0) {
-            sSeasons.add("no games/seasons recorded");
-        }
 
-        // declare and instantiate an array adapter for Season selection Spinner with the list of seasons as Strings
-        ArrayAdapter<String> sznAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, sSeasons);
-        // make the dropdown items have consistent formatting to other Spinners
-        sznAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // set the Adapter of the Season spinner to the ArrayAdapter object above
-        sznSelector.setAdapter(sznAdapter);
     }
 
     /**

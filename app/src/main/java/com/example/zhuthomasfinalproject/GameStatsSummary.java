@@ -19,12 +19,12 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.DecimalFormat;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
-import androidx.appcompat.app.AppCompatActivity;
+import java.text.DecimalFormat;
 
 public class GameStatsSummary extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     // Team object to store the currently selected Team
@@ -136,62 +136,71 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
         // declare and initialize a String that holds the name of the currently selected team
         String sCurrentTeam = teamSelector.getSelectedItem().toString();
 
-        // use built in method in StatsManager to find the team among saved teams that corresponds with the selected name
-        currentTeam = StatsManager.findTeam(sCurrentTeam);
+        if (sCurrentTeam.equals("You must create a new team in MANAGE TEAMS")) { // check that there are teams to view stats for
+            // no teams
+            // tell the user to make one
+            Toast.makeText(this, "No teams have been created. Head to MANAGE TEAMS to create a new one!", Toast.LENGTH_LONG).show();
+            btnViewStats.setEnabled(false);
+        } else { // teams to view stats for
+            // use built in method in StatsManager to find the team among saved teams that corresponds with the selected name
+            currentTeam = StatsManager.findTeam(sCurrentTeam);
 
-        // declare and instantiate ArrayList of seasons with the current team's list of seasons
-        ArrayList<Season> seasons = currentTeam.getSeasons();
-        // instantiate ArrayList of games
-        games = new ArrayList<>();
-        // declare and instantiate ArrayList of Strings to store String representations of each game
-        ArrayList<String> sGames = new ArrayList<>();
+            // declare and instantiate ArrayList of seasons with the current team's list of seasons
+            ArrayList<Season> seasons = currentTeam.getSeasons();
+            // instantiate ArrayList of games
+            games = new ArrayList<>();
+            // declare and instantiate ArrayList of Strings to store String representations of each game
+            ArrayList<String> sGames = new ArrayList<>();
 
-        // loop through the current team's list of seasons
-        for (int i = 0; i < seasons.size(); i++) {
-            // get the games from that season
-            games = seasons.get(i).getGames();
-            // loop through those games
-            for (int j = 0; j < games.size(); j++) {
-                // create a date object to represent the date of the jth game
-                Date d = new Date(games.get(j).getGameDateTime());
-                // variable to store the String representation of that date
-                String sDate;
-                // date format pattern to display the date of the jth game
-                SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy");
-                // format the date of the game and store as a String
-                sDate = dateFormat.format(d);
-                // concatenate date of game and opponent, and store as the String representation of this game
-                sGames.add("" + sDate + " vs. " + games.get(j).getOpponent());
+            // loop through the current team's list of seasons
+            for (int i = 0; i < seasons.size(); i++) {
+                // get the games from that season
+                games = seasons.get(i).getGames();
+                // loop through those games
+                for (int j = 0; j < games.size(); j++) {
+                    // create a date object to represent the date of the jth game
+                    Date d = new Date(games.get(j).getGameDateTime());
+                    // variable to store the String representation of that date
+                    String sDate;
+                    // date format pattern to display the date of the jth game
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy");
+                    // format the date of the game and store as a String
+                    sDate = dateFormat.format(d);
+                    // concatenate date of game and opponent, and store as the String representation of this game
+                    sGames.add("" + sDate + " vs. " + games.get(j).getOpponent());
+                }
             }
-        }
 
-        // if no games are recorded for the team, then add a display message to inform the user
-        if (sGames.size() == 0) {
-            sGames.add("no games recorded");
-        }
-
-        // must store ALL the games now for other purposes, in the games array (not just from the last season)
-        // variable to store the number of games played in a given seasons by the selected team
-        int numGames;
-        // instantiate ArrayList of Games to store all the games played by the selected team
-        games = new ArrayList<>();
-
-        // loop through the seasons
-        for (int i = 0; i < seasons.size(); i++) {
-            // get the number of games played in the ith season
-            numGames = seasons.get(i).getGames().size();
-            // loop that number of times (through all the games in the season)
-            for (int j = 0; j < numGames; j++) {
-                // add every game to the ArrayList of games
-                games.add(seasons.get(i).getGames().get(j));
+            // if no games are recorded for the team, then add a display message to inform the user
+            if (sGames.size() == 0) {
+                sGames.add("no games recorded");
             }
+
+            // must store ALL the games now for other purposes, in the games array (not just from the last season)
+            // variable to store the number of games played in a given seasons by the selected team
+            int numGames;
+            // instantiate ArrayList of Games to store all the games played by the selected team
+            games = new ArrayList<>();
+
+            // loop through the seasons
+            for (int i = 0; i < seasons.size(); i++) {
+                // get the number of games played in the ith season
+                numGames = seasons.get(i).getGames().size();
+                // loop that number of times (through all the games in the season)
+                for (int j = 0; j < numGames; j++) {
+                    // add every game to the ArrayList of games
+                    games.add(seasons.get(i).getGames().get(j));
+                }
+            }
+            // declare and instantiate adapter for the game Selection spinner to display the String versions of each Game
+            ArrayAdapter<String> gameAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, sGames);
+            // make the dropdown items have consistent formatting to other Spinners
+            gameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            // set adapter of Game selector to the adapter containing the String representations of each Game
+            gameSelector.setAdapter(gameAdapter);
         }
-        // declare and instantiate adapter for the game Selection spinner to display the String versions of each Game
-        ArrayAdapter<String> gameAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, sGames);
-        // make the dropdown items have consistent formatting to other Spinners
-        gameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // set adapter of Game selector to the adapter containing the String representations of each Game
-        gameSelector.setAdapter(gameAdapter);
+
+
     }
 
     /**
@@ -211,6 +220,7 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
         // formats for percentages and rounding
         DecimalFormat pct = new DecimalFormat("##.0%");
         DecimalFormat whole = new DecimalFormat("#,##0");
+
 
         // clear stats currently displayed on the table
         clearTable();
@@ -244,10 +254,11 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
 
                     // check if the dates are the same
                     // indicating that they correspond to one another
-                    if (statDate.compareTo(gameDate)==0) {
+                    if (statDate.equals(gameDate)) {
+                        System.out.println(true);
                         // if so, set this stat set as the current stat set for this player
                         roster.get(i).setCurrentStats(temp);
-                        j = roster.get(i).getStats().size(); // stop looping, we found it!
+
                     }
                 }
             }
@@ -267,7 +278,7 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
                 double[] stats = new double[23];
 
                 // brute force each stat element to a different stat of the current player's
-                stats[0] = (double)currentStats.getPlayingTime() / (double)60000;
+                stats[0] = currentStats.getPlayingTime() / 60000;
                 stats[1] = currentStats.getPoints();
                 stats[2] = currentStats.getAssists();
                 stats[3] = currentStats.getTtlRebs();
@@ -378,6 +389,8 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
      * @param v the current Window
      */
     public void onExportStats(View v) {
+        // tell the user about export
+        Toast.makeText(this, "File exported.", Toast.LENGTH_LONG).show();
         currentGame.exportToCSV();
     }
 

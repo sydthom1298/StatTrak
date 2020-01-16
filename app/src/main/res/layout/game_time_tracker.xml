@@ -416,6 +416,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:contentDescription="@string/btn_help_desc"
+        android:onClick="launchInstructions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_help" />
