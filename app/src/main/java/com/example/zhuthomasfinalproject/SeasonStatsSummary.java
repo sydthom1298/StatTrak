@@ -291,7 +291,7 @@ public class SeasonStatsSummary extends AppCompatActivity implements AdapterView
                 }
 
                 // convert milliseconds to minutes for playing time
-                sums[0] = sums[0] / 60000;
+                sums[0] = (double) sums[0] / (double) 60000;
 
                 // create new TextView, using the formatting from the control/default (i.e. column formatting)
                 // for the name of this Player

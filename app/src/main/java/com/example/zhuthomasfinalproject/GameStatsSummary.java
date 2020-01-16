@@ -278,7 +278,7 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
                 double[] stats = new double[23];
 
                 // brute force each stat element to a different stat of the current player's
-                stats[0] = currentStats.getPlayingTime() / 60000;
+                stats[0] = (double) currentStats.getPlayingTime() / (double) 60000;
                 stats[1] = currentStats.getPoints();
                 stats[2] = currentStats.getAssists();
                 stats[3] = currentStats.getTtlRebs();
