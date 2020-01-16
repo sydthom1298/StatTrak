@@ -134,6 +134,7 @@ public class SeasonStatsSummary extends AppCompatActivity implements AdapterView
             // no teams
             // tell the user to make one
             Toast.makeText(this, "No teams have been created. Head to MANAGE TEAMS to create a new one!", Toast.LENGTH_LONG).show();
+            btnViewStats.setEnabled(false);
         } else { // there are teams
             // use built in method in StatsManager to find the team among saved teams that corresponds with the selected name
             currentTeam = StatsManager.findTeam(sCurrentTeam);

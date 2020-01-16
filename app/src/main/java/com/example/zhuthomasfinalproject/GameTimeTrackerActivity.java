@@ -6,6 +6,7 @@
  */
 package com.example.zhuthomasfinalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -612,6 +613,16 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public boolean isClockRunning() {
         return clockRunning;
+    }
+
+    /**
+     * Method that launches the instructions window when the Help button is clicked
+     * @param v - the current window
+     */
+    public void launchInstructions(View v) {
+        Intent i = new Intent(this, Instructions.class);
+        Instructions.setIndex(2); // info about tracker on 7th slide
+        startActivity(i);
     }
 
 }

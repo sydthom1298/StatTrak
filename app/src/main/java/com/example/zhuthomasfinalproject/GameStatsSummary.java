@@ -140,6 +140,7 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
             // no teams
             // tell the user to make one
             Toast.makeText(this, "No teams have been created. Head to MANAGE TEAMS to create a new one!", Toast.LENGTH_LONG).show();
+            btnViewStats.setEnabled(false);
         } else { // teams to view stats for
             // use built in method in StatsManager to find the team among saved teams that corresponds with the selected name
             currentTeam = StatsManager.findTeam(sCurrentTeam);
@@ -220,6 +221,7 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
         DecimalFormat pct = new DecimalFormat("##.0%");
         DecimalFormat whole = new DecimalFormat("#,##0");
 
+
         // clear stats currently displayed on the table
         clearTable();
         // array list that stores the Players on the currently selected Team
@@ -252,10 +254,11 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
 
                     // check if the dates are the same
                     // indicating that they correspond to one another
-                    if (statDate == gameDate) {
+                    if (statDate.equals(gameDate)) {
+                        System.out.println(true);
                         // if so, set this stat set as the current stat set for this player
                         roster.get(i).setCurrentStats(temp);
-                        j = roster.get(i).getStats().size(); // stop looping, we found it!
+
                     }
                 }
             }
@@ -386,6 +389,8 @@ public class GameStatsSummary extends AppCompatActivity implements AdapterView.O
      * @param v the current Window
      */
     public void onExportStats(View v) {
+        // tell the user about export
+        Toast.makeText(this, "File exported.", Toast.LENGTH_LONG).show();
         currentGame.exportToCSV();
     }
 
