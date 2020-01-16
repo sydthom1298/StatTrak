@@ -49,6 +49,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
     String secondsText = ""; //time in seconds String
     private boolean gameOver = false;
     private Button btn_Undo; //button to under the last statics(s) captured by the user
+    private Button btn_Next; //Next Quarter button /  Done button
     private Stack undoStack; //stack of commands completed by the user (in the current quarter). Used to undo
 
 
@@ -88,6 +89,9 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         playerButtons[2].setText(Integer.toString(StatsManager.getCurrentGame().getPlaying()[2].getJerseyNum()));
         playerButtons[3].setText(Integer.toString(StatsManager.getCurrentGame().getPlaying()[3].getJerseyNum()));
         playerButtons[4].setText(Integer.toString(StatsManager.getCurrentGame().getPlaying()[4].getJerseyNum()));
+        btn_Next = (Button)findViewById(R.id.btn_next); // next quarter button
+
+        btn_Next.setText("Next Quarter");
 
         //listView setup for all players, for substitution
         final ArrayList<Player> list = StatsManager.getCurrentGame().getTeam().getPlayers();
@@ -290,10 +294,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
      */
     public void onQuarter(View v) {
         String current;
-        if(gameOver) {
-            Toast.makeText(getApplicationContext(),"Game has ended.  Push 'back' to continue",
-                    Toast.LENGTH_LONG).show();
-        }
+
         current = txt_quarter.getText().toString();
         if(current.equals("q1")) {
             txt_quarter.setText("q2");
@@ -449,6 +450,9 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         txt_fouls.setText(Integer.toString(0));
         //saves data to a file each quarter
         StatsManager.toFile();
+        if(gameOver){
+            this.finish();
+        }
     }
 
     /**
@@ -464,6 +468,31 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Runnable to execute gui code that needs to run on the UI thread.
+     * This one sets the text on the clock display (each second when the timer goes off
+     */
+    Runnable updateClockDisplay = new Runnable()  {
+        public void run() {
+            //stuff that updates the UI
+            txt_timer.setText(clockDisplayText);
+        }
+
+    };
+    /**
+     * Runnable to execute gui code that needs to run on the UI thread.
+     * This one sets the text on the "Next Quarter" button to be "Done
+     * and displays status messages to the user
+     */
+    Runnable setNextButtonText = new Runnable() {
+        public void run() {
+            btn_Next.setText("Done");
+            Toast.makeText(getApplicationContext(),"The game is over. Your stats have been saved",
+                    Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Press 'Done' to close this game. ",
+                        Toast.LENGTH_LONG).show();
+        }
+    };
 
     /**
      * method that creates the task that gets called at 1 second intervals to
@@ -491,19 +520,19 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
                 /*update the clock display with the minutes and seconds remaining
                 must use runOnUiThread or the gui update throws an exception*/
                 clockDisplayText = minutesText + ":" + secondsText;
-                runOnUiThread(new Runnable()  {
-                    public void run() {
-                        //stuff that updates the UI
-                        txt_timer.setText(clockDisplayText);
-                    }
 
-                });
+                //update clock display
+                runOnUiThread(updateClockDisplay);
                 //when time expires (ie. 0 minutes and 0 seconds left), stop the clock
                 if((seconds == 0L) && (minutes == 0L)){
                     pauseClock();
                     resetClock();
                     if(txt_quarter.getText().equals("q4")) {
                         gameOver = true;
+                        StatsManager.toFile(); //save game, and everything else
+                        //change to "Done" button and display ending messages
+                        runOnUiThread(setNextButtonText);
+
                     }
                     return;
                 }
