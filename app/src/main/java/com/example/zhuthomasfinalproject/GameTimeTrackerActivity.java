@@ -489,7 +489,7 @@ public class GameTimeTrackerActivity extends AppCompatActivity {
             btn_Next.setText("Done");
             Toast.makeText(getApplicationContext(),"The game is over. Your stats have been saved",
                     Toast.LENGTH_LONG).show();
-            Toast.makeText(getApplicationContext(),"Press 'Done' to close this game. ",
+            Toast.makeText(getApplicationContext(),"Press 'Done' to close this game. Changes will be saved.",
                         Toast.LENGTH_LONG).show();
         }
     };
