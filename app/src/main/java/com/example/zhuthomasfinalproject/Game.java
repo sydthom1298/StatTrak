@@ -185,6 +185,7 @@ public class Game implements Serializable {
         String date;
         File file;
         String fileName;
+        FileWriter fileWriter;
 
         //get downloads directory to store exported file
         dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
@@ -197,16 +198,18 @@ public class Game implements Serializable {
         file = new File(dir, "Game " + date + " vs " + opponent);
         System.out.println( "Export Game to " + dir.getAbsolutePath() + "/" +
                 "Game " + date + " vs " + opponent);
-        //file writer that goes through and writes game info followed by headings and player stats for each player
-        try(FileWriter fileWriter = new FileWriter(file)) {
+
+        try {
+            //file writer that goes through and writes game info followed by headings and player stats for each player
+            fileWriter = new FileWriter(file);
             //writes game stats
             fileWriter.write( team.getName() + " vs " + opponent + "," +
                     StatsManager.getDateTimeFromTimestamp(this.dateTime) +"\n");
             //writes headings for player stats
             fileWriter.write( "Points:," + points + ",Team Fouls:,"+ teamFouls + "\n");
-            fileWriter.write("Name, Number, Position, Assists, Blocks, DefRebs, FieldGoals, FGAttempts, FGPct, eFGPct " +
-                    "Fouls, FtMakes, FtAttempts, Minutes, OffRebs, PlayTime, Points, Steals, 3PtMakes, 3PtAttempts, " +
-                    "2PtMakes, 2PtAttempts, TtlRebs, Turnovers\n");
+            fileWriter.write("Name, Number, Position, Assists, Blocks, DefRebs, " +
+                    "Fouls, FtMakes, FtMiss, OffRebs, PlayTime, Points, Steals, 3PtMakes, 3PtMiss, " +
+                    "2PtMakes, 2PtMiss, Turnovers\n");
             //gets Player object for each player on the team and outputs PlayerStats for this game
             for(Player p: team.getPlayers()) {
                 PlayerStats s = p.getStat(this.dateTime);
@@ -214,16 +217,16 @@ public class Game implements Serializable {
                     continue;
                 }
                 fileWriter.write(p.getName() + "," + p.getJerseyNum() + "," + p.getPosition() + "," +
-                        s.getAssists() + "," + s.getBlocks() + "," + s.getDefRebs() + "," + s.getFGs() +
-                        "," + s.getFGAttempts() + "," + s.getFGPct() + "," + s.getEFGPct() + "," +
-                        s.getFouls() + "," + s.getFtMakes() + "," + s.getFTAttempts() + "," +
-                        s.getMinPlayed() + "," + s.getOffRebs() + "," +
+                        s.getAssists() + "," + s.getBlocks() + "," + s.getDefRebs() + "," +
+                        s.getFouls() + "," + s.getFtMakes() + "," + s.getFtMisses() + "," +
+                        s.getOffRebs() + "," +
                         s.getPlayingTime() + "," + s.getPoints() + "," + s.getSteals() + "," +
-                        s.getThreePtMakes() + "," + s.get3Attempts() + "," +
-                        s.getTwoPtMakes() + "," + s.getTwoPtAttempts() + "," + s.getTtlRebs() + "," +
+                        s.getThreePtMakes() + "," + s.getThreePtMisses() + "," +
+                        s.getTwoPtMakes() + "," + s.getTwoPtMisses()  + "," +
                         s.getTurnovers() + "\n" );
 
             }
+            fileWriter.close();
         }catch (IOException e){
             //ignore exception but output error information
             System.err.println("Error " + e.getMessage()+" writing export file: " + fileName);
